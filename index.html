@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -264,4 +265,272 @@ document.getElementById('burger').addEventListener('click',()=>{
 });
 </script>
 </body>
+=======
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jake Volante — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0d1117;
+  --bg2:#161b22;
+  --bg3:#21262d;
+  --border:#30363d;
+  --text:#e6edf3;
+  --muted:#7d8590;
+  --accent:#58a6ff;
+  --green:#3fb950;
+  --mono:'JetBrains Mono',monospace;
+  --sans:'Inter',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh}
+
+nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,0.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;height:56px;gap:2rem}
+.nav-logo{font-family:var(--mono);font-size:0.85rem;color:var(--text);text-decoration:none;font-weight:500}
+.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:0;list-style:none;margin-left:auto}
+.nav-links a{font-size:0.82rem;text-decoration:none;color:var(--muted);padding:0 0.9rem;height:56px;display:flex;align-items:center;border-bottom:2px solid transparent;transition:color 0.15s,border-color 0.15s}
+.nav-links a:hover{color:var(--text);border-bottom-color:var(--border)}
+.nav-cv{font-family:var(--mono);font-size:0.78rem;text-decoration:none;color:var(--accent);border:1px solid var(--border);padding:0.35rem 0.9rem;border-radius:6px;transition:background 0.15s,border-color 0.15s}
+.nav-cv:hover{background:var(--bg3);border-color:var(--accent)}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.burger span{display:block;width:22px;height:1.5px;background:var(--text)}
+
+#hero{padding:4rem 2rem 3rem;max-width:900px;margin:0 auto;border-bottom:1px solid var(--border)}
+.hero-prompt{font-family:var(--mono);font-size:0.8rem;color:var(--muted);margin-bottom:1.5rem;display:flex;align-items:center;gap:0.5rem}
+.hero-prompt::before{content:'C:\\Users\\Jake>';color:var(--accent)}
+.hero-name{font-size:2.2rem;font-weight:600;letter-spacing:-0.03em;color:var(--text);line-height:1.2;margin-bottom:0.6rem}
+.hero-name span{color:var(--accent)}
+.hero-role{font-family:var(--mono);font-size:0.9rem;color:var(--muted);margin-bottom:1.5rem}
+.hero-role b{color:var(--text);font-weight:500}
+.hero-tags{display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:2rem}
+.badge{font-family:var(--mono);font-size:0.72rem;padding:0.25rem 0.7rem;border-radius:2rem;border:1px solid var(--border);color:var(--muted)}
+.badge.lang{border-color:#388bfd33;background:#388bfd11;color:#58a6ff}
+.hero-btns{display:flex;gap:0.75rem;flex-wrap:wrap}
+.btn-primary{font-size:0.82rem;font-weight:500;text-decoration:none;background:var(--accent);color:#0d1117;padding:0.55rem 1.2rem;border-radius:6px;transition:opacity 0.15s}
+.btn-primary:hover{opacity:0.85}
+.btn-sec{font-size:0.82rem;font-weight:500;text-decoration:none;color:var(--text);padding:0.55rem 1.2rem;border-radius:6px;border:1px solid var(--border);transition:background 0.15s,border-color 0.15s}
+.btn-sec:hover{background:var(--bg3);border-color:#8b949e}
+
+.section{padding:3rem 2rem;max-width:900px;margin:0 auto;border-bottom:1px solid var(--border)}
+.section-title{font-family:var(--mono);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:2rem;display:flex;align-items:center;gap:0.75rem}
+.section-title::after{content:'';flex:1;height:1px;background:var(--border)}
+
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.about-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.5rem}
+.about-card h3{font-size:0.85rem;font-weight:600;color:var(--text);margin-bottom:0.8rem;display:flex;align-items:center;gap:0.5rem}
+.about-card h3::before{content:'';display:block;width:8px;height:8px;border-radius:50%;background:var(--green)}
+.about-card p{font-size:0.88rem;color:var(--muted);line-height:1.8}
+.about-full{grid-column:span 2}
+
+.skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0.5rem}
+.skill-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.skill-header{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.2rem;cursor:pointer;transition:background 0.15s}
+.skill-header:hover{background:var(--bg3)}
+.skill-header-left{display:flex;align-items:center;gap:0.75rem}
+.skill-index{font-family:var(--mono);font-size:0.7rem;color:var(--muted);width:20px}
+.skill-name{font-size:0.88rem;font-weight:500;color:var(--text)}
+.skill-chevron{font-size:0.7rem;color:var(--muted);transition:transform 0.2s}
+.skill-chevron.open{transform:rotate(90deg)}
+.skill-body{max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.3s}
+.skill-body.open{max-height:800px;padding:0 1.2rem 1.2rem}
+.skill-body p{font-size:0.83rem;color:var(--muted);line-height:1.7;margin-bottom:0.7rem}
+.skill-body ul{list-style:none;display:flex;flex-direction:column;gap:0.5rem}
+.skill-body li{font-size:0.83rem;color:var(--muted);padding-left:1.2rem;position:relative;line-height:1.6}
+.skill-body li::before{content:'▸';position:absolute;left:0;color:var(--accent);font-size:0.7rem;top:3px}
+.skill-body li b{color:var(--text);font-weight:500}
+.skill-body .ctx{font-family:var(--mono);font-size:0.68rem;color:var(--muted);opacity:0.55;margin-left:0.3rem}
+.synth-link{display:inline-block;margin-top:0;margin-bottom:1rem;font-family:var(--mono);font-size:0.75rem;color:var(--accent);text-decoration:none}
+.synth-link:hover{text-decoration:underline}
+
+.projects-list{display:flex;flex-direction:column;gap:0.5rem}
+.project-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.project-header{display:flex;align-items:center;gap:1rem;padding:1rem 1.2rem;cursor:pointer;transition:background 0.15s}
+.project-header:hover{background:var(--bg3)}
+.project-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.dot-green{background:var(--green)}
+.dot-yellow{background:#e3b341}
+.dot-blue{background:var(--accent)}
+.dot-gray{background:#484f58}
+.project-meta{flex:1}
+.project-title{font-size:0.9rem;font-weight:600;color:var(--text)}
+.project-sub{font-size:0.78rem;color:var(--muted);margin-top:1px}
+.project-pill{font-family:var(--mono);font-size:0.7rem;padding:0.2rem 0.6rem;border-radius:2rem;background:var(--bg3);border:1px solid var(--border);color:var(--muted)}
+.project-body{max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.3s}
+.project-body.open{max-height:400px;padding:0 1.2rem 1.2rem}
+.project-body p{font-size:0.85rem;color:var(--muted);line-height:1.8;margin-bottom:1rem}
+.project-link-btn{display:inline-flex;align-items:center;gap:0.4rem;font-family:var(--mono);font-size:0.78rem;color:var(--accent);text-decoration:none}
+.project-link-btn:hover{text-decoration:underline}
+
+#contact{border-bottom:none}
+.contact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0.5rem}
+.contact-item{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.2rem 1.4rem;display:flex;align-items:center;justify-content:space-between;text-decoration:none;transition:background 0.15s,border-color 0.15s}
+.contact-item:hover{background:var(--bg3);border-color:#8b949e}
+.contact-item-left p:first-child{font-size:0.72rem;font-family:var(--mono);color:var(--muted);margin-bottom:2px}
+.contact-item-left p:last-child{font-size:0.88rem;font-weight:500;color:var(--text)}
+.contact-arrow{color:var(--muted);font-size:0.9rem}
+
+footer{text-align:center;padding:2rem;border-top:1px solid var(--border)}
+footer p{font-family:var(--mono);font-size:0.75rem;color:var(--muted)}
+
+@media(max-width:680px){
+  .about-grid,.skills-grid,.contact-grid{grid-template-columns:1fr}
+  .about-full{grid-column:span 1}
+  .nav-links{display:none}
+  .nav-links.open{display:flex;flex-direction:column;position:fixed;top:56px;left:0;right:0;background:var(--bg);padding:1.5rem 2rem;border-bottom:1px solid var(--border)}
+  .nav-links.open li{padding:0.5rem 0}
+  .nav-links.open a{height:auto;padding:0}
+  .burger{display:flex}
+  .hero-name{font-size:1.7rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#hero"><span>~/</span>jake-volante</a>
+  <ul class="nav-links" id="navlinks">
+    <li><a href="#about">À propos</a></li>
+    <li><a href="#skills">Compétences</a></li>
+    <li><a href="#projects">Projets</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a class="nav-cv" href="Documents/CV_Jake_Volante_1.pdf" target="_blank">↓ CV.pdf</a>
+  <button class="burger" id="burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div id="hero">
+  <p class="hero-prompt">whoami</p>
+  <h1 class="hero-name">Jake <span>VOLANTE</span></h1>
+  <p class="hero-role">Étudiant <b>BTS SIO SLAM</b> — 2e année · Toulouse</p>
+  <div class="hero-tags">
+    <span class="badge lang">HTML/CSS</span>
+    <span class="badge lang">PHP</span>
+    <span class="badge lang">Python</span>
+    <span class="badge lang">MySQL</span>
+    <span class="badge lang">JavaScript</span>
+    <span class="badge lang">JAVA</span>
+    <span class="badge lang">Django</span>
+    <span class="badge lang">Git</span>
+    <span class="badge">Agile / SCRUM</span>
+    <span class="badge">JIRA · Trello</span>
+    <span class="badge">VS Code · PyCharm</span>
+  </div>
+  <div class="hero-btns">
+    <a class="btn-primary" href="#projects">Voir mes projets</a>
+    <a class="btn-sec" href="https://github.com/jakevlt" target="_blank">GitHub</a>
+    <a class="btn-sec" href="https://www.linkedin.com/in/jake-volante-14421232b/" target="_blank">LinkedIn</a>
+  </div>
+</div>
+
+<div class="section" id="about">
+  <p class="section-title">À propos</p>
+  <div class="about-grid">
+    <div class="about-card about-full">
+      <h3>Qui suis-je ?</h3>
+      <p>Étudiant en 2e année de BTS SIO, option SLAM (Solutions Logicielles et Applications Métiers) à Toulouse. Avant cela, j'ai obtenu un Bac STI2D option ITEC au lycée Val-de-Garonne de Marmande.<br><br>
+      Durant mon BTS, j'ai travaillé sur des projets concrets : création d'un site FAQ connecté à une base de données, stage de 8 semaines à La Banque Postale en méthode Agile, et développement d'une application web Django (ONBRD) chez Fonroche Lighting.</p>
+    </div>
+    <div class="about-card">
+      <h3>Formation</h3>
+      <p>BTS SIO SLAM — en cours<br>Lycée Limayrac, Toulouse<br><br>Bac STI2D ITEC — 2023<br>Lycée Val-de-Garonne, Marmande</p>
+    </div>
+    <div class="about-card">
+      <h3>Objectif</h3>
+      <p>Poursuivre en développement logiciel, approfondir mes compétences en back-end PHP / Python / SQL et découvrir de nouvelles technologies. Ouvert à l'alternance.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="skills">
+  <p class="section-title">Compétences BTS SIO — Bloc 1</p>
+  <a class="synth-link" href="Documents/Tableau_synthese_2026_Jake_VOLANTE.xlsx" target="_blank">↗ Tableau de synthèse 2026</a>
+  <div class="skills-grid" id="skillsGrid"></div>
+</div>
+
+<div class="section" id="projects">
+  <p class="section-title">Projets & réalisations</p>
+  <div class="projects-list" id="projectsList"></div>
+</div>
+
+<div class="section" id="contact">
+  <p class="section-title">Contact</p>
+  <div class="contact-grid">
+    <a class="contact-item" href="mailto:jake.volante@limayrac.fr">
+      <div class="contact-item-left"><p>email</p><p>jake.volante@limayrac.fr</p></div>
+      <span class="contact-arrow">↗</span>
+    </a>
+    <a class="contact-item" href="https://www.linkedin.com/in/jake-volante-14421232b/" target="_blank">
+      <div class="contact-item-left"><p>linkedin</p><p>jake-volante-14421232b</p></div>
+      <span class="contact-arrow">↗</span>
+    </a>
+    <a class="contact-item" href="https://github.com/jakevlt" target="_blank">
+      <div class="contact-item-left"><p>github</p><p>@jakevlt</p></div>
+      <span class="contact-arrow">↗</span>
+    </a>
+    <a class="contact-item" href="Documents/CV_Jake_Volante_1.pdf" target="_blank">
+      <div class="contact-item-left"><p>curriculum vitae</p><p>CV_Jake_Volante.pdf</p></div>
+      <span class="contact-arrow">↓</span>
+    </a>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 Jake Volante · BTS SIO SLAM · Toulouse</p>
+</footer>
+
+<script>
+const skills=[
+  {i:"01",name:"Gérer le patrimoine informatique",body:`<p>Recenser, organiser et maintenir les ressources informatiques selon les normes internes.</p><ul><li><b>Configuration de postes de développement</b> — installation IDE, Git, Node.js, PHPStorm, VS Code<span class="ctx"> · La Banque Postale</span></li><li><b>Vérification des habilitations</b> — comptes et droits d'accès selon la politique de sécurité<span class="ctx"> · La Banque Postale</span></li><li><b>Versioning GitLab</b> — mise en place du suivi de code, pérennité du projet ONBRD<span class="ctx"> · Fonroche Lighting</span></li></ul>`},
+  {i:"02",name:"Répondre aux incidents et demandes d'assistance",body:`<p>Prise en charge et résolution de demandes d'évolution d'applications existantes.</p><ul><li><b>User story JIRA — prévisualisation d'images</b> — développement HTML/SCSS/TypeScript, suivi ticket, validation Product Owner<span class="ctx"> · La Banque Postale</span></li><li><b>Application ONBRD</b> — analyse du besoin RH, automatisation d'un processus de planification manuel<span class="ctx"> · Fonroche Lighting</span></li></ul>`},
+  {i:"03",name:"Développer la présence en ligne",body:`<p>Créer ou améliorer des services en ligne pour la visibilité d'une organisation.</p><ul><li><b>Page taekwondo.html</b> — page web pour la Maison des Ligues<span class="ctx"> · Formation</span></li><li><b>Site FAQ dynamique</b> — BDD + formulaires + pages PHP dynamiques<span class="ctx"> · Formation</span></li><li><b>Application ONBRD</b> — interface web Django (HTML/CSS) pour le service RH<span class="ctx"> · Fonroche Lighting</span></li></ul>`},
+  {i:"04",name:"Travailler en mode projet",body:`<p>Collaborer dans un cadre structuré et piloter les phases d'un projet.</p><ul><li><b>Cérémonies Agile SCRUM</b> — Daily, Sprint Planning, Review, Retrospective<span class="ctx"> · La Banque Postale</span></li><li><b>Suivi JIRA / Trello</b> — backlog, estimation, critères d'acceptation<span class="ctx"> · La Banque Postale</span></li><li><b>Présentation projets internes</b> — analyse des objectifs et de l'organisation<span class="ctx"> · La Banque Postale</span></li><li><b>Prototypage ONBRD</b> — planification semaine 1→6, gestion des priorités techniques<span class="ctx"> · Fonroche Lighting</span></li></ul>`},
+  {i:"05",name:"Mettre à disposition un service informatique",body:`<p>Préparer, tester, déployer et valider un service pour les utilisateurs.</p><ul><li><b>Tests & déploiement user story</b> — test local, revue de code, déploiement GitLab, validation Product Owner<span class="ctx"> · La Banque Postale</span></li><li><b>Validation postes de développement</b> — validation par le référent technique<span class="ctx"> · La Banque Postale</span></li><li><b>Tests d'acceptation ONBRD</b> — tests de charge (3 collaborateurs), validation PDF par les RH, guide utilisateur<span class="ctx"> · Fonroche Lighting</span></li></ul>`},
+  {i:"06",name:"Organiser son développement professionnel",body:`<p>Gérer son identité professionnelle et planifier son évolution.</p><ul><li><b>Formation OpenClassrooms POO PHP</b> — getters, setters, tests unitaires PHPUnit<span class="ctx"> · La Banque Postale</span></li><li><b>Présentation SI</b> — découverte de l'environnement technique, développement professionnel<span class="ctx"> · La Banque Postale</span></li><li><b>Montée en compétences</b> — Django, PostgreSQL, Microsoft Graph API<span class="ctx"> · Fonroche Lighting</span></li><li><b>LinkedIn</b> — profil professionnel actif · <b>GitHub</b> — hébergement des projets · <b>Veille technologique</b></li></ul>`}
+];
+
+const projects=[
+  {dot:'dot-green',title:'AppFAQ',sub:'Maison des Ligues · PHP / MySQL / HTML',pill:'Projet étudiant',desc:"Application FAQ en ligne pour les ligues sportives. Inscription/connexion, dépôt de questions, réponses des administrateurs. Développé par lots avec interface simple et intuitive.",link:'Lot4/accueil/index.php',lbl:'Voir le projet →'},
+  {dot:'dot-yellow',title:'Stage — La Banque Postale',sub:'8 semaines · BTS SIO 1ère année · Agile SCRUM',pill:'Stage 1ère année',desc:"Stage au service informatique : configuration de postes de développement, développement d'une fonctionnalité de prévisualisation d'images (HTML/SCSS/TypeScript), travail en méthode Agile avec JIRA, déploiement GitLab.",link:'Documents/rapport_de_stage_jake_volante_portfolio.pdf',lbl:'Lire le rapport →'},
+  {dot:'dot-blue',title:'Stage — Fonroche Lighting',sub:'6 semaines · BTS SIO 2e année · Python / Django',pill:'Stage 2e année',desc:"Développement de l'application ONBRD : outil d'automatisation des parcours d'intégration RH. Back-end Python/Django, base de données PostgreSQL, interfaçage Microsoft Graph API (agendas Outlook), génération de PDF avec ReportLab, tests d'acceptation et guide utilisateur.",link:'Documents/fonroche_rapport_de_stage_jake_volante__1_.pdf',lbl:'Lire le rapport →'},
+  {dot:'dot-gray',title:'Projet personnel',sub:'En construction',pill:'À venir',desc:'Projet personnel en cours de développement. Disponible prochainement.',link:'',lbl:''}
+];
+
+const grid=document.getElementById('skillsGrid');
+skills.forEach((s)=>{
+  const card=document.createElement('div');
+  card.className='skill-card';
+  card.innerHTML=`<div class="skill-header"><div class="skill-header-left"><span class="skill-index">${s.i}</span><span class="skill-name">${s.name}</span></div><span class="skill-chevron">▸</span></div><div class="skill-body">${s.body}</div>`;
+  const hdr=card.querySelector('.skill-header');
+  const body=card.querySelector('.skill-body');
+  const chev=card.querySelector('.skill-chevron');
+  hdr.addEventListener('click',()=>{const o=body.classList.toggle('open');chev.classList.toggle('open',o);});
+  grid.appendChild(card);
+});
+
+const plist=document.getElementById('projectsList');
+projects.forEach(p=>{
+  const card=document.createElement('div');
+  card.className='project-card';
+  card.innerHTML=`<div class="project-header"><div class="project-dot ${p.dot}"></div><div class="project-meta"><div class="project-title">${p.title}</div><div class="project-sub">${p.sub}</div></div><span class="project-pill">${p.pill}</span></div><div class="project-body"><p>${p.desc}</p>${p.link?`<a class="project-link-btn" href="${p.link}" target="_blank">${p.lbl}</a>`:''}</div>`;
+  const hdr=card.querySelector('.project-header');
+  const body=card.querySelector('.project-body');
+  hdr.addEventListener('click',()=>body.classList.toggle('open'));
+  plist.appendChild(card);
+});
+
+document.getElementById('burger').addEventListener('click',()=>{
+  document.getElementById('navlinks').classList.toggle('open');
+});
+</script>
+</body>
+>>>>>>> d5755e4022469da70f2d3c9080cdc4e8268cc79a
 </html>
