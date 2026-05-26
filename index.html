@@ -5,24 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jake Volante — Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --bg:#0d1117;
-  --bg2:#161b22;
-  --bg3:#21262d;
-  --border:#30363d;
-  --text:#e6edf3;
-  --muted:#7d8590;
-  --accent:#58a6ff;
-  --green:#3fb950;
-  --mono:'JetBrains Mono',monospace;
-  --sans:'Inter',sans-serif;
-}
+:root{--bg:#0d1117;--bg2:#161b22;--bg3:#21262d;--border:#30363d;--text:#e6edf3;--muted:#7d8590;--accent:#58a6ff;--green:#3fb950;--mono:'JetBrains Mono',monospace;--sans:'Inter',sans-serif;}
 html{scroll-behavior:smooth}
 body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh}
-
 nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,0.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;height:56px;gap:2rem}
 .nav-logo{font-family:var(--mono);font-size:0.85rem;color:var(--text);text-decoration:none;font-weight:500}
 .nav-logo span{color:var(--accent)}
@@ -33,7 +20,6 @@ nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,0.95);backdrop-fi
 .nav-cv:hover{background:var(--bg3);border-color:var(--accent)}
 .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
 .burger span{display:block;width:22px;height:1.5px;background:var(--text)}
-
 #hero{padding:4rem 2rem 3rem;max-width:900px;margin:0 auto;border-bottom:1px solid var(--border)}
 .hero-prompt{font-family:var(--mono);font-size:0.8rem;color:var(--muted);margin-bottom:1.5rem;display:flex;align-items:center;gap:0.5rem}
 .hero-prompt::before{content:'C:\\Users\\Jake>';color:var(--accent)}
@@ -49,38 +35,40 @@ nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,0.95);backdrop-fi
 .btn-primary:hover{opacity:0.85}
 .btn-sec{font-size:0.82rem;font-weight:500;text-decoration:none;color:var(--text);padding:0.55rem 1.2rem;border-radius:6px;border:1px solid var(--border);transition:background 0.15s,border-color 0.15s}
 .btn-sec:hover{background:var(--bg3);border-color:#8b949e}
-
 .section{padding:3rem 2rem;max-width:900px;margin:0 auto;border-bottom:1px solid var(--border)}
 .section-title{font-family:var(--mono);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:2rem;display:flex;align-items:center;gap:0.75rem}
 .section-title::after{content:'';flex:1;height:1px;background:var(--border)}
-
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
 .about-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.5rem}
 .about-card h3{font-size:0.85rem;font-weight:600;color:var(--text);margin-bottom:0.8rem;display:flex;align-items:center;gap:0.5rem}
 .about-card h3::before{content:'';display:block;width:8px;height:8px;border-radius:50%;background:var(--green)}
 .about-card p{font-size:0.88rem;color:var(--muted);line-height:1.8}
 .about-full{grid-column:span 2}
-
-.skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0.5rem}
-.skill-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden}
-.skill-header{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.2rem;cursor:pointer;transition:background 0.15s}
-.skill-header:hover{background:var(--bg3)}
-.skill-header-left{display:flex;align-items:center;gap:0.75rem}
-.skill-index{font-family:var(--mono);font-size:0.7rem;color:var(--muted);width:20px}
-.skill-name{font-size:0.88rem;font-weight:500;color:var(--text)}
-.skill-chevron{font-size:0.7rem;color:var(--muted);transition:transform 0.2s}
-.skill-chevron.open{transform:rotate(90deg)}
-.skill-body{max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.3s}
-.skill-body.open{max-height:800px;padding:0 1.2rem 1.2rem}
-.skill-body p{font-size:0.83rem;color:var(--muted);line-height:1.7;margin-bottom:0.7rem}
-.skill-body ul{list-style:none;display:flex;flex-direction:column;gap:0.5rem}
-.skill-body li{font-size:0.83rem;color:var(--muted);padding-left:1.2rem;position:relative;line-height:1.6}
-.skill-body li::before{content:'▸';position:absolute;left:0;color:var(--accent);font-size:0.7rem;top:3px}
-.skill-body li b{color:var(--text);font-weight:500}
-.skill-body .ctx{font-family:var(--mono);font-size:0.68rem;color:var(--muted);opacity:0.55;margin-left:0.3rem}
-.synth-link{display:inline-block;margin-top:0;margin-bottom:1rem;font-family:var(--mono);font-size:0.75rem;color:var(--accent);text-decoration:none}
+.synth-link{display:inline-block;margin-bottom:1rem;font-family:var(--mono);font-size:0.75rem;color:var(--accent);text-decoration:none}
 .synth-link:hover{text-decoration:underline}
-
+.synth-table{width:100%;border-collapse:collapse;font-size:0.75rem}
+.synth-table thead th{padding:8px 10px;text-align:center;font-size:0.65rem;font-weight:500;color:var(--muted);border:1px solid var(--border);background:var(--bg2);vertical-align:bottom;line-height:1.4}
+.synth-table thead th:first-child{text-align:left;width:36%}
+.synth-table thead th:nth-child(2){width:10%}
+.synth-table .section-row td{background:var(--bg3);font-size:0.65rem;font-weight:500;color:var(--muted);padding:5px 10px;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--border)}
+.synth-table td{padding:8px 10px;border:1px solid var(--border);color:var(--text);vertical-align:middle}
+.synth-table tbody tr:hover{background:var(--bg2)}
+.synth-table td.real{font-size:0.75rem;line-height:1.5}
+.synth-table td.period{font-size:0.68rem;color:var(--muted);text-align:center;white-space:nowrap}
+.synth-table td.check{text-align:center;vertical-align:middle}
+.proof-dot{width:9px;height:9px;border-radius:50%;background:var(--accent);display:inline-block;cursor:pointer;transition:transform .15s;border:none;padding:0}
+.proof-dot:hover{transform:scale(1.5)}
+.comp-label{font-size:0.6rem;display:block;line-height:1.3}
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:999;align-items:center;justify-content:center}
+.modal-bg.open{display:flex}
+.modal-box{background:var(--bg);border:1px solid var(--border);border-radius:10px;max-width:500px;width:92%;padding:1.5rem;position:relative}
+.modal-close{position:absolute;top:10px;right:14px;background:none;border:none;font-size:1.2rem;cursor:pointer;color:var(--muted);line-height:1}
+.modal-close:hover{color:var(--text)}
+.modal-title{font-family:var(--mono);font-size:0.75rem;font-weight:500;color:var(--accent);margin-bottom:3px}
+.modal-sub{font-size:0.78rem;color:var(--muted);margin-bottom:1rem}
+.modal-img{width:100%;border-radius:6px;border:1px solid var(--border);background:var(--bg2);min-height:160px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.modal-img img{width:100%;display:block}
+.modal-placeholder{font-family:var(--mono);font-size:0.7rem;color:var(--muted);text-align:center;padding:2rem;line-height:1.8}
 .projects-list{display:flex;flex-direction:column;gap:0.5rem}
 .project-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden}
 .project-header{display:flex;align-items:center;gap:1rem;padding:1rem 1.2rem;cursor:pointer;transition:background 0.15s}
@@ -99,7 +87,6 @@ nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,0.95);backdrop-fi
 .project-body p{font-size:0.85rem;color:var(--muted);line-height:1.8;margin-bottom:1rem}
 .project-link-btn{display:inline-flex;align-items:center;gap:0.4rem;font-family:var(--mono);font-size:0.78rem;color:var(--accent);text-decoration:none}
 .project-link-btn:hover{text-decoration:underline}
-
 #contact{border-bottom:none}
 .contact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0.5rem}
 .contact-item{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.2rem 1.4rem;display:flex;align-items:center;justify-content:space-between;text-decoration:none;transition:background 0.15s,border-color 0.15s}
@@ -107,12 +94,10 @@ nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,0.95);backdrop-fi
 .contact-item-left p:first-child{font-size:0.72rem;font-family:var(--mono);color:var(--muted);margin-bottom:2px}
 .contact-item-left p:last-child{font-size:0.88rem;font-weight:500;color:var(--text)}
 .contact-arrow{color:var(--muted);font-size:0.9rem}
-
 footer{text-align:center;padding:2rem;border-top:1px solid var(--border)}
 footer p{font-family:var(--mono);font-size:0.75rem;color:var(--muted)}
-
 @media(max-width:680px){
-  .about-grid,.skills-grid,.contact-grid{grid-template-columns:1fr}
+  .about-grid,.contact-grid{grid-template-columns:1fr}
   .about-full{grid-column:span 1}
   .nav-links{display:none}
   .nav-links.open{display:flex;flex-direction:column;position:fixed;top:56px;left:0;right:0;background:var(--bg);padding:1.5rem 2rem;border-bottom:1px solid var(--border)}
@@ -120,6 +105,7 @@ footer p{font-family:var(--mono);font-size:0.75rem;color:var(--muted)}
   .nav-links.open a{height:auto;padding:0}
   .burger{display:flex}
   .hero-name{font-size:1.7rem}
+  .synth-table{font-size:0.65rem}
 }
 </style>
 </head>
@@ -134,9 +120,7 @@ footer p{font-family:var(--mono);font-size:0.75rem;color:var(--muted)}
     <li><a href="#contact">Contact</a></li>
   </ul>
   <a class="nav-cv" href="Documents/CV_Jake_Volante_1.pdf" target="_blank">↓ CV.pdf</a>
-  <button class="burger" id="burger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
+  <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 
 <div id="hero">
@@ -183,8 +167,31 @@ footer p{font-family:var(--mono);font-size:0.75rem;color:var(--muted)}
 
 <div class="section" id="skills">
   <p class="section-title">Compétences BTS SIO — Bloc 1</p>
-  <a class="synth-link" href="Documents/Tableau_synthese_2026_Jake_VOLANTE.pdf" target="_blank">↗ Tableau de synthèse 2026</a>
-  <div class="skills-grid" id="skillsGrid"></div>
+  <a class="synth-link" href="Documents/Tableau_synthese_2026_Jake_VOLANTE.xlsx" target="_blank">↗ Tableau de synthèse 2026</a>
+  <table class="synth-table" id="synthTable">
+    <thead>
+      <tr>
+        <th>Réalisation</th>
+        <th>Période</th>
+        <th><span class="comp-label">C1 Gérer le patrimoine</span></th>
+        <th><span class="comp-label">C2 Répondre aux incidents</span></th>
+        <th><span class="comp-label">C3 Présence en ligne</span></th>
+        <th><span class="comp-label">C4 Mode projet</span></th>
+        <th><span class="comp-label">C5 Mise à disposition</span></th>
+        <th><span class="comp-label">C6 Dév. professionnel</span></th>
+      </tr>
+    </thead>
+    <tbody id="synthBody"></tbody>
+  </table>
+</div>
+
+<div class="modal-bg" id="modalBg">
+  <div class="modal-box">
+    <button class="modal-close" id="modalClose">✕</button>
+    <div class="modal-title" id="modalTitle"></div>
+    <div class="modal-sub" id="modalSub"></div>
+    <div class="modal-img" id="modalImg"></div>
+  </div>
 </div>
 
 <div class="section" id="projects">
@@ -214,19 +221,61 @@ footer p{font-family:var(--mono);font-size:0.75rem;color:var(--muted)}
   </div>
 </div>
 
-<footer>
-  <p>© 2026 Jake Volante · BTS SIO SLAM · Toulouse</p>
-</footer>
+<footer><p>© 2026 Jake Volante · BTS SIO SLAM · Toulouse</p></footer>
 
 <script>
-const skills=[
-  {i:"01",name:"Gérer le patrimoine informatique",body:`<p>Recenser, organiser et maintenir les ressources informatiques selon les normes internes.</p><ul><li><b>Configuration de postes de développement</b> — installation IDE, Git, Node.js, PHPStorm, VS Code<span class="ctx"> · La Banque Postale</span></li><li><b>Vérification des habilitations</b> — comptes et droits d'accès selon la politique de sécurité<span class="ctx"> · La Banque Postale</span></li><li><b>Versioning GitLab</b> — mise en place du suivi de code, pérennité du projet ONBRD<span class="ctx"> · Fonroche Lighting</span></li></ul>`},
-  {i:"02",name:"Répondre aux incidents et demandes d'assistance",body:`<p>Prise en charge et résolution de demandes d'évolution d'applications existantes.</p><ul><li><b>User story JIRA — prévisualisation d'images</b> — développement HTML/SCSS/TypeScript, suivi ticket, validation Product Owner<span class="ctx"> · La Banque Postale</span></li><li><b>Application ONBRD</b> — analyse du besoin RH, automatisation d'un processus de planification manuel<span class="ctx"> · Fonroche Lighting</span></li></ul>`},
-  {i:"03",name:"Développer la présence en ligne",body:`<p>Créer ou améliorer des services en ligne pour la visibilité d'une organisation.</p><ul><li><b>Page taekwondo.html</b> — page web pour la Maison des Ligues<span class="ctx"> · Formation</span></li><li><b>Site FAQ dynamique</b> — BDD + formulaires + pages PHP dynamiques<span class="ctx"> · Formation</span></li><li><b>Application ONBRD</b> — interface web Django (HTML/CSS) pour le service RH<span class="ctx"> · Fonroche Lighting</span></li></ul>`},
-  {i:"04",name:"Travailler en mode projet",body:`<p>Collaborer dans un cadre structuré et piloter les phases d'un projet.</p><ul><li><b>Cérémonies Agile SCRUM</b> — Daily, Sprint Planning, Review, Retrospective<span class="ctx"> · La Banque Postale</span></li><li><b>Suivi JIRA / Trello</b> — backlog, estimation, critères d'acceptation<span class="ctx"> · La Banque Postale</span></li><li><b>Présentation projets internes</b> — analyse des objectifs et de l'organisation<span class="ctx"> · La Banque Postale</span></li><li><b>Prototypage ONBRD</b> — planification semaine 1→6, gestion des priorités techniques<span class="ctx"> · Fonroche Lighting</span></li></ul>`},
-  {i:"05",name:"Mettre à disposition un service informatique",body:`<p>Préparer, tester, déployer et valider un service pour les utilisateurs.</p><ul><li><b>Tests & déploiement user story</b> — test local, revue de code, déploiement GitLab, validation Product Owner<span class="ctx"> · La Banque Postale</span></li><li><b>Validation postes de développement</b> — validation par le référent technique<span class="ctx"> · La Banque Postale</span></li><li><b>Tests d'acceptation ONBRD</b> — tests de charge (3 collaborateurs), validation PDF par les RH, guide utilisateur<span class="ctx"> · Fonroche Lighting</span></li></ul>`},
-  {i:"06",name:"Organiser son développement professionnel",body:`<p>Gérer son identité professionnelle et planifier son évolution.</p><ul><li><b>Formation OpenClassrooms POO PHP</b> — getters, setters, tests unitaires PHPUnit<span class="ctx"> · La Banque Postale</span></li><li><b>Présentation SI</b> — découverte de l'environnement technique, développement professionnel<span class="ctx"> · La Banque Postale</span></li><li><b>Montée en compétences</b> — Django, PostgreSQL, Microsoft Graph API<span class="ctx"> · Fonroche Lighting</span></li><li><b>LinkedIn</b> — profil professionnel actif · <b>GitHub</b> — hébergement des projets · <b>Veille technologique</b></li></ul>`}
+const synthData=[
+  {section:"Formation"},
+  {real:"Création page web taekwondo.html (MDL)",period:"11/24→12/24",comps:[0,0,1,1,0,0],proofs:[null,null,{img:"Images/taekwondo.png",label:"Page taekwondo.html",comp:"C3 — Développer la présence en ligne"},{img:"Images/taekwondo.png",label:"Page taekwondo.html",comp:"C4 — Travailler en mode projet"},null,null]},
+  {real:"Site web type FAQ (BDD, formulaires PHP)",period:"01/25→04/25",comps:[0,0,1,1,1,0],proofs:[null,null,{img:"Images/faq-accueil.png",label:"Page d'accueil FAQ",comp:"C3 — Développer la présence en ligne"},{img:"Images/faq-bdd.png",label:"Base de données FAQ",comp:"C4 — Travailler en mode projet"},{img:"Images/faq-accueil.png",label:"Formulaire FAQ",comp:"C5 — Mettre à disposition"},null]},
+  {real:"Compte LinkedIn, CV et signature Gmail",period:"09/24→05/25",comps:[0,0,0,0,0,1],proofs:[null,null,null,null,null,{img:"Images/linkedin.png",label:"Profil LinkedIn",comp:"C6 — Organiser son développement professionnel"}]},
+  {real:"Diaporama projet professionnel",period:"01/25→01/25",comps:[0,0,0,0,0,1],proofs:[null,null,null,null,null,{img:"Images/diaporama.png",label:"Diaporama projet pro",comp:"C6 — Organiser son développement professionnel"}]},
+  {section:"Stage 1ère année — La Banque Postale"},
+  {real:"Suivre et traiter une US sur JIRA (prévisualisation images)",period:"05/25→07/25",comps:[0,1,0,1,1,0],proofs:[null,{img:"Images/jira-ticket.png",label:"Ticket JIRA",comp:"C2 — Répondre aux incidents"},null,{img:"Images/jira-avant.png",label:"Application avant réalisation",comp:"C4 — Travailler en mode projet"},{img:"Images/jira-apres.png",label:"Application après réalisation",comp:"C5 — Mettre à disposition"},null]},
+  {real:"Configuration de deux postes de développement",period:"05/25→07/25",comps:[1,0,0,0,1,0],proofs:[{img:"Images/jira-ticket.png",label:"Config postes",comp:"C1 — Gérer le patrimoine"},null,null,null,{img:"Images/jira-ticket.png",label:"Validation environnement",comp:"C5 — Mettre à disposition"},null]},
+  {real:"Formation OpenClassrooms PHP orienté objet",period:"05/25→07/25",comps:[0,0,0,0,0,1],proofs:[null,null,null,null,null,{img:"Images/oc-poo.png",label:"Exercice POO PHP — classe Food",comp:"C6 — Organiser son développement professionnel"}]},
+  {real:"Présentation projets et applications internes",period:"05/25→07/25",comps:[0,0,0,1,0,1],proofs:[null,null,null,{img:"Images/jira-ticket.png",label:"Présentation SI",comp:"C4 — Travailler en mode projet"},null,{img:"Images/jira-ticket.png",label:"Découverte environnement technique",comp:"C6 — Organiser son développement professionnel"}]},
+  {section:"Stage 2e année — Fonroche Lighting"},
+  {real:"Développement application ONBRD (Django/Python)",period:"01/26→02/26",comps:[0,0,1,0,1,0],proofs:[null,null,{img:"Images/onbrd-connexion.png",label:"Interface connexion ONBRD",comp:"C3 — Développer la présence en ligne"},null,{img:"Images/onbrd-entrees.png",label:"Gestion des entrées",comp:"C5 — Mettre à disposition"},null]},
+  {real:"Tests, validation et bonnes pratiques",period:"01/26→02/26",comps:[0,1,0,1,1,0],proofs:[null,{img:"Images/onbrd-planning.png",label:"Planification automatique",comp:"C2 — Répondre aux incidents"},null,{img:"Images/onbrd-pdf.png",label:"PDF généré et validé RH",comp:"C4 — Travailler en mode projet"},{img:"Images/onbrd-pdf.png",label:"Tests d'acceptation",comp:"C5 — Mettre à disposition"},null]},
+  {real:"Mise en place environnement (GitLab, PostgreSQL)",period:"01/26→02/26",comps:[1,0,0,0,0,1],proofs:[{img:"Images/onbrd-arborescence.png",label:"Arborescence projet VS Code",comp:"C1 — Gérer le patrimoine"},{img:"Images/onbrd-bdd.png",label:"Base de données PostgreSQL",comp:"C2 — placeholder"},null,null,null,{img:"Images/onbrd-arborescence.png",label:"Montée en compétences Django",comp:"C6 — Organiser son développement professionnel"}]},
 ];
+
+const tbody=document.getElementById('synthBody');
+synthData.forEach(row=>{
+  if(row.section){
+    const tr=document.createElement('tr');
+    tr.className='section-row';
+    tr.innerHTML=`<td colspan="8">${row.section}</td>`;
+    tbody.appendChild(tr);return;
+  }
+  const tr=document.createElement('tr');
+  let cells=`<td class="real">${row.real}</td><td class="period">${row.period}</td>`;
+  row.comps.forEach((v,i)=>{
+    if(v&&row.proofs[i]){
+      const p=row.proofs[i];
+      cells+=`<td class="check"><span class="proof-dot" data-img="${p.img}" data-label="${p.label}" data-comp="${p.comp}" title="Voir la preuve"></span></td>`;
+    }else if(v){
+      cells+=`<td class="check" style="font-size:11px;color:var(--accent)">✓</td>`;
+    }else{
+      cells+=`<td class="check"></td>`;
+    }
+  });
+  tr.innerHTML=cells;
+  tbody.appendChild(tr);
+});
+
+const modalBg=document.getElementById('modalBg');
+document.getElementById('synthBody').addEventListener('click',e=>{
+  const dot=e.target.closest('.proof-dot');
+  if(!dot)return;
+  document.getElementById('modalComp').textContent=dot.dataset.comp;
+  document.getElementById('modalLabel').textContent=dot.dataset.label;
+  document.getElementById('modalImgWrap').innerHTML=`<img src="${dot.dataset.img}" alt="${dot.dataset.label}" onerror="this.parentElement.innerHTML='<div class=\\'modal-placeholder\\'>Image à ajouter :<br>${dot.dataset.img}</div>'">`;
+  modalBg.classList.add('open');
+});
+document.getElementById('modalClose').addEventListener('click',()=>modalBg.classList.remove('open'));
+modalBg.addEventListener('click',e=>{if(e.target===modalBg)modalBg.classList.remove('open');});
 
 const projects=[
   {dot:'dot-green',title:'AppFAQ',sub:'Maison des Ligues · PHP / MySQL / HTML',pill:'Projet étudiant',desc:"Application FAQ en ligne pour les ligues sportives. Inscription/connexion, dépôt de questions, réponses des administrateurs. Développé par lots avec interface simple et intuitive.",link:'Lot4/accueil/index.php',lbl:'Voir le projet →'},
@@ -234,19 +283,6 @@ const projects=[
   {dot:'dot-blue',title:'Stage — Fonroche Lighting',sub:'6 semaines · BTS SIO 2e année · Python / Django',pill:'Stage 2e année',desc:"Développement de l'application ONBRD : outil d'automatisation des parcours d'intégration RH. Back-end Python/Django, base de données PostgreSQL, interfaçage Microsoft Graph API (agendas Outlook), génération de PDF avec ReportLab, tests d'acceptation et guide utilisateur.",link:'Documents/fonroche_rapport_de_stage_jake_volante__1_.pdf',lbl:'Lire le rapport →'},
   {dot:'dot-gray',title:'Projet personnel',sub:'En construction',pill:'À venir',desc:'Projet personnel en cours de développement. Disponible prochainement.',link:'',lbl:''}
 ];
-
-const grid=document.getElementById('skillsGrid');
-skills.forEach((s)=>{
-  const card=document.createElement('div');
-  card.className='skill-card';
-  card.innerHTML=`<div class="skill-header"><div class="skill-header-left"><span class="skill-index">${s.i}</span><span class="skill-name">${s.name}</span></div><span class="skill-chevron">▸</span></div><div class="skill-body">${s.body}</div>`;
-  const hdr=card.querySelector('.skill-header');
-  const body=card.querySelector('.skill-body');
-  const chev=card.querySelector('.skill-chevron');
-  hdr.addEventListener('click',()=>{const o=body.classList.toggle('open');chev.classList.toggle('open',o);});
-  grid.appendChild(card);
-});
-
 const plist=document.getElementById('projectsList');
 projects.forEach(p=>{
   const card=document.createElement('div');
