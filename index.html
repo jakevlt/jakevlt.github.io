@@ -61,14 +61,19 @@ nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,0.95);backdrop-fi
 .comp-label{font-size:0.6rem;display:block;line-height:1.3}
 .modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:999;align-items:center;justify-content:center}
 .modal-bg.open{display:flex}
-.modal-box{background:var(--bg);border:1px solid var(--border);border-radius:10px;max-width:500px;width:92%;padding:1.5rem;position:relative}
+.modal-box{background:var(--bg);border:1px solid var(--border);border-radius:10px;max-width:560px;width:92%;padding:1.5rem;position:relative}
 .modal-close{position:absolute;top:10px;right:14px;background:none;border:none;font-size:1.2rem;cursor:pointer;color:var(--muted);line-height:1}
 .modal-close:hover{color:var(--text)}
 .modal-title{font-family:var(--mono);font-size:0.75rem;font-weight:500;color:var(--accent);margin-bottom:3px}
-.modal-sub{font-size:0.78rem;color:var(--muted);margin-bottom:1rem}
-.modal-img{width:100%;border-radius:6px;border:1px solid var(--border);background:var(--bg2);min-height:160px;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.modal-img img{width:100%;display:block}
-.modal-placeholder{font-family:var(--mono);font-size:0.7rem;color:var(--muted);text-align:center;padding:2rem;line-height:1.8}
+.modal-sub{font-size:0.78rem;color:var(--text);margin-bottom:0.8rem}
+.modal-counter{font-family:var(--mono);font-size:0.68rem;color:var(--muted);margin-bottom:0.8rem}
+.modal-img{width:100%;border-radius:6px;border:1px solid var(--border);background:var(--bg2);max-height:400px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.modal-img img{width:100%;max-height:400px;object-fit:contain;display:block}
+.modal-def{font-size:0.75rem;color:var(--muted);line-height:1.6;margin-bottom:0.8rem;padding:0.6rem 0.8rem;border-left:2px solid var(--border);font-style:italic}
+.modal-nav{display:flex;justify-content:space-between;align-items:center;margin-top:0.8rem}
+.modal-btn{background:none;border:1px solid var(--border);color:var(--muted);font-family:var(--mono);font-size:0.75rem;padding:0.4rem 1rem;border-radius:6px;cursor:pointer;transition:all 0.15s}
+.modal-btn:hover:not(:disabled){background:var(--bg2);color:var(--text);border-color:var(--muted)}
+.modal-btn:disabled{opacity:0.25;cursor:default}
 .projects-list{display:flex;flex-direction:column;gap:0.5rem}
 .project-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden}
 .project-header{display:flex;align-items:center;gap:1rem;padding:1rem 1.2rem;cursor:pointer;transition:background 0.15s}
@@ -189,8 +194,14 @@ footer p{font-family:var(--mono);font-size:0.75rem;color:var(--muted)}
   <div class="modal-box">
     <button class="modal-close" id="modalClose">✕</button>
     <div class="modal-title" id="modalTitle"></div>
+    <div class="modal-def" id="modalDef"></div>
     <div class="modal-sub" id="modalSub"></div>
+    <div class="modal-counter" id="modalCounter"></div>
     <div class="modal-img" id="modalImg"></div>
+    <div class="modal-nav" id="modalNav">
+      <button class="modal-btn" id="modalPrev">← Précédent</button>
+      <button class="modal-btn" id="modalNext">Suivant →</button>
+    </div>
   </div>
 </div>
 
@@ -226,19 +237,53 @@ footer p{font-family:var(--mono);font-size:0.75rem;color:var(--muted)}
 <script>
 const synthData=[
   {section:"Formation"},
-  {real:"Création page web taekwondo.html (MDL)",period:"11/24→12/24",comps:[0,0,1,1,0,0],proofs:[null,null,{img:"Images/taekwondo.png",label:"Page taekwondo.html",comp:"C3 — Développer la présence en ligne"},{img:"Images/taekwondo.png",label:"Page taekwondo.html",comp:"C4 — Travailler en mode projet"},null,null]},
-  {real:"Site web type FAQ (BDD, formulaires PHP)",period:"01/25→04/25",comps:[0,0,1,1,1,0],proofs:[null,null,{img:"Images/faq-accueil.png",label:"Page d'accueil FAQ",comp:"C3 — Développer la présence en ligne"},{img:"Images/faq-bdd.png",label:"Base de données FAQ",comp:"C4 — Travailler en mode projet"},{img:"Images/faq-accueil.png",label:"Formulaire FAQ",comp:"C5 — Mettre à disposition"},null]},
-  {real:"Compte LinkedIn, CV et signature Gmail",period:"09/24→05/25",comps:[0,0,0,0,0,1],proofs:[null,null,null,null,null,{img:"Images/linkedin.png",label:"Profil LinkedIn",comp:"C6 — Organiser son développement professionnel"}]},
-  {real:"Diaporama projet professionnel",period:"01/25→01/25",comps:[0,0,0,0,0,1],proofs:[null,null,null,null,null,{img:"Images/diaporama.png",label:"Diaporama projet pro",comp:"C6 — Organiser son développement professionnel"}]},
+  {real:"Création page web taekwondo.html (MDL)",period:"11/24→12/24",comps:[0,0,1,1,0,0],proofs:[null,null,
+    {imgs:["Images/taekwondo-c3-1.png","Images/taekwondo-c3-2.png","Images/taekwondo-c3-3.png","Images/taekwondo-c3-4.png","Images/taekwondo-c3-5.png","Images/taekwondo-c3-6.png","Images/taekwondo-c3-7.png","Images/taekwondo-c3-8.png"],labels:["Capture 1","Capture 2","Capture 3","Capture 4","Capture 5","Capture 6","Capture 7","Capture 8"],comp:"C3 — Développer la présence en ligne"},
+    {imgs:["Images/taekwondo-c4-1.png","Images/taekwondo-c4-2.png"],labels:["Plan bâtiment — ligue taekwondo étage 1","Arborescence du projet dans VS Code"],comp:"C4 — Travailler en mode projet"},
+    null,null]},
+  {real:"Site web type FAQ (BDD, formulaires PHP)",period:"01/25→04/25",comps:[0,0,1,1,1,0],proofs:[null,null,
+    {imgs:["Images/faq-c3-accueil-1.png","Images/faq-c3-accueil-2.png","Images/faq-c3-accueil-3.png","Images/faq-c3-accueil-4.png","Images/faq-c3-accueil-5.png","Images/faq-c3-accueil-6.png","Images/faq-c3-accueil-7.png","Images/faq-c3-accueil-8.png","Images/faq-c3-accueil-9.png","Images/faq-c3-accueil-10.png","Images/faq-c3-accueil-11.png","Images/faq-c3-accueil-12.png","Images/faq-c3-accueil-13.png","Images/faq-c3-accueil-14.png","Images/faq-c3-accueil-15.png","Images/faq-c3-accueil-16.png"],labels:["Capture 1","Capture 2","Capture 3","Capture 4","Capture 5","Capture 6","Capture 7","Capture 8","Capture 9","Capture 10","Capture 11","Capture 12","Capture 13","Capture 14","Capture 15","Capture 16"],comp:"C3 — Développer la présence en ligne"},
+    {imgs:["Images/faq-c4-bdd-1.png","Images/faq-c4-bdd-2.png","Images/faq-c4-bdd-3.png"],labels:["Tableau Trello — suivi du projet FAQ","Arborescence du projet dans VS Code","Cahier des charges — lotissement et cycle de développement"],comp:"C4 — Travailler en mode projet"},
+    {imgs:["Images/faq-c5-formulaire-1.png","Images/faq-c5-formulaire-2.png"],labels:["Cahier des charges — livrables et technologies","Dépôt GitHub — lots et commits"],comp:"C5 — Mettre à disposition"},
+    null]},
+  {real:"Compte LinkedIn, CV et signature Gmail",period:"09/24→05/25",comps:[0,0,0,0,0,1],proofs:[null,null,null,null,null,
+    {imgs:["Images/linkedin-c6-1.png","Images/linkedin-c6-2.png","Images/linkedin-c6-3.png"],labels:["Profil LinkedIn — vue générale","Profil LinkedIn — expériences","Profil LinkedIn — formation"],comp:"C6 — Organiser son développement professionnel"}]},
+  {real:"Diaporama projet professionnel",period:"01/25→01/25",comps:[0,0,0,0,0,1],proofs:[null,null,null,null,null,
+    {imgs:["Images/diaporama-c6-1.png","Images/diaporama-c6-2.png","Images/diaporama-c6-3.png","Images/diaporama-c6-4.png"],labels:["Diaporama — slide 1","Diaporama — slide 2","Diaporama — slide 3","Diaporama — slide 4"],comp:"C6 — Organiser son développement professionnel"}]},
   {section:"Stage 1ère année — La Banque Postale"},
-  {real:"Suivre et traiter une US sur JIRA (prévisualisation images)",period:"05/25→07/25",comps:[0,1,0,1,1,0],proofs:[null,{img:"Images/jira-ticket.png",label:"Ticket JIRA",comp:"C2 — Répondre aux incidents"},null,{img:"Images/jira-avant.png",label:"Application avant réalisation",comp:"C4 — Travailler en mode projet"},{img:"Images/jira-apres.png",label:"Application après réalisation",comp:"C5 — Mettre à disposition"},null]},
-  {real:"Configuration de deux postes de développement",period:"05/25→07/25",comps:[1,0,0,0,1,0],proofs:[{img:"Images/jira-ticket.png",label:"Config postes",comp:"C1 — Gérer le patrimoine"},null,null,null,{img:"Images/jira-ticket.png",label:"Validation environnement",comp:"C5 — Mettre à disposition"},null]},
-  {real:"Formation OpenClassrooms PHP orienté objet",period:"05/25→07/25",comps:[0,0,0,0,0,1],proofs:[null,null,null,null,null,{img:"Images/oc-poo.png",label:"Exercice POO PHP — classe Food",comp:"C6 — Organiser son développement professionnel"}]},
-  {real:"Présentation projets et applications internes",period:"05/25→07/25",comps:[0,0,0,1,0,1],proofs:[null,null,null,{img:"Images/jira-ticket.png",label:"Présentation SI",comp:"C4 — Travailler en mode projet"},null,{img:"Images/jira-ticket.png",label:"Découverte environnement technique",comp:"C6 — Organiser son développement professionnel"}]},
+  {real:"Suivre et traiter une US sur JIRA (prévisualisation images)",period:"05/25→07/25",comps:[0,1,0,1,1,0],proofs:[null,
+    {imgs:["Images/jira-c2-ticket-1.png"],labels:["Ticket JIRA — user story prévisualisation images"],comp:"C2 — Répondre aux incidents"},
+    null,
+    {imgs:["Images/jira-c4-avant.png","Images/jira-c4-apres.png"],labels:["Application avant réalisation","Application après réalisation"],comp:"C4 — Travailler en mode projet"},
+    {imgs:["Images/jira-c5-deploy.png"],labels:["Fonctionnalité déployée — validation Product Owner"],comp:"C5 — Mettre à disposition"},
+    null]},
+  {real:"Configuration de deux postes de développement",period:"05/25→07/25",comps:[1,0,0,0,1,0],proofs:[
+    {imgs:["Images/postes-c1-config.png"],labels:["Configuration postes de développement"],comp:"C1 — Gérer le patrimoine"},
+    null,null,null,
+    {imgs:["Images/postes-c5-validation.png"],labels:["Validation environnement de développement"],comp:"C5 — Mettre à disposition"},
+    null]},
+  {real:"Formation OpenClassrooms PHP orienté objet",period:"05/25→07/25",comps:[0,0,0,0,0,1],proofs:[null,null,null,null,null,
+    {imgs:["Images/oc-c6-poo.png"],labels:["Exercice POO PHP — classe Food + tests PHPUnit"],comp:"C6 — Organiser son développement professionnel"}]},
+  {real:"Présentation projets et applications internes",period:"05/25→07/25",comps:[0,0,0,1,0,1],proofs:[null,null,null,
+    {imgs:["Images/si-c4-presentation.png"],labels:["Présentation projets internes — analyse organisation"],comp:"C4 — Travailler en mode projet"},
+    null,
+    {imgs:["Images/si-c6-decouverte.png"],labels:["Découverte environnement technique — développement professionnel"],comp:"C6 — Organiser son développement professionnel"}]},
   {section:"Stage 2e année — Fonroche Lighting"},
-  {real:"Développement application ONBRD (Django/Python)",period:"01/26→02/26",comps:[0,0,1,0,1,0],proofs:[null,null,{img:"Images/onbrd-connexion.png",label:"Interface connexion ONBRD",comp:"C3 — Développer la présence en ligne"},null,{img:"Images/onbrd-entrees.png",label:"Gestion des entrées",comp:"C5 — Mettre à disposition"},null]},
-  {real:"Tests, validation et bonnes pratiques",period:"01/26→02/26",comps:[0,1,0,1,1,0],proofs:[null,{img:"Images/onbrd-planning.png",label:"Planification automatique",comp:"C2 — Répondre aux incidents"},null,{img:"Images/onbrd-pdf.png",label:"PDF généré et validé RH",comp:"C4 — Travailler en mode projet"},{img:"Images/onbrd-pdf.png",label:"Tests d'acceptation",comp:"C5 — Mettre à disposition"},null]},
-  {real:"Mise en place environnement (GitLab, PostgreSQL)",period:"01/26→02/26",comps:[1,0,0,0,0,1],proofs:[{img:"Images/onbrd-arborescence.png",label:"Arborescence projet VS Code",comp:"C1 — Gérer le patrimoine"},{img:"Images/onbrd-bdd.png",label:"Base de données PostgreSQL",comp:"C2 — placeholder"},null,null,null,{img:"Images/onbrd-arborescence.png",label:"Montée en compétences Django",comp:"C6 — Organiser son développement professionnel"}]},
+  {real:"Développement application ONBRD (Django/Python)",period:"01/26→02/26",comps:[0,0,1,0,1,0],proofs:[null,null,
+    {imgs:["Images/onbrd-c3-connexion.png","Images/onbrd-c3-entrees.png","Images/onbrd-c3-planning.png"],labels:["Page de connexion ONBRD","Interface gestion des entrées","Interface planification"],comp:"C3 — Développer la présence en ligne"},
+    null,
+    {imgs:["Images/onbrd-c5-entrees.png","Images/onbrd-c5-pdf.png"],labels:["Gestion des arrivants","PDF parcours d'intégration généré"],comp:"C5 — Mettre à disposition"},
+    null]},
+  {real:"Tests, validation et bonnes pratiques",period:"01/26→02/26",comps:[0,1,0,1,1,0],proofs:[null,
+    {imgs:["Images/onbrd-c2-planning.png","Images/onbrd-c2-pdf.png"],labels:["Planification automatique — résolution besoin RH","PDF validé par les RH"],comp:"C2 — Répondre aux incidents"},
+    null,
+    {imgs:["Images/onbrd-c4-pdf.png","Images/onbrd-c4-planning.png"],labels:["PDF parcours d'intégration","Algorithme de planification"],comp:"C4 — Travailler en mode projet"},
+    {imgs:["Images/onbrd-c5-tests.png"],labels:["Tests d'acceptation — validation service RH"],comp:"C5 — Mettre à disposition"},
+    null]},
+  {real:"Mise en place environnement (GitLab, PostgreSQL)",period:"01/26→02/26",comps:[1,0,0,0,0,1],proofs:[
+    {imgs:["Images/env-c1-arborescence.png","Images/env-c1-gitlab.png"],labels:["Arborescence projet VS Code","Versioning GitLab — pérennité du code"],comp:"C1 — Gérer le patrimoine"},
+    null,null,null,null,
+    {imgs:["Images/env-c6-bdd.png","Images/env-c6-arborescence.png"],labels:["Base de données PostgreSQL","Montée en compétences Django/Python"],comp:"C6 — Organiser son développement professionnel"}]},
 ];
 
 const tbody=document.getElementById('synthBody');
@@ -254,7 +299,9 @@ synthData.forEach(row=>{
   row.comps.forEach((v,i)=>{
     if(v&&row.proofs[i]){
       const p=row.proofs[i];
-      cells+=`<td class="check"><span class="proof-dot" data-img="${p.img}" data-label="${p.label}" data-comp="${p.comp}" title="Voir la preuve"></span></td>`;
+      const imgs=JSON.stringify(p.imgs).replace(/"/g,'&quot;');
+      const labels=JSON.stringify(p.labels).replace(/"/g,'&quot;');
+      cells+=`<td class="check"><span class="proof-dot" data-imgs="${imgs}" data-labels="${labels}" data-comp="${p.comp}" title="Voir les preuves (${p.imgs.length})"></span></td>`;
     }else if(v){
       cells+=`<td class="check" style="font-size:11px;color:var(--accent)">✓</td>`;
     }else{
@@ -265,14 +312,59 @@ synthData.forEach(row=>{
   tbody.appendChild(tr);
 });
 
+const compDefs={
+  "C1":"Recenser et identifier les ressources numériques, exploiter des référentiels et normes, mettre en place et vérifier les niveaux d'habilitation, vérifier la continuité du service, gérer les sauvegardes et le respect des règles d'utilisation.",
+  "C2":"Collecter, suivre et orienter des demandes. Traiter des demandes concernant les services réseau, système, applicatifs et les applications.",
+  "C3":"Participer à la valorisation de l'image de l'organisation sur les médias numériques, référencer les services en ligne et mesurer leur visibilité, participer à l'évolution d'un site web exploitant les données de l'organisation.",
+  "C4":"Analyser les objectifs et les modalités d'organisation d'un projet, planifier les activités, évaluer les indicateurs de suivi et analyser les écarts.",
+  "C5":"Réaliser les tests d'intégration et d'acceptation d'un service, déployer un service, accompagner les utilisateurs dans la mise en place d'un service.",
+  "C6":"Mettre en place son environnement d'apprentissage personnel, mettre en œuvre des outils et stratégies de veille informationnelle, gérer son identité professionnelle, développer son projet professionnel."
+};
+
+let currentImgs=[];
+let currentIdx=0;
+
+function showModalImg(idx){
+  const img=currentImgs[idx];
+  const label=currentLabels[idx];
+  document.getElementById('modalCounter').textContent=`${idx+1} / ${currentImgs.length}`;
+  document.getElementById('modalSub').textContent=label;
+  document.getElementById('modalImg').innerHTML=`<img src="${img}" alt="${label}" onerror="this.parentElement.innerHTML='<div class=\\'modal-placeholder\\'>Image à ajouter :<br>${img}</div>'">`;
+  document.getElementById('modalPrev').disabled=idx===0;
+  document.getElementById('modalNext').disabled=idx===currentImgs.length-1;
+}
+
+let currentLabels=[];
+
 const modalBg=document.getElementById('modalBg');
 document.getElementById('synthBody').addEventListener('click',e=>{
   const dot=e.target.closest('.proof-dot');
   if(!dot)return;
+  currentImgs=JSON.parse(dot.dataset.imgs.replace(/&quot;/g,'"'));
+  currentLabels=JSON.parse(dot.dataset.labels.replace(/&quot;/g,'"'));
+  currentIdx=0;
   document.getElementById('modalTitle').textContent=dot.dataset.comp;
-  document.getElementById('modalSub').textContent=dot.dataset.label;
-  document.getElementById('modalImg').innerHTML=`<img src="${dot.dataset.img}" alt="${dot.dataset.label}" onerror="this.parentElement.innerHTML='<div class=\\'modal-placeholder\\'>Image à ajouter :<br>${dot.dataset.img}</div>'">`;
+  const cKey=dot.dataset.comp.match(/C\d/)?.[0];
+  document.getElementById('modalDef').textContent=cKey&&compDefs[cKey]?compDefs[cKey]:'';
+  document.getElementById('modalNav')||null;
+  const nav=document.getElementById('modalNav');
+  if(currentImgs.length<=1){
+    document.getElementById('modalPrev').style.visibility='hidden';
+    document.getElementById('modalNext').style.visibility='hidden';
+    document.getElementById('modalCounter').textContent='';
+  }else{
+    document.getElementById('modalPrev').style.visibility='visible';
+    document.getElementById('modalNext').style.visibility='visible';
+  }
+  showModalImg(0);
   modalBg.classList.add('open');
+});
+
+document.getElementById('modalPrev').addEventListener('click',()=>{
+  if(currentIdx>0){currentIdx--;showModalImg(currentIdx);}
+});
+document.getElementById('modalNext').addEventListener('click',()=>{
+  if(currentIdx<currentImgs.length-1){currentIdx++;showModalImg(currentIdx);}
 });
 document.getElementById('modalClose').addEventListener('click',()=>modalBg.classList.remove('open'));
 modalBg.addEventListener('click',e=>{if(e.target===modalBg)modalBg.classList.remove('open');});
