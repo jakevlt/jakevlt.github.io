@@ -269,9 +269,9 @@ const modalBg=document.getElementById('modalBg');
 document.getElementById('synthBody').addEventListener('click',e=>{
   const dot=e.target.closest('.proof-dot');
   if(!dot)return;
-  document.getElementById('modalComp').textContent=dot.dataset.comp;
-  document.getElementById('modalLabel').textContent=dot.dataset.label;
-  document.getElementById('modalImgWrap').innerHTML=`<img src="${dot.dataset.img}" alt="${dot.dataset.label}" onerror="this.parentElement.innerHTML='<div class=\\'modal-placeholder\\'>Image à ajouter :<br>${dot.dataset.img}</div>'">`;
+  document.getElementById('modalTitle').textContent=dot.dataset.comp;
+  document.getElementById('modalSub').textContent=dot.dataset.label;
+  document.getElementById('modalImg').innerHTML=`<img src="${dot.dataset.img}" alt="${dot.dataset.label}" onerror="this.parentElement.innerHTML='<div class=\\'modal-placeholder\\'>Image à ajouter :<br>${dot.dataset.img}</div>'">`;
   modalBg.classList.add('open');
 });
 document.getElementById('modalClose').addEventListener('click',()=>modalBg.classList.remove('open'));
