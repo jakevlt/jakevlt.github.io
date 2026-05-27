@@ -44,7 +44,6 @@ nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,0.95);backdrop-fi
 .about-card h3::before{content:'';display:block;width:8px;height:8px;border-radius:50%;background:var(--green)}
 .about-card p{font-size:0.88rem;color:var(--muted);line-height:1.8}
 .about-full{grid-column:span 2}
-.synth-link{display:inline-block;margin-bottom:1rem;font-family:var(--mono);font-size:0.75rem;color:var(--accent);text-decoration:none}
 .synth-link:hover{text-decoration:underline}
 .synth-table{width:100%;border-collapse:collapse;font-size:0.75rem}
 .synth-table thead th{padding:8px 10px;text-align:center;font-size:0.65rem;font-weight:500;color:var(--muted);border:1px solid var(--border);background:var(--bg2);vertical-align:bottom;line-height:1.4}
@@ -56,8 +55,10 @@ nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,0.95);backdrop-fi
 .synth-table td.real{font-size:0.75rem;line-height:1.5}
 .synth-table td.period{font-size:0.68rem;color:var(--muted);text-align:center;white-space:nowrap}
 .synth-table td.check{text-align:center;vertical-align:middle}
-.proof-dot{width:9px;height:9px;border-radius:50%;background:var(--accent);display:inline-block;cursor:pointer;transition:transform .15s;border:none;padding:0}
-.proof-dot:hover{transform:scale(1.5)}
+.proof-dot{width:22px;height:22px;border-radius:50%;background:var(--accent);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .15s;border:none;padding:0;font-size:11px;color:#0d1117}
+.proof-dot:hover{transform:scale(1.2)}
+.synth-legend{font-family:var(--mono);font-size:0.7rem;color:var(--muted);margin-top:0.8rem;display:flex;align-items:center;gap:0.5rem}
+.synth-legend-dot{width:14px;height:14px;border-radius:50%;background:var(--accent);display:inline-flex;align-items:center;justify-content:center;font-size:9px;color:#0d1117;flex-shrink:0}
 .comp-label{font-size:0.6rem;display:block;line-height:1.3}
 .modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:999;align-items:center;justify-content:center}
 .modal-bg.open{display:flex}
@@ -74,8 +75,29 @@ nav{position:sticky;top:0;z-index:100;background:rgba(13,17,23,0.95);backdrop-fi
 .modal-btn{background:none;border:1px solid var(--border);color:var(--muted);font-family:var(--mono);font-size:0.75rem;padding:0.4rem 1rem;border-radius:6px;cursor:pointer;transition:all 0.15s}
 .modal-btn:hover:not(:disabled){background:var(--bg2);color:var(--text);border-color:var(--muted)}
 .modal-btn:disabled{opacity:0.25;cursor:default}
-.projects-list{display:flex;flex-direction:column;gap:0.5rem}
-.project-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.veille-grid{display:flex;flex-direction:column;gap:0.5rem}
+.veille-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.veille-card-full{width:100%}
+.veille-card-header{display:flex;align-items:center;gap:0.75rem;padding:1rem 1.2rem;background:var(--bg2);border-bottom:1px solid var(--border)}
+.veille-num{font-family:var(--mono);font-size:0.7rem;color:var(--muted);width:20px}
+.veille-title{font-size:0.88rem;font-weight:500;color:var(--text)}
+.veille-body{padding:1.2rem;font-size:0.85rem;color:var(--muted);line-height:1.8}
+.veille-body p{margin-bottom:1rem}
+.veille-body code{font-family:var(--mono);font-size:0.75rem;background:var(--bg3);padding:0.1rem 0.4rem;border-radius:3px;color:var(--accent)}
+.veille-themes{display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;margin-top:0.5rem}
+.veille-theme{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:1rem}
+.veille-theme-badge{font-family:var(--mono);font-size:0.72rem;color:var(--accent);display:block;margin-bottom:0.5rem;font-weight:500}
+.veille-theme p{font-size:0.82rem;color:var(--muted);line-height:1.7;margin-bottom:0}
+.veille-outils{display:flex;flex-direction:column;gap:0.5rem;margin-top:0.5rem}
+.veille-outil{background:var(--bg3);border:1px solid var(--border);border-radius:6px;padding:0.8rem 1rem;display:flex;flex-direction:column;gap:0.3rem}
+.veille-outil-name{font-family:var(--mono);font-size:0.72rem;color:var(--accent);font-weight:500}
+.veille-outil-desc{font-size:0.82rem;color:var(--muted)}
+.veille-list{list-style:none;display:flex;flex-direction:column;gap:0.5rem}
+.veille-list li{font-size:0.83rem;color:var(--muted);padding-left:1.2rem;position:relative;line-height:1.6}
+.veille-list li::before{content:'▸';position:absolute;left:0;color:var(--accent);font-size:0.7rem;top:3px}
+.veille-list li strong{color:var(--text)}
+@media(max-width:680px){.veille-themes{grid-template-columns:1fr}}
+.project-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:0.5rem}
 .project-header{display:flex;align-items:center;gap:1rem;padding:1rem 1.2rem;cursor:pointer;transition:background 0.15s}
 .project-header:hover{background:var(--bg3)}
 .project-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
@@ -122,6 +144,7 @@ footer p{font-family:var(--mono);font-size:0.75rem;color:var(--muted)}
     <li><a href="#about">À propos</a></li>
     <li><a href="#skills">Compétences</a></li>
     <li><a href="#projects">Projets</a></li>
+    <li><a href="#veille">Veille</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <a class="nav-cv" href="Documents/CV_Jake_Volante_1.pdf" target="_blank">↓ CV.pdf</a>
@@ -172,7 +195,6 @@ footer p{font-family:var(--mono);font-size:0.75rem;color:var(--muted)}
 
 <div class="section" id="skills">
   <p class="section-title">Compétences BTS SIO — Bloc 1</p>
-  <a class="synth-link" href="Documents/Tableau_synthese_2026_Jake_VOLANTE.xlsx" target="_blank">↗ Tableau de synthèse 2026</a>
   <table class="synth-table" id="synthTable">
     <thead>
       <tr>
@@ -188,6 +210,7 @@ footer p{font-family:var(--mono);font-size:0.75rem;color:var(--muted)}
     </thead>
     <tbody id="synthBody"></tbody>
   </table>
+  <p class="synth-legend"><span class="synth-legend-dot">🔍</span> Cliquez sur une bulle pour voir les captures de preuves associées à la compétence</p>
 </div>
 
 <div class="modal-bg" id="modalBg">
@@ -208,6 +231,107 @@ footer p{font-family:var(--mono);font-size:0.75rem;color:var(--muted)}
 <div class="section" id="projects">
   <p class="section-title">Projets & réalisations</p>
   <div class="projects-list" id="projectsList"></div>
+</div>
+
+<div class="section" id="veille">
+  <p class="section-title">Veille technologique</p>
+  <div class="veille-grid" id="veilleGrid">
+
+    <div class="veille-card">
+      <div class="veille-card-header">
+        <span class="veille-num">01</span>
+        <span class="veille-title">Présentation des thèmes de veille</span>
+      </div>
+      <div class="veille-body">
+        <p>Ma veille technologique s'articule autour de deux thèmes principaux en lien avec ma formation BTS SIO SLAM et mes centres d'intérêt professionnels.</p>
+        <div class="veille-themes">
+          <div class="veille-theme">
+            <span class="veille-theme-badge">🔐 Cybersécurité</span>
+            <p>Suivi des menaces, vulnérabilités, bonnes pratiques de sécurité, actualités des failles et outils de protection (ANSSI, CVE, pentest).</p>
+          </div>
+          <div class="veille-theme">
+            <span class="veille-theme-badge">🤖 Intelligence Artificielle</span>
+            <p>Nouveaux modèles de langage (LLM), outils IA appliqués au développement, évolutions de ChatGPT, Copilot et autres assistants.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="veille-card">
+      <div class="veille-card-header">
+        <span class="veille-num">02</span>
+        <span class="veille-title">Stratégie de collecte</span>
+      </div>
+      <div class="veille-body">
+        <p>Mise en place d'une veille multicanal pour couvrir les deux thèmes de manière régulière et efficace.</p>
+        <div class="veille-outils">
+          <div class="veille-outil">
+            <span class="veille-outil-name">Google Alerts</span>
+            <span class="veille-outil-desc">Alertes configurées sur : <code>cybersécurité</code>, <code>faille sécurité</code>, <code>intelligence artificielle</code>, <code>LLM</code>, <code>machine learning</code></span>
+          </div>
+          <div class="veille-outil">
+            <span class="veille-outil-name">LinkedIn</span>
+            <span class="veille-outil-desc">Suivi de : ANSSI, OpenAI, Google DeepMind, développeurs et experts du secteur</span>
+          </div>
+          <div class="veille-outil">
+            <span class="veille-outil-name">YouTube / Podcasts</span>
+            <span class="veille-outil-desc">Chaînes suivies : Underscore_, Micode, Grafikart, Computerphile</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="veille-card">
+      <div class="veille-card-header">
+        <span class="veille-num">03</span>
+        <span class="veille-title">Exploitation et traitement des données</span>
+      </div>
+      <div class="veille-body">
+        <p>Traitement régulier des informations collectées selon un processus structuré.</p>
+        <ul class="veille-list">
+          <li>Lecture hebdomadaire des alertes Google reçues par mail</li>
+          <li>Consultation quotidienne du fil LinkedIn pour les actualités tech</li>
+          <li>Visionnage des vidéos YouTube en lien avec les thèmes de veille</li>
+          <li>Sauvegarde et classement des articles pertinents dans un dossier dédié</li>
+          <li>Prise de notes synthétiques sur les points clés et nouveautés</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="veille-card">
+      <div class="veille-card-header">
+        <span class="veille-num">04</span>
+        <span class="veille-title">Synthèse — Les données d'apprentissage</span>
+      </div>
+      <div class="veille-body">
+        <div class="veille-themes">
+          <div class="veille-theme">
+            <span class="veille-theme-badge">🔐 Cybersécurité</span>
+            <p>Découverte des principales menaces actuelles (phishing, ransomware, injections SQL), des outils de protection (pare-feu, WAF, authentification MFA) et du référentiel ANSSI pour les bonnes pratiques en entreprise.</p>
+          </div>
+          <div class="veille-theme">
+            <span class="veille-theme-badge">🤖 Intelligence Artificielle</span>
+            <p>Suivi des évolutions des LLM (GPT-4, Claude, Gemini), découverte des outils IA pour développeurs (GitHub Copilot, Cursor), et compréhension des enjeux éthiques et réglementaires (AI Act européen).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="veille-card veille-card-full">
+      <div class="veille-card-header">
+        <span class="veille-num">05</span>
+        <span class="veille-title">Diffusion</span>
+      </div>
+      <div class="veille-body">
+        <ul class="veille-list">
+          <li>Partage d'articles et de découvertes sur <strong>LinkedIn</strong> pour alimenter mon réseau professionnel</li>
+          <li>Intégration des connaissances acquises dans mes projets de développement (bonnes pratiques sécurité, utilisation d'outils IA)</li>
+          <li>Présentation de cette synthèse dans mon <strong>portfolio</strong> comme preuve de ma démarche de veille (C6 — Organiser son développement professionnel)</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
 </div>
 
 <div class="section" id="contact">
@@ -250,40 +374,47 @@ const synthData=[
     {imgs:["Images/linkedin-c6-1.png","Images/linkedin-c6-2.png","Images/linkedin-c6-3.png"],labels:["Profil LinkedIn — vue générale","Profil LinkedIn — expériences","Profil LinkedIn — formation"],comp:"C6 — Organiser son développement professionnel"}]},
   {real:"Diaporama projet professionnel",period:"01/25→01/25",comps:[0,0,0,0,0,1],proofs:[null,null,null,null,null,
     {imgs:["Images/diaporama-c6-1.png","Images/diaporama-c6-2.png","Images/diaporama-c6-3.png","Images/diaporama-c6-4.png"],labels:["Diaporama — slide 1","Diaporama — slide 2","Diaporama — slide 3","Diaporama — slide 4"],comp:"C6 — Organiser son développement professionnel"}]},
+  {section:"Formation 2e année — Projet RestoWeb"},
+  {real:"Développement d'un site web de restaurant (RestoWeb)",period:"09/25→12/25",comps:[0,1,1,1,1,0],proofs:[null,
+    {imgs:["Images/resto-c2-1.png"],labels:["Résolution d'incident rencontré en cours de projet"],comp:"C2 — Répondre aux incidents"},
+    {imgs:["Images/resto-c3-1.png","Images/resto-c3-2.png","Images/resto-c3-3.png","Images/resto-c3-4.png","Images/resto-c3-5.png"],labels:["Capture 1","Capture 2","Capture 3","Capture 4","Capture 5"],comp:"C3 — Développer la présence en ligne"},
+    {imgs:["Images/resto-c4-1.png"],labels:["Tableau Trello — suivi du projet RestoWeb"],comp:"C4 — Travailler en mode projet"},
+    {imgs:["Images/resto-c5-1.png","Images/resto-c5-2.png","Images/resto-c5-3.png"],labels:["README GitHub — description du projet","README GitHub — guide d'installation","README GitHub — prérequis et identifiants de test"],comp:"C5 — Mettre à disposition"},
+    null]},
   {section:"Stage 1ère année — La Banque Postale"},
   {real:"Suivre et traiter une US sur JIRA (prévisualisation images)",period:"05/25→07/25",comps:[0,1,0,1,1,0],proofs:[null,
     {imgs:["Images/jira-c2-ticket-1.png"],labels:["Ticket JIRA — user story prévisualisation images"],comp:"C2 — Répondre aux incidents"},
     null,
-    {imgs:["Images/jira-c4-avant.png","Images/jira-c4-apres.png"],labels:["Application avant réalisation","Application après réalisation"],comp:"C4 — Travailler en mode projet"},
-    {imgs:["Images/jira-c5-deploy.png"],labels:["Fonctionnalité déployée — validation Product Owner"],comp:"C5 — Mettre à disposition"},
+    {imgs:["Images/jira-c4-avant-1.png"],labels:["Rapport de stage — méthodologie Agile SCRUM"],comp:"C4 — Travailler en mode projet"},
+    {imgs:["Images/jira-c5-deploy-1.png","Images/jira-c5-deploy-2.png"],labels:["Application avant réalisation","Application après réalisation — fonctionnalité déployée"],comp:"C5 — Mettre à disposition"},
     null]},
   {real:"Configuration de deux postes de développement",period:"05/25→07/25",comps:[1,0,0,0,1,0],proofs:[
-    {imgs:["Images/postes-c1-config.png"],labels:["Configuration postes de développement"],comp:"C1 — Gérer le patrimoine"},
+    {imgs:["Images/postes-c1-config-1.png"],labels:["Rapport de stage — compétences C1 mises en œuvre (page 15)"],comp:"C1 — Gérer le patrimoine"},
     null,null,null,
-    {imgs:["Images/postes-c5-validation.png"],labels:["Validation environnement de développement"],comp:"C5 — Mettre à disposition"},
+    {imgs:["Images/postes-c5-validation-1.png"],labels:["Rapport de stage — compétences C5 mises en œuvre (page 15)"],comp:"C5 — Mettre à disposition"},
     null]},
   {real:"Formation OpenClassrooms PHP orienté objet",period:"05/25→07/25",comps:[0,0,0,0,0,1],proofs:[null,null,null,null,null,
-    {imgs:["Images/oc-c6-poo.png"],labels:["Exercice POO PHP — classe Food + tests PHPUnit"],comp:"C6 — Organiser son développement professionnel"}]},
+    {imgs:["Images/oc-c6-poo-1.png","Images/oc-c6-poo-2.png","Images/oc-c6-poo-3.png"],labels:["Rapport de stage — activité 02 OpenClassrooms (page 16)","Rapport de stage — code PHP POO (page 17)","Formation OpenClassrooms — PHP orienté objet"],comp:"C6 — Organiser son développement professionnel"}]},
   {real:"Présentation projets et applications internes",period:"05/25→07/25",comps:[0,0,0,1,0,1],proofs:[null,null,null,
-    {imgs:["Images/si-c4-presentation.png"],labels:["Présentation projets internes — analyse organisation"],comp:"C4 — Travailler en mode projet"},
+    {imgs:["Images/si-c4-presentation-1.png"],labels:["Rapport de stage — activité 03 présentation projets internes (page 18)"],comp:"C4 — Travailler en mode projet"},
     null,
-    {imgs:["Images/si-c6-decouverte.png"],labels:["Découverte environnement technique — développement professionnel"],comp:"C6 — Organiser son développement professionnel"}]},
+    {imgs:["Images/si-c6-decouverte-1.png"],labels:["Rapport de stage — activité 03 découverte environnement technique (page 18)"],comp:"C6 — Organiser son développement professionnel"}]},
   {section:"Stage 2e année — Fonroche Lighting"},
   {real:"Développement application ONBRD (Django/Python)",period:"01/26→02/26",comps:[0,0,1,0,1,0],proofs:[null,null,
-    {imgs:["Images/onbrd-c3-connexion.png","Images/onbrd-c3-entrees.png","Images/onbrd-c3-planning.png"],labels:["Page de connexion ONBRD","Interface gestion des entrées","Interface planification"],comp:"C3 — Développer la présence en ligne"},
+    {imgs:["Images/onbrd-c3-1.png","Images/onbrd-c3-2.png","Images/onbrd-c3-3.png","Images/onbrd-c3-4.png","Images/onbrd-c3-5.png","Images/onbrd-c3-6.png","Images/onbrd-c3-7.png","Images/onbrd-c3-8.png","Images/onbrd-c3-9.png"],labels:["Capture 1","Capture 2","Capture 3","Capture 4","Capture 5","Capture 6","Capture 7","Capture 8","Capture 9"],comp:"C3 — Développer la présence en ligne"},
     null,
-    {imgs:["Images/onbrd-c5-entrees.png","Images/onbrd-c5-pdf.png"],labels:["Gestion des arrivants","PDF parcours d'intégration généré"],comp:"C5 — Mettre à disposition"},
+    {imgs:["Images/onbrd-c5-1.png"],labels:["Rapport de stage — tests d'acceptation et déploiement (page 18)"],comp:"C5 — Mettre à disposition"},
     null]},
   {real:"Tests, validation et bonnes pratiques",period:"01/26→02/26",comps:[0,1,0,1,1,0],proofs:[null,
-    {imgs:["Images/onbrd-c2-planning.png","Images/onbrd-c2-pdf.png"],labels:["Planification automatique — résolution besoin RH","PDF validé par les RH"],comp:"C2 — Répondre aux incidents"},
+    {imgs:["Images/onbrd-c2-1.png","Images/onbrd-c2-2.png","Images/onbrd-c2-3.png"],labels:["Rapport de stage — problématique service RH (page 10)","Rapport de stage — solution ONBRD (page 11)","Rapport de stage — code API Microsoft Graph (page 31)"],comp:"C2 — Répondre aux incidents"},
     null,
-    {imgs:["Images/onbrd-c4-pdf.png","Images/onbrd-c4-planning.png"],labels:["PDF parcours d'intégration","Algorithme de planification"],comp:"C4 — Travailler en mode projet"},
-    {imgs:["Images/onbrd-c5-tests.png"],labels:["Tests d'acceptation — validation service RH"],comp:"C5 — Mettre à disposition"},
+    {imgs:["Images/onbrd-c4-1.png","Images/onbrd-c4-2.png","Images/onbrd-c4-3.png"],labels:["Rapport de stage — phases du projet (page 17)","Rapport de stage — acceptance et tests (page 18)","Rapport de stage — planification et méthodologie (page 19)"],comp:"C4 — Travailler en mode projet"},
+    {imgs:["Images/onbrd-c5-tests-1.png"],labels:["Rapport de stage — section 4 Acceptance et Tests (page 18)"],comp:"C5 — Mettre à disposition"},
     null]},
   {real:"Mise en place environnement (GitLab, PostgreSQL)",period:"01/26→02/26",comps:[1,0,0,0,0,1],proofs:[
-    {imgs:["Images/env-c1-arborescence.png","Images/env-c1-gitlab.png"],labels:["Arborescence projet VS Code","Versioning GitLab — pérennité du code"],comp:"C1 — Gérer le patrimoine"},
+    {imgs:["Images/env-c1-arborescence-1.png","Images/env-c1-arborescence-2.png"],labels:["Schéma de système ONBRD — GitLab et ressources","Arborescence du projet VS Code (page 30)"],comp:"C1 — Gérer le patrimoine"},
     null,null,null,null,
-    {imgs:["Images/env-c6-bdd.png","Images/env-c6-arborescence.png"],labels:["Base de données PostgreSQL","Montée en compétences Django/Python"],comp:"C6 — Organiser son développement professionnel"}]},
+    {imgs:["Images/env-c6-bdd-1.png","Images/env-c6-bdd-2.png","Images/env-c6-bdd-3.png"],labels:["Rapport de stage — langages et frameworks appris (page 13)","Rapport de stage — environnement de développement (page 14)","Rapport de stage — base de données PostgreSQL (page 29)"],comp:"C6 — Organiser son développement professionnel"}]},
 ];
 
 const tbody=document.getElementById('synthBody');
@@ -301,7 +432,7 @@ synthData.forEach(row=>{
       const p=row.proofs[i];
       const imgs=JSON.stringify(p.imgs).replace(/"/g,'&quot;');
       const labels=JSON.stringify(p.labels).replace(/"/g,'&quot;');
-      cells+=`<td class="check"><span class="proof-dot" data-imgs="${imgs}" data-labels="${labels}" data-comp="${p.comp}" title="Voir les preuves (${p.imgs.length})"></span></td>`;
+      cells+=`<td class="check"><span class="proof-dot" data-imgs="${imgs}" data-labels="${labels}" data-comp="${p.comp}" title="Voir les preuves (${p.imgs.length})">🔍</span></td>`;
     }else if(v){
       cells+=`<td class="check" style="font-size:11px;color:var(--accent)">✓</td>`;
     }else{
@@ -370,7 +501,8 @@ document.getElementById('modalClose').addEventListener('click',()=>modalBg.class
 modalBg.addEventListener('click',e=>{if(e.target===modalBg)modalBg.classList.remove('open');});
 
 const projects=[
-  {dot:'dot-green',title:'AppFAQ',sub:'Maison des Ligues · PHP / MySQL / HTML',pill:'Projet étudiant',desc:"Application FAQ en ligne pour les ligues sportives. Inscription/connexion, dépôt de questions, réponses des administrateurs. Développé par lots avec interface simple et intuitive.",link:'Lot4/accueil/index.php',lbl:'Voir le projet →'},
+  {dot:'dot-green',title:'RestoWeb',sub:'Application restaurant · PHP / MySQL / HTML/CSS',pill:'Projet étudiant',desc:"Application web de gestion d'un restaurant : affichage du menu, inscription/connexion, gestion du panier et des commandes. Base de données SQL, interface PHP/CSS, API pour la gestion des commandes en attente.",link:'https://github.com/AntoineHro/appResto-restoWeb-',lbl:'Voir le projet →'},
+  {dot:'dot-green',title:'AppFAQ',sub:'Maison des Ligues · PHP / MySQL / HTML',pill:'Projet étudiant',desc:"Application FAQ en ligne pour les ligues sportives. Inscription/connexion, dépôt de questions, réponses des administrateurs. Développé par lots avec interface simple et intuitive.",link:'',lbl:''},
   {dot:'dot-yellow',title:'Stage — La Banque Postale',sub:'8 semaines · BTS SIO 1ère année · Agile SCRUM',pill:'Stage 1ère année',desc:"Stage au service informatique : configuration de postes de développement, développement d'une fonctionnalité de prévisualisation d'images (HTML/SCSS/TypeScript), travail en méthode Agile avec JIRA, déploiement GitLab.",link:'Documents/rapport_de_stage_jake_volante_portfolio.pdf',lbl:'Lire le rapport →'},
   {dot:'dot-blue',title:'Stage — Fonroche Lighting',sub:'6 semaines · BTS SIO 2e année · Python / Django',pill:'Stage 2e année',desc:"Développement de l'application ONBRD : outil d'automatisation des parcours d'intégration RH. Back-end Python/Django, base de données PostgreSQL, interfaçage Microsoft Graph API (agendas Outlook), génération de PDF avec ReportLab, tests d'acceptation et guide utilisateur.",link:'Documents/fonroche_rapport_de_stage_jake_volante__1_.pdf',lbl:'Lire le rapport →'},
   {dot:'dot-gray',title:'Projet personnel',sub:'En construction',pill:'À venir',desc:'Projet personnel en cours de développement. Disponible prochainement.',link:'',lbl:''}
