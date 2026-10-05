@@ -1,0 +1,20 @@
+---
+layout: layouts/base.njk
+---
+{#- Gabarit des pages simples : en-tête de page + contenu rédigé. -#}
+<div class="container">
+  <header class="page-header">
+    {%- if surtitre %}<p class="eyebrow">{{ surtitre }}</p>{% endif %}
+    <h1>{{ titre }}</h1>
+    {%- if chapo %}<p class="lead">{{ chapo | safe }}</p>{% endif %}
+  </header>
+</div>
+{%- if pleineLargeur %}
+{{ content | safe }}
+{%- else %}
+<div class="container">
+  <div class="prose">
+    {{ content | safe }}
+  </div>
+</div>
+{%- endif %}

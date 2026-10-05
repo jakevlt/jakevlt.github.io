@@ -1,0 +1,129 @@
+{%- from "partials/icones.njk" import icone -%}
+{%- set titreComplet = (titre + " · " + site.auteur.nomComplet) if titre and page.url != "/" else site.titre -%}
+{%- set descriptionPage = description or site.description -%}
+{%- set urlCanonique = page.url | absolue(site.url) -%}
+{%- set imageOg = (ogImage or "/og-image.png") | absolue(site.url) -%}
+<!doctype html>
+<html lang="{{ site.langue }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ titreComplet }}</title>
+  <meta name="description" content="{{ descriptionPage }}">
+  <meta name="author" content="{{ site.auteur.nomComplet }}">
+  <link rel="canonical" href="{{ urlCanonique }}">
+  {%- if robots %}
+  <meta name="robots" content="{{ robots }}">
+  {%- endif %}
+
+  {#- Thème : appliqué avant l'affichage pour éviter un flash de couleur. #}
+  <script>
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem("theme"); } catch (e) {}
+      if (t !== "light" && t !== "dark") {
+        t = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+      }
+      document.documentElement.dataset.theme = t;
+      document.documentElement.classList.add("js");
+    })();
+  </script>
+  <meta name="theme-color" content="#f5f6f8" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#171b22" media="(prefers-color-scheme: dark)">
+
+  <link rel="preload" href="/assets/fonts/space-grotesk-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/main.css">
+
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <meta property="og:type" content="{{ ogType or 'website' }}">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="{{ site.auteur.nomComplet }} · Portfolio">
+  <meta property="og:title" content="{{ titre or site.titre }}">
+  <meta property="og:description" content="{{ descriptionPage }}">
+  <meta property="og:url" content="{{ urlCanonique }}">
+  <meta property="og:image" content="{{ imageOg }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Jake Volante, portfolio BTS SIO option SLAM">
+  <meta name="twitter:card" content="summary_large_image">
+
+  {%- block donneesStructurees %}{% endblock %}
+  <script src="/assets/js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+
+  <header class="site-header">
+    <div class="container header__inner">
+      <a class="brand" href="/" {% if page.url == "/" %}aria-current="page"{% endif %}>
+        <span class="sr-only">Accueil, </span>jake<span class="brand__dot">.</span>volante
+      </a>
+
+      <div class="header__actions">
+        <button class="icon-btn theme-toggle" type="button" aria-pressed="false" data-theme-toggle>
+          <span class="sr-only">Activer le thème sombre</span>
+          {{ icone("sun") | replace('<svg', '<svg class="icon-sun"') | safe }}
+          {{ icone("moon") | replace('<svg', '<svg class="icon-moon"') | safe }}
+        </button>
+        <button class="icon-btn menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-menu-toggle>
+          <span class="sr-only">Menu</span>
+          {{ icone("menu") | safe }}
+        </button>
+      </div>
+
+      <nav class="site-nav" id="site-nav" aria-label="Navigation principale">
+        <ul class="nav__list">
+          {%- for lien in site.navigation %}
+          {%- set actif = page.url == lien.url or (lien.url != "/" and page.url.startsWith(lien.url)) %}
+          <li><a class="nav__link" href="{{ lien.url }}" {% if actif %}aria-current="page"{% endif %}>{{ lien.titre }}</a></li>
+          {%- endfor %}
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="contenu" tabindex="-1">
+    {{ content | safe }}
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div>
+          <p class="footer__title">{{ site.auteur.nomComplet }}</p>
+          <p>{{ site.auteur.titre }}<br>{{ site.formation.etablissement }}, {{ site.formation.ville }}</p>
+          <p class="footer__note">À la recherche d'une alternance dans le {{ site.auteur.departement }}.</p>
+        </div>
+        <div>
+          <p class="footer__title">Portfolio</p>
+          <ul class="footer__list">
+            <li><a href="/realisations/">Réalisations</a></li>
+            <li><a href="/tableau-de-synthese/">Tableau de synthèse</a></li>
+            <li><a href="/competences/">Compétences</a></li>
+            <li><a href="/documents/">Documents</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer__title">Me contacter</p>
+          <ul class="footer__list">
+            <li><a href="mailto:{{ site.auteur.email }}">{{ site.auteur.email }}</a></li>
+            <li><a href="{{ site.auteur.linkedin }}" rel="me noopener">LinkedIn</a></li>
+            <li><a href="{{ site.auteur.github }}" rel="me noopener">GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>© {{ anneeCourante }} {{ site.auteur.nomComplet }}. Site statique, sans cookie ni traceur.</p>
+        <ul class="footer__list footer__list--inline">
+          <li><a href="/mentions-legales/">Mentions légales</a></li>
+          <li><a href="/confidentialite/">Confidentialité</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
