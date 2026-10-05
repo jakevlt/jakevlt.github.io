@@ -1,0 +1,130 @@
+---
+layout: layouts/base.njk
+titre: Tableau de synthèse
+description: "Tableau de synthèse des réalisations professionnelles de Jake Volante (BTS SIO SLAM) : compétences du bloc 1 mobilisées par réalisation, avec liens vers les preuves. Version PDF téléchargeable."
+permalink: /tableau-de-synthese/
+---
+{%- from "partials/icones.njk" import icone -%}
+{%- set bloc1 = referentiel[0] -%}
+{%- set groupes = [
+  { contexte: "formation", titre: "Réalisations en cours de formation" },
+  { contexte: "stage", titre: "Réalisations en milieu professionnel" }
+] -%}
+
+<div class="page-paysage">
+<div class="container">
+  <header class="page-header">
+    <nav class="breadcrumb" aria-label="Fil d'Ariane">
+      <ol><li><a href="/">Accueil</a></li><li><a href="/realisations/">Réalisations</a></li><li><span aria-current="page">Tableau de synthèse</span></li></ol>
+    </nav>
+    <p class="eyebrow">BTS SIO · session {{ site.formation.session }}</p>
+    <h1>Tableau de synthèse des réalisations</h1>
+    <p class="lead">Les compétences du bloc 1 mobilisées dans chaque réalisation. Chaque coche mène aux preuves correspondantes dans la fiche.</p>
+    <div class="btn-group page-header__actions no-print">
+      <a class="btn btn--primary" href="/documents/tableau-de-synthese-jake-volante.pdf" type="application/pdf">{{ icone("download") | safe }} Télécharger en PDF</a>
+      <a class="btn" href="/competences/">Détail des compétences</a>
+    </div>
+  </header>
+
+  <dl class="synthese-entete meta-list panel">
+    <div><dt>Nom et prénom</dt><dd>VOLANTE Jake</dd></div>
+    <div><dt>N° de candidat</dt><dd>Non publié en ligne</dd></div>
+    <div><dt>Centre de formation</dt><dd>{{ site.formation.etablissement }}, {{ site.formation.ville }}</dd></div>
+    <div><dt>Option</dt><dd>SLAM</dd></div>
+    <div><dt>Portfolio</dt><dd>{{ site.url | replace("https://", "") }}</dd></div>
+  </dl>
+</div>
+
+<section class="section" aria-labelledby="titre-bloc1">
+  <div class="container">
+    <h2 id="titre-bloc1">Bloc 1 · {{ bloc1.titre }}</h2>
+    {%- set bloc = bloc1 %}
+    {%- set competences = bloc.competences %}
+    <div class="table-wrap" role="region" aria-labelledby="legende-{{ bloc.id }}" tabindex="0">
+      <table class="data-table synthese">
+        <caption class="sr-only" id="legende-{{ bloc.id }}">Compétences du bloc {{ bloc.numero }} mobilisées par réalisation</caption>
+        <thead>
+          <tr>
+            <th scope="col">Réalisation professionnelle</th>
+            <th scope="col">Période</th>
+            {%- for comp in competences %}
+            <th scope="col" class="col-comp"><abbr title="{{ comp.titre }}">{{ comp.code }}</abbr><span aria-hidden="true">{{ comp.titre | truncate(38) }}</span></th>
+            {%- endfor %}
+          </tr>
+        </thead>
+        {%- for g in groupes %}
+        <tbody>
+          <tr class="groupe"><th scope="rowgroup" colspan="{{ competences.length + 2 }}">{{ g.titre }}</th></tr>
+          {%- for r in collections.realisations | duContexte(g.contexte) %}
+          <tr>
+            <th scope="row"><a href="{{ r.url }}">{{ r.data.titre }}</a></th>
+            <td class="periode">
+              {%- if r.data.periode.debut %}{{ r.data.periode.debut | moisCourt }} au {{ r.data.periode.fin | moisCourt }}{% else %}<mark class="todo">[À COMPLÉTER]</mark>{% endif -%}
+            </td>
+            {%- for comp in competences %}
+            <td class="col-comp">
+              {%- if comp.code in r.data.competences %}
+              {%- set ancrePreuve = "#" + (comp.code | ancre) if (r.data.preuves | aDesPreuves(comp.code)) else "#competences" %}
+              <a class="check" href="{{ r.url }}{{ ancrePreuve }}">{{ icone("check") | safe }}<span class="sr-only">{{ comp.code }} mobilisée : voir les preuves</span></a>
+              {%- else %}
+              <span class="sr-only">Non mobilisée</span>
+              {%- endif %}
+            </td>
+            {%- endfor %}
+          </tr>
+          {%- endfor %}
+        </tbody>
+        {%- endfor %}
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="section no-print" aria-labelledby="titre-autres">
+  <div class="container">
+    <h2 id="titre-autres">Blocs 2 et 3</h2>
+    <p class="lead section-intro">En complément, les compétences de l'option SLAM et de cybersécurité mobilisées dans les mêmes réalisations.</p>
+    {%- for bloc in referentiel %}{% if not loop.first %}
+    <h3 class="sous-titre">Bloc {{ bloc.numero }} · {{ bloc.titre }}</h3>
+    {%- set competences = bloc.competences %}
+    <div class="table-wrap" role="region" aria-labelledby="legende-{{ bloc.id }}" tabindex="0">
+      <table class="data-table synthese">
+        <caption class="sr-only" id="legende-{{ bloc.id }}">Compétences du bloc {{ bloc.numero }} mobilisées par réalisation</caption>
+        <thead>
+          <tr>
+            <th scope="col">Réalisation professionnelle</th>
+            <th scope="col">Période</th>
+            {%- for comp in competences %}
+            <th scope="col" class="col-comp"><abbr title="{{ comp.titre }}">{{ comp.code }}</abbr><span aria-hidden="true">{{ comp.titre | truncate(38) }}</span></th>
+            {%- endfor %}
+          </tr>
+        </thead>
+        {%- for g in groupes %}
+        <tbody>
+          <tr class="groupe"><th scope="rowgroup" colspan="{{ competences.length + 2 }}">{{ g.titre }}</th></tr>
+          {%- for r in collections.realisations | duContexte(g.contexte) %}
+          <tr>
+            <th scope="row"><a href="{{ r.url }}">{{ r.data.titre }}</a></th>
+            <td class="periode">
+              {%- if r.data.periode.debut %}{{ r.data.periode.debut | moisCourt }} au {{ r.data.periode.fin | moisCourt }}{% else %}<mark class="todo">[À COMPLÉTER]</mark>{% endif -%}
+            </td>
+            {%- for comp in competences %}
+            <td class="col-comp">
+              {%- if comp.code in r.data.competences %}
+              {%- set ancrePreuve = "#" + (comp.code | ancre) if (r.data.preuves | aDesPreuves(comp.code)) else "#competences" %}
+              <a class="check" href="{{ r.url }}{{ ancrePreuve }}">{{ icone("check") | safe }}<span class="sr-only">{{ comp.code }} mobilisée : voir les preuves</span></a>
+              {%- else %}
+              <span class="sr-only">Non mobilisée</span>
+              {%- endif %}
+            </td>
+            {%- endfor %}
+          </tr>
+          {%- endfor %}
+        </tbody>
+        {%- endfor %}
+      </table>
+    </div>
+    {%- endif %}{% endfor %}
+  </div>
+</section>
+</div>

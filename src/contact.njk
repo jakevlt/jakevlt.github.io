@@ -1,0 +1,23 @@
+---
+layout: layouts/base.njk
+titre: Contact
+description: "Contacter Jake Volante, étudiant en BTS SIO SLAM à Agen, à la recherche d'une alternance dans le Lot-et-Garonne : e-mail, LinkedIn et GitHub."
+permalink: /contact/
+---
+{%- from "partials/icones.njk" import icone -%}
+<div class="container container--narrow">
+  <header class="page-header">
+    <p class="eyebrow">Contact</p>
+    <h1>Parlons de votre projet d'alternance</h1>
+    <p class="lead">Je recherche une alternance en développement d'applications dans le {{ site.auteur.departement }}. Le plus simple est de m'écrire par e-mail.</p>
+  </header>
+
+  <ul class="contact-list">
+    <li><a class="contact-item" href="mailto:{{ site.auteur.email }}">{{ icone("mail") | safe }}<span><small>E-mail</small>{{ site.auteur.email }}</span></a></li>
+    <li><a class="contact-item" href="{{ site.auteur.linkedin }}" rel="me noopener">{{ icone("linkedin") | safe }}<span><small>LinkedIn</small>{{ site.auteur.linkedinPseudo }}</span></a></li>
+    <li><a class="contact-item" href="{{ site.auteur.github }}" rel="me noopener">{{ icone("github") | safe }}<span><small>GitHub</small>@{{ site.auteur.githubPseudo }}</span></a></li>
+    <li><div class="contact-item">{{ icone("map") | safe }}<span><small>Localisation</small>{{ site.auteur.ville }}, {{ site.auteur.departement }}</span></div></li>
+  </ul>
+
+  <p class="callout contact-note">Ce site n'utilise pas de formulaire : aucune donnée n'est collectée ici. Votre message arrive directement dans ma messagerie.</p>
+</div>

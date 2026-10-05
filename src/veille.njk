@@ -1,0 +1,76 @@
+---
+layout: layouts/base.njk
+titre: Veille technologique
+description: "Veille technologique de Jake Volante : l'IA et la cybersécurité dans le développement logiciel. Outils, méthode et synthèses datées avec leurs sources."
+permalink: /veille/
+---
+{%- from "partials/icones.njk" import icone -%}
+<div class="container">
+  <header class="page-header">
+    <p class="eyebrow">Veille technologique</p>
+    <h1>{{ veille.sujet }}</h1>
+    <p class="lead">{{ veille.problematique }}</p>
+  </header>
+</div>
+
+<section class="section" aria-labelledby="titre-pourquoi">
+  <div class="container">
+    <div class="grid grid--sm">
+      <div class="panel" data-reveal>
+        <h2 id="titre-pourquoi" class="titre-panel">Pourquoi ce sujet</h2>
+        <ul class="stack stack--sm">
+          {%- for raison in veille.pourquoi %}<li>{{ raison }}</li>{% endfor %}
+        </ul>
+      </div>
+      <div class="panel" data-reveal>
+        <h2 class="titre-panel">Ma méthode</h2>
+        <dl class="meta-list">
+          {%- for etape in veille.methode %}
+          <div><dt>{{ etape.frequence }}</dt><dd>{{ etape.action }}</dd></div>
+          {%- endfor %}
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="titre-outils-veille">
+  <div class="container">
+    <h2 id="titre-outils-veille">Outils et sources</h2>
+    <div class="table-wrap" role="region" aria-labelledby="titre-outils-veille" tabindex="0">
+      <table class="data-table">
+        <thead><tr><th scope="col">Outil</th><th scope="col">Utilisation</th></tr></thead>
+        <tbody>
+          {%- for outil in veille.outils %}
+          <tr><th scope="row">{{ outil.nom }}</th><td>{{ outil.usage }}{% if outil.aConfirmer %} {% todo "outil proposé : à mettre en place et à confirmer" %}{% endif %}</td></tr>
+          {%- endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="titre-syntheses">
+  <div class="container">
+    <h2 id="titre-syntheses">Synthèses</h2>
+    <ol class="veille-list" reversed>
+      {%- for s in veille.syntheses %}
+      <li class="panel veille-item" data-reveal>
+        <time datetime="{{ s.date }}">{% if s.mois %}{{ s.date | moisLong }}{% else %}{{ s.date | dateLongue }}{% endif %}</time>
+        <article>
+          <p class="card__meta">{{ s.theme }}</p>
+          <h3>{{ s.titre }}</h3>
+          <p>{{ s.resume }}</p>
+          <p class="retenir"><strong>Ce que j'en retiens :</strong> {{ s.retenir }}</p>
+          <div class="sources">
+            <span class="card__meta">Sources :</span>
+            <ul>
+              {%- for src in s.sources %}<li><a href="{{ src.url }}" rel="noopener">{{ src.titre }}</a></li>{% endfor %}
+            </ul>
+          </div>
+        </article>
+      </li>
+      {%- endfor %}
+    </ol>
+  </div>
+</section>
