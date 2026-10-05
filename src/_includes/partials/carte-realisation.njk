@@ -1,0 +1,22 @@
+{#- Carte d'une réalisation. Attend une variable `r` (élément de collection). -#}
+<article class="card card--link" data-reveal>
+  {%- if r.data.vignette %}
+  <div class="card__media">
+    {% image r.data.vignette.src, "", "(min-width: 72rem) 22rem, (min-width: 40rem) 45vw, 100vw", { widths: [480, 960] } %}
+  </div>
+  {%- endif %}
+  <p class="card__meta">
+    {%- if r.data.periode.debut %}{{ r.data.periode.debut | moisCourt }}{% if r.data.periode.fin and r.data.periode.fin != r.data.periode.debut %} → {{ r.data.periode.fin | moisCourt }}{% endif %}{% else %}En cours{% endif %}
+    · {{ "Stage" if r.data.contexte == "stage" else "Formation" }}
+  </p>
+  <h3 class="card__title"><a class="card__link" href="{{ r.url }}">{{ r.data.titreCourt or r.data.titre }}</a></h3>
+  <p class="card__text">{{ r.data.resume | safe }}</p>
+  <div class="card__footer">
+    {%- if r.data.competences.length %}
+    <span class="sr-only">Compétences :</span>
+    {%- for code in r.data.competences %}<span class="comp-code">{{ code }}</span>{% endfor %}
+    {%- else %}
+    <span class="tag">À compléter</span>
+    {%- endif %}
+  </div>
+</article>

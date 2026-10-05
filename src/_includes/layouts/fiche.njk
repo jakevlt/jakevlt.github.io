@@ -1,0 +1,126 @@
+---
+layout: layouts/base.njk
+ogType: article
+---
+{#- Fiche de situation professionnelle : une page par réalisation.
+    Les données viennent du front matter de src/realisations/*.md. -#}
+{%- from "partials/icones.njk" import icone -%}
+{%- set liste = collections.realisations -%}
+{%- set precedente = liste | getPreviousCollectionItem -%}
+{%- set suivante = liste | getNextCollectionItem -%}
+
+
+<div class="container">
+  <header class="page-header">
+    <nav class="breadcrumb" aria-label="Fil d'Ariane">
+      <ol>
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/realisations/">Réalisations</a></li>
+        <li><span aria-current="page">{{ titreCourt or titre }}</span></li>
+      </ol>
+    </nav>
+    <p class="eyebrow">{{ "Réalisation en milieu professionnel" if contexte == "stage" else "Réalisation en cours de formation" }}</p>
+    <h1>{{ titre }}</h1>
+    <p class="lead">{{ resume | safe }}</p>
+    {%- if technologies %}
+    <ul class="tags page-header__tags" aria-label="Technologies utilisées">
+      {%- for techno in technologies %}<li class="tag tag--accent">{{ techno }}</li>{% endfor %}
+    </ul>
+    {%- endif %}
+  </header>
+
+  <div class="fiche">
+    <aside class="fiche__aside" aria-label="Fiche d'identité de la réalisation">
+      <div class="panel">
+        <h2>En bref</h2>
+        <dl class="meta-list">
+          <div><dt>Période</dt><dd>{% if periode.debut %}{{ periode.debut | moisLong }}{% if periode.fin and periode.fin != periode.debut %} → {{ periode.fin | moisLong }}{% endif %}{% else %}{% todo "dates du projet" %}{% endif %}</dd></div>
+          <div><dt>Cadre</dt><dd>{{ cadre | safe }}</dd></div>
+          {%- if organisation %}<div><dt>Organisation</dt><dd>{{ organisation | safe }}</dd></div>{% endif %}
+          <div><dt>Travail</dt><dd>{{ equipe | marquer | safe }}</dd></div>
+          {%- if role %}<div><dt>Mon rôle</dt><dd>{{ role | marquer | safe }}</dd></div>{% endif %}
+        </dl>
+      </div>
+
+      <div class="panel" id="competences">
+        <h2>Compétences mobilisées</h2>
+        {%- if not competences.length %}<p class="empty">{% todo "compétences mobilisées" %}</p>{% endif %}
+        <ul class="comp-list">
+          {%- for code in competences %}
+          {%- set comp = code | competence %}
+          <li>
+            {%- if preuves | aDesPreuves(code) %}
+            <a class="comp-code" href="#{{ code | ancre }}" title="Voir les preuves">{{ code }}</a>
+            {%- else %}
+            <span class="comp-code">{{ code }}</span>
+            {%- endif %}
+            <span>{{ comp.titre }}</span>
+          </li>
+          {%- endfor %}
+        </ul>
+      </div>
+
+      {%- if documents or liens %}
+      <div class="panel">
+        <h2>Ressources</h2>
+        <ul class="docs-list">
+          {%- for doc in documents %}
+          <li><a class="doc-link" href="{{ doc.url }}" {% if doc.url.endsWith('.pdf') %}type="application/pdf"{% endif %}>{{ icone("file") | safe }}<span>{{ doc.titre }}<small>{{ doc.info or "PDF" }}</small></span></a></li>
+          {%- endfor %}
+          {%- for lien in liens %}
+          <li><a class="doc-link" href="{{ lien.url }}" rel="noopener">{{ icone("github" if "github.com" in lien.url else "external") | safe }}<span>{{ lien.titre }}<small>{{ lien.info or "Lien externe" }}</small></span></a></li>
+          {%- endfor %}
+        </ul>
+      </div>
+      {%- endif %}
+    </aside>
+
+    <div class="fiche__main">
+      <div class="prose">
+        {{ content | safe }}
+      </div>
+
+      {%- if preuves and preuves.length %}
+      <section class="fiche__preuves" aria-labelledby="titre-preuves">
+        <h2 id="titre-preuves">Preuves par compétence</h2>
+        <p class="fiche__aide">Sélectionnez une capture pour l'agrandir. Les flèches du clavier permettent de passer d'une image à l'autre.</p>
+        {%- for groupe in preuves %}
+        {%- set comp = groupe.comp | competence %}
+        <div class="preuves-groupe" id="{{ groupe.comp | ancre }}" data-galerie-groupe>
+          <h3><span class="comp-code">{{ groupe.comp }}</span> {{ comp.titre }}</h3>
+          {%- if groupe.texte %}<p class="preuves-groupe__texte">{{ groupe.texte | safe }}</p>{% endif %}
+          {%- if groupe.images and groupe.images.length %}
+          <div class="preuves">
+            {%- for img in groupe.images %}
+            {% preuve img.src, img.alt, img.legende %}
+            {%- endfor %}
+          </div>
+          {%- endif %}
+        </div>
+        {%- endfor %}
+      </section>
+      {%- endif %}
+    </div>
+  </div>
+
+  <nav class="pager" aria-label="Autres réalisations">
+    {%- if precedente %}
+    <a class="prev" href="{{ precedente.url }}"><small>← Réalisation précédente</small>{{ precedente.data.titreCourt or precedente.data.titre }}</a>
+    {%- else %}<span></span>{% endif %}
+    {%- if suivante %}
+    <a class="next" href="{{ suivante.url }}"><small>Réalisation suivante →</small>{{ suivante.data.titreCourt or suivante.data.titre }}</a>
+    {%- endif %}
+  </nav>
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "{{ site.url }}/" },
+    { "@type": "ListItem", "position": 2, "name": "Réalisations", "item": "{{ site.url }}/realisations/" },
+    { "@type": "ListItem", "position": 3, "name": {{ (titreCourt or titre) | json | safe }}, "item": "{{ page.url | absolue(site.url) }}" }
+  ]
+}
+</script>

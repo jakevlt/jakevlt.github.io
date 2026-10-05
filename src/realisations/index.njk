@@ -1,0 +1,33 @@
+---
+layout: layouts/base.njk
+titre: Réalisations
+description: "Les réalisations professionnelles de Jake Volante en BTS SIO SLAM : projets de formation et missions de stage, chacune détaillée sous forme de fiche avec ses preuves."
+permalink: /realisations/
+---
+{%- set formation = collections.realisations | duContexte("formation") -%}
+{%- set stage = collections.realisations | duContexte("stage") -%}
+<div class="container">
+  <header class="page-header">
+    <p class="eyebrow">Portfolio</p>
+    <h1>Réalisations professionnelles</h1>
+    <p class="lead">Chaque réalisation est présentée comme une fiche de situation professionnelle : contexte, besoin, solution, étapes, difficultés, résultat, compétences du référentiel et preuves.</p>
+    <p class="btn-group page-header__actions">
+      <a class="btn" href="/tableau-de-synthese/">Voir le tableau de synthèse</a>
+    </p>
+  </header>
+
+  <div class="filters" data-filtres role="group" aria-label="Filtrer les réalisations">
+    <button class="filter-btn" type="button" data-filtre="tous" aria-pressed="true">Toutes ({{ collections.realisations.length }})</button>
+    <button class="filter-btn" type="button" data-filtre="stage" aria-pressed="false">En stage ({{ stage.length }})</button>
+    <button class="filter-btn" type="button" data-filtre="formation" aria-pressed="false">En formation ({{ formation.length }})</button>
+  </div>
+  <p class="sr-only" aria-live="polite" data-filtres-statut></p>
+
+  <ul class="grid list-reset" role="list">
+    {%- for r in collections.realisations | inverse %}
+    <li data-contexte="{{ r.data.contexte }}">
+      {% include "partials/carte-realisation.njk" %}
+    </li>
+    {%- endfor %}
+  </ul>
+</div>
