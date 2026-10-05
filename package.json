@@ -1,0 +1,32 @@
+{
+  "name": "jakevlt-portfolio",
+  "version": "2.0.0",
+  "scripts": {
+    "start": "eleventy --serve --port=8080",
+    "build": "eleventy",
+    "clean": "node -e \"require('fs').rmSync('_site',{recursive:true,force:true})\"",
+    "icons": "node scripts/generer-icones.js",
+    "pdf": "node scripts/generer-pdf-tableau.js",
+    "check": "node scripts/verifier-liens.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jakevlt/jakevlt.github.io.git"
+  },
+  "author": "Jake Volante",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/jakevlt/jakevlt.github.io/issues"
+  },
+  "homepage": "https://github.com/jakevlt/jakevlt.github.io#readme",
+  "description": "Portfolio BTS SIO SLAM de Jake Volante",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.6",
+    "@11ty/eleventy-img": "^7.0.0"
+  },
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  }
+}
