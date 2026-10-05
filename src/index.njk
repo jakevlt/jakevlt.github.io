@@ -1,0 +1,121 @@
+---
+layout: layouts/base.njk
+permalink: /
+description: "Jake Volante, étudiant en BTS SIO option SLAM au Campus Ermitage 47 à Agen. Développement d'applications web (Python/Django, PHP, SQL). Recherche d'une alternance dans le Lot-et-Garonne."
+---
+{%- from "partials/icones.njk" import icone -%}
+{%- set aLaUne = collections.realisations | avecDonnee("une") | inverse -%}
+
+<section class="hero" aria-labelledby="titre-accueil">
+  <div class="container hero__grid">
+    <div>
+      <p class="status"><span class="status__dot" aria-hidden="true"></span>Disponible pour une alternance dans le {{ site.auteur.departement }}</p>
+      <p class="eyebrow">BTS SIO · option SLAM · {{ site.formation.ville }}</p>
+      <h1 id="titre-accueil">Jake Volante, <span class="accent">développeur d'applications</span> en formation.</h1>
+      <p class="lead">
+        Étudiant en 2<sup>e</sup> année de BTS SIO au {{ site.formation.etablissement }}, je recherche une alternance dans le {{ site.auteur.departement }}.
+        Passionné par le développement back-end et les bases de données, j'ai conçu en stage une application Django connectée à Microsoft 365.
+      </p>
+      <div class="btn-group">
+        <a class="btn btn--primary" href="/realisations/">Voir mes réalisations {{ icone("arrow-right") | safe }}</a>
+        {%- if site.cv %}
+        <a class="btn" href="{{ site.cv }}" type="application/pdf">{{ icone("download") | safe }} Télécharger mon CV</a>
+        {%- endif %}
+        <a class="btn" href="/contact/">{{ icone("mail") | safe }} Me contacter</a>
+      </div>
+      {%- if not site.cv %}<p class="hero__note">{% todo "CV mis à jour (PDF) à ajouter" %}</p>{% endif %}
+    </div>
+
+    <div class="code-card" role="img" aria-label="Résumé de mon profil : BTS SIO option SLAM à Agen, recherche d'une alternance, langages Python, Django, PHP et SQL.">
+      <div class="code-card__bar"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span><span class="file">profil.json</span></div>
+<pre aria-hidden="true"><span class="p">{</span>
+  <span class="k">"nom"</span><span class="p">:</span> <span class="s">"Jake Volante"</span><span class="p">,</span>
+  <span class="k">"formation"</span><span class="p">:</span> <span class="s">"BTS SIO, option SLAM"</span><span class="p">,</span>
+  <span class="k">"ville"</span><span class="p">:</span> <span class="s">"Agen (47)"</span><span class="p">,</span>
+  <span class="k">"recherche"</span><span class="p">:</span> <span class="s">"alternance"</span><span class="p">,</span>
+  <span class="k">"stack"</span><span class="p">: [</span>
+    <span class="s">"Python"</span><span class="p">,</span> <span class="s">"Django"</span><span class="p">,</span>
+    <span class="s">"PHP"</span><span class="p">,</span> <span class="s">"SQL"</span>
+  <span class="p">],</span>
+  <span class="k">"stages"</span><span class="p">:</span> <span class="s">2</span>
+<span class="p">}</span></pre>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="titre-chiffres">
+  <div class="container">
+    <h2 id="titre-chiffres" class="sr-only">En quelques chiffres</h2>
+    <ul class="stats">
+      <li class="stat" data-reveal><span class="stat__value">2 stages</span><span class="stat__label">14 semaines en entreprise, en équipe Scrum puis en autonomie</span></li>
+      <li class="stat" data-reveal><span class="stat__value">{{ collections.realisations.length }} réalisations</span><span class="stat__label">détaillées en fiches avec leurs preuves</span></li>
+      <li class="stat" data-reveal><span class="stat__value">3 blocs</span><span class="stat__label">de compétences du BTS SIO couverts</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="titre-une">
+  <div class="container">
+    <div class="section__header">
+      <div>
+        <p class="eyebrow">Réalisations</p>
+        <h2 id="titre-une">Projets à la une</h2>
+        <p>Une application métier en stage, une évolution dans une grande équipe, un projet web en équipe.</p>
+      </div>
+      <a class="link-arrow" href="/realisations/">Toutes les réalisations</a>
+    </div>
+    <ul class="grid list-reset" role="list">
+      {%- for r in aLaUne %}
+      <li>{% include "partials/carte-realisation.njk" %}</li>
+      {%- endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="section section--alt" aria-labelledby="titre-outils">
+  <div class="container">
+    <div class="section__header">
+      <div>
+        <p class="eyebrow">Compétences</p>
+        <h2 id="titre-outils">Ce avec quoi je travaille</h2>
+        <p>Les langages et outils que j'ai utilisés dans mes réalisations. Le détail par bloc du référentiel est sur la page compétences.</p>
+      </div>
+      <a class="link-arrow" href="/competences/">Mes compétences</a>
+    </div>
+    {% include "partials/outils.njk" %}
+  </div>
+</section>
+
+<section class="section" aria-labelledby="titre-cta">
+  <div class="container">
+    <div class="cta" data-reveal>
+      <div>
+        <h2 id="titre-cta">Vous recrutez un alternant développeur ?</h2>
+        <p>Je suis disponible pour une alternance dans le {{ site.auteur.departement }}. {% todo "rythme de l'alternance et date de début" %}</p>
+      </div>
+      <div class="btn-group">
+        <a class="btn btn--primary" href="mailto:{{ site.auteur.email }}">{{ icone("mail") | safe }} M'écrire</a>
+        <a class="btn" href="{{ site.auteur.linkedin }}" rel="noopener">{{ icone("linkedin") | safe }} LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "{{ site.auteur.nomComplet }}",
+  "givenName": "{{ site.auteur.prenom }}",
+  "familyName": "{{ site.auteur.nom }}",
+  "url": "{{ site.url }}/",
+  "image": "{{ site.url }}/og-image.png",
+  "jobTitle": "{{ site.auteur.titre }}",
+  "email": "mailto:{{ site.auteur.email }}",
+  "address": { "@type": "PostalAddress", "addressLocality": "{{ site.auteur.ville }}", "addressRegion": "Nouvelle-Aquitaine", "addressCountry": "FR" },
+  "affiliation": { "@type": "EducationalOrganization", "name": "{{ site.formation.etablissement }}", "address": { "@type": "PostalAddress", "addressLocality": "{{ site.formation.ville }}", "addressCountry": "FR" } },
+  "knowsAbout": ["Python", "Django", "PHP", "SQL", "PostgreSQL", "MySQL", "HTML", "CSS", "Développement web"],
+  "knowsLanguage": ["fr", "en"],
+  "sameAs": ["{{ site.auteur.linkedin }}", "{{ site.auteur.github }}"]
+}
+</script>

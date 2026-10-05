@@ -600,7 +600,7 @@ a.check:hover {
   transition: border-color var(--duration-fast), transform var(--duration-fast);
 }
 
-.contact-item:hover {
+a.contact-item:hover {
   border-color: var(--color-accent);
   color: var(--color-text);
   transform: translateY(-2px);
@@ -672,4 +672,53 @@ a.check:hover {
   font-size: var(--text-sm);
   color: var(--color-text-muted);
   max-width: 44rem;
+}
+
+.hero__note {
+  margin-top: var(--space-4);
+  font-size: var(--text-sm);
+}
+
+/* Espacement entre un titre de section et son contenu */
+.section h2 + :is(.timeline, .prose, .grid, .table-wrap, .veille-list, .section-body) {
+  margin-top: var(--space-6);
+}
+
+.panel h3 + * {
+  margin-top: var(--space-4);
+}
+
+.grid--sm {
+  --grid-min: 16rem;
+}
+
+.stack--sm {
+  --stack-space: var(--space-3);
+}
+
+.section-intro {
+  margin-top: var(--space-3);
+  font-size: var(--text-base);
+}
+
+.sous-titre {
+  margin-block: var(--space-7) var(--space-4);
+}
+
+.titre-panel {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-4);
+}
+
+.bloc-docs + .bloc-docs {
+  margin-top: var(--space-7);
+}
+
+.bloc-docs h2 {
+  font-size: var(--text-xl);
+  margin-bottom: var(--space-4);
+}
+
+.contact-note {
+  margin-top: var(--space-6);
 }

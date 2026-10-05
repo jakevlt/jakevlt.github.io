@@ -2,9 +2,21 @@
    Impression (et génération du PDF du tableau de synthèse)
    ========================================================================== */
 
+/* Le tableau de synthèse s'imprime en paysage. */
+@page paysage {
+  size: A4 landscape;
+  margin: 10mm;
+}
+
 @media print {
-  :root {
-    color-scheme: light;
+  .page-paysage {
+    page: paysage;
+  }
+
+  /* Toujours imprimer en clair, quel que soit le thème choisi à l'écran. */
+  :root,
+  :root[data-theme] {
+    color-scheme: light !important;
   }
 
   body {
@@ -28,7 +40,65 @@
   }
 
   .page-header {
-    padding-block: 0 1rem;
+    padding-block: 0 0.5rem;
+  }
+
+  .page-paysage h1 {
+    font-size: 18pt;
+    max-width: none;
+  }
+
+  .page-paysage h2 {
+    font-size: 12pt;
+    margin-bottom: 6pt;
+  }
+
+  .page-paysage .lead,
+  .page-paysage .eyebrow {
+    display: none;
+  }
+
+  .page-paysage .synthese-entete {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4pt 18pt;
+    padding: 6pt 0;
+    margin-bottom: 8pt;
+    border: 0;
+    background: none;
+    font-size: 9pt;
+  }
+
+  .page-paysage .synthese-entete dt {
+    font-size: 7pt;
+  }
+
+  .page-paysage .synthese {
+    font-size: 8pt;
+    line-height: 1.3;
+  }
+
+  .page-paysage .synthese th,
+  .page-paysage .synthese td {
+    padding: 2.5pt 4pt;
+  }
+
+  .page-paysage .synthese .periode {
+    font-size: 7.5pt;
+  }
+
+  .page-paysage .check svg {
+    width: 9pt;
+    height: 9pt;
+  }
+
+  .page-paysage .synthese th[scope="row"] {
+    min-width: 0;
+    width: 34%;
+  }
+
+  .page-paysage thead {
+    display: table-header-group;
   }
 
   .section {

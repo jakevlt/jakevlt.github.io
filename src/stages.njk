@@ -1,0 +1,58 @@
+---
+layout: layouts/base.njk
+titre: Stages
+description: "Les stages de Jake Volante en BTS SIO SLAM : La Banque Postale (2025, équipe Scrum, Angular) et Fonroche Lighting (2026, application Django ONBRD). Missions, apports et rapports."
+permalink: /stages/
+---
+{%- from "partials/icones.njk" import icone -%}
+<div class="container">
+  <header class="page-header">
+    <p class="eyebrow">Expériences</p>
+    <h1>Mes stages</h1>
+    <p class="lead">Deux stages de développement, dans deux contextes très différents : une grande équipe Scrum dans le secteur bancaire, puis un projet mené en autonomie dans une entreprise industrielle du Lot-et-Garonne.</p>
+  </header>
+</div>
+
+{%- for stage in stages %}
+<section class="section" id="{{ stage.id }}" aria-labelledby="titre-{{ stage.id }}">
+  <div class="container">
+    <div class="fiche">
+      <aside class="fiche__aside" aria-label="Informations sur le stage {{ stage.entreprise }}">
+        <div class="panel">
+          <dl class="meta-list">
+            <div><dt>Période</dt><dd>{{ stage.dates | capitalize }}</dd></div>
+            <div><dt>Durée</dt><dd>{{ stage.duree }}, BTS SIO {{ stage.annee }}</dd></div>
+            <div><dt>Lieu</dt><dd>{{ stage.lieu }}</dd></div>
+            <div><dt>Technologies</dt><dd><ul class="tags">{% for t in stage.technologies %}<li class="tag">{{ t }}</li>{% endfor %}</ul></dd></div>
+          </dl>
+        </div>
+        <div class="panel">
+          <a class="doc-link" href="{{ stage.rapport.url }}" type="application/pdf">{{ icone("file") | safe }}<span>Rapport de stage<small>{{ stage.rapport.info }}</small></span></a>
+        </div>
+      </aside>
+
+      <div class="prose">
+        <p class="eyebrow">{{ stage.periodeTexte }}</p>
+        <h2 id="titre-{{ stage.id }}">{{ stage.entreprise }}</h2>
+        <p class="lead">{{ stage.resume }}</p>
+        <p>{{ stage.presentation }}</p>
+        <p><strong>Mon service :</strong> {{ stage.service }}</p>
+
+        <h3>Missions</h3>
+        <ul>{% for m in stage.missions %}<li>{{ m }}</li>{% endfor %}</ul>
+
+        <h3>Ce que ce stage m'a apporté</h3>
+        <ul>{% for a in stage.apports %}<li>{{ a }}</li>{% endfor %}</ul>
+
+        <h3>Réalisations détaillées</h3>
+        <ul>
+          {%- for slug in stage.realisations %}
+          {%- set r = collections.realisations | trouverParSlug(slug) %}
+          <li><a href="{{ r.url }}">{{ r.data.titre }}</a></li>
+          {%- endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+{%- endfor %}

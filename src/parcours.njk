@@ -1,0 +1,93 @@
+---
+layout: layouts/base.njk
+titre: Parcours
+description: "Parcours de Jake Volante : Bac STI2D, BTS SIO option SLAM à Toulouse puis à Agen, stages à La Banque Postale et chez Fonroche Lighting, certifications et centres d'intérêt."
+permalink: /parcours/
+---
+<div class="container">
+  <header class="page-header">
+    <p class="eyebrow">À propos</p>
+    <h1>Mon parcours</h1>
+    <p class="lead">Je m'appelle Jake Volante. Après un Bac STI2D, je me suis orienté vers le développement informatique. Je prépare aujourd'hui le BTS SIO, option SLAM, à Agen, et je cherche une alternance pour la suite.</p>
+  </header>
+</div>
+
+<section class="section" aria-labelledby="titre-formation">
+  <div class="container container--narrow">
+    <h2 id="titre-formation">Formation</h2>
+    <ol class="timeline" reversed>
+      <li class="timeline__item timeline__item--current" data-reveal>
+        <p class="timeline__date">2026 – 2027</p>
+        <h3 class="timeline__title">BTS SIO, option SLAM · 2<sup>e</sup> année</h3>
+        <p class="timeline__place">Campus Ermitage 47, Agen</p>
+        <p>Je poursuis ma 2<sup>e</sup> année de BTS dans le Lot-et-Garonne, où je recherche une alternance. Projet de groupe en cours.</p>
+      </li>
+      <li class="timeline__item" data-reveal>
+        <p class="timeline__date">2024 – 2026</p>
+        <h3 class="timeline__title">BTS SIO, option SLAM · 1<sup>re</sup> et 2<sup>e</sup> années</h3>
+        <p class="timeline__place">Institut Limayrac, Toulouse</p>
+        <p>Projets AppFAQ, RestoWeb et site taekwondo. Stages à La Banque Postale (2025) et chez Fonroche Lighting (2026).</p>
+      </li>
+      <li class="timeline__item" data-reveal>
+        <p class="timeline__date">2023</p>
+        <h3 class="timeline__title">Baccalauréat STI2D, option ITEC</h3>
+        <p class="timeline__place">Lycée Val de Garonne, Marmande</p>
+        <p>Sciences et technologies de l'industrie et du développement durable, option Innovation technologique et écoconception.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="titre-experiences">
+  <div class="container container--narrow">
+    <h2 id="titre-experiences">Expériences en entreprise</h2>
+    <ol class="timeline" reversed>
+      {%- for stage in stages %}
+      <li class="timeline__item" data-reveal>
+        <p class="timeline__date">{{ stage.periodeTexte }}</p>
+        <h3 class="timeline__title">{{ stage.poste }} · {{ stage.entreprise }}</h3>
+        <p class="timeline__place">{{ stage.lieu }} · {{ stage.duree }}</p>
+        <p>{{ stage.resume }} <a href="/stages/#{{ stage.id }}">Détail du stage</a>.</p>
+      </li>
+      {%- endfor %}
+    </ol>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="titre-plus">
+  <div class="container">
+    <h2 id="titre-plus" class="sr-only">Certifications, langues et centres d'intérêt</h2>
+    <div class="grid grid--sm">
+      <div class="panel" data-reveal>
+        <h3>Certifications</h3>
+        <ul class="stack stack--sm list-reset">
+          <li><strong>PIX</strong>, compétences numériques (2024) {% todo "score ou niveau obtenu" %}</li>
+          <li><strong>PSE 1</strong>, premiers secours en équipe de niveau 1, Action Secours 47 (2024)</li>
+        </ul>
+      </div>
+      <div class="panel" data-reveal>
+        <h3>Langues</h3>
+        <ul class="stack stack--sm list-reset">
+          <li><strong>Français</strong> : langue maternelle</li>
+          <li><strong>Anglais</strong> : courant</li>
+        </ul>
+      </div>
+      <div class="panel" data-reveal>
+        <h3>Centres d'intérêt</h3>
+        <ul class="tags">
+          <li class="tag">Nouvelles technologies</li><li class="tag">Sport</li><li class="tag">Voyages</li><li class="tag">Cuisine</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="titre-projet">
+  <div class="container container--narrow">
+    <h2 id="titre-projet">Mon projet professionnel</h2>
+    <div class="prose">
+      <p>Mon objectif est de devenir développeur d'applications. Mes deux stages m'ont conforté dans ce choix, en particulier pour le développement back-end et la gestion de bases de données.</p>
+      <p>À court terme, je recherche une <strong>alternance dans le Lot-et-Garonne</strong> pour gagner en expérience sur des projets réels. {% todo "poursuite d'études envisagée après le BTS (bachelor, licence pro…)" %}</p>
+    </div>
+  </div>
+</section>

@@ -141,6 +141,13 @@ export default function (eleventyConfig) {
   );
   eleventyConfig.addFilter("dateIso", (date) => new Date(date).toISOString().slice(0, 10));
   eleventyConfig.addFilter("absolue", (url, base) => new URL(url, base).href);
+  // Réalisations dont une donnée du front matter est vraie (ex. "une").
+  eleventyConfig.addFilter("avecDonnee", (liste = [], cle) => liste.filter((r) => r.data[cle]));
+  eleventyConfig.addFilter("trouverParSlug", (liste = [], slug) => {
+    const element = liste.find((r) => r.page.fileSlug === slug);
+    if (!element) throw new Error(`Réalisation introuvable : ${slug}`);
+    return element;
+  });
   eleventyConfig.addFilter("inverse", (liste = []) => [...liste].reverse());
   eleventyConfig.addFilter("json", (valeur) => JSON.stringify(valeur));
 

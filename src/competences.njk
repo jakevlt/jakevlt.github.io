@@ -1,0 +1,70 @@
+---
+layout: layouts/base.njk
+titre: Compétences
+description: "Les compétences de Jake Volante selon le référentiel du BTS SIO option SLAM (blocs 1, 2 et 3), avec un niveau auto-évalué et les réalisations qui les prouvent."
+permalink: /competences/
+---
+<div class="container">
+  <header class="page-header">
+    <p class="eyebrow">Référentiel BTS SIO</p>
+    <h1>Mes compétences</h1>
+    <p class="lead">Mes compétences sont présentées selon les trois blocs du référentiel du BTS SIO, option SLAM. Pour chacune : mon niveau actuel et les réalisations qui le prouvent.</p>
+  </header>
+
+  <div class="callout">
+    <p><strong>Échelle de niveau :</strong>
+      {%- for cle, n in niveaux %} {{ cle }}. {{ n.libelle }} ({{ n.description | lower | replace(".", "") }}){% if not loop.last %} ;{% else %}.{% endif %}{% endfor %}
+      {% todo "niveaux à valider avec ton enseignant" %}
+    </p>
+  </div>
+</div>
+
+<section class="section" aria-labelledby="titre-outils">
+  <div class="container">
+    <h2 id="titre-outils">Langages et outils</h2>
+    <div class="section-body">{% include "partials/outils.njk" %}</div>
+  </div>
+</section>
+
+<div class="container">
+  {%- for bloc in referentiel %}
+  <section class="bloc" id="{{ bloc.id }}" aria-labelledby="titre-{{ bloc.id }}">
+    <header class="bloc__header">
+      <p class="eyebrow">Bloc {{ bloc.numero }} · {{ bloc.epreuve }}</p>
+      <h2 id="titre-{{ bloc.id }}">{{ bloc.titre }}</h2>
+    </header>
+
+    {%- for comp in bloc.competences %}
+    {%- set preuves = collections.realisations | avecCompetence(comp.code) %}
+    <article class="panel competence" id="{{ comp.code | lower | replace('.', '-') }}" data-reveal>
+      <div>
+        <div class="competence__head">
+          <span class="comp-code">{{ comp.code }}</span>
+          <h3>{{ comp.titre }}</h3>
+          <span class="level" data-niveau="{{ comp.niveau }}">
+            <span class="level__bar" aria-hidden="true"><span></span><span></span><span></span></span>
+            <span><span class="sr-only">Niveau {{ comp.niveau }} sur 3 : </span>{{ niveaux[comp.niveau].libelle }}</span>
+          </span>
+        </div>
+        <details>
+          <summary>Savoir-faire du référentiel ({{ comp.savoirs.length }})</summary>
+          <ul>{% for s in comp.savoirs %}<li>{{ s }}</li>{% endfor %}</ul>
+        </details>
+      </div>
+      <div class="competence__proofs">
+        <h4>Prouvée par</h4>
+        {%- if preuves.length %}
+        <ul>
+          {%- for r in preuves %}
+          <li><a href="{{ r.url }}{% if r.data.preuves | aDesPreuves(comp.code) %}#{{ comp.code | ancre }}{% endif %}">{{ r.data.titreCourt or r.data.titre }}</a></li>
+          {%- endfor %}
+        </ul>
+        {%- else %}
+        <p class="empty">Pas encore de réalisation : compétence à développer pendant ma 2<sup>e</sup> année.</p>
+        {%- endif %}
+      </div>
+    </article>
+    {%- endfor %}
+  </section>
+  {%- endfor %}
+</div>

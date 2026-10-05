@@ -1,11 +1,12 @@
 // Référentiel du BTS SIO (option SLAM) : blocs, compétences et niveaux auto-évalués.
 // Les intitulés reprennent ceux du référentiel officiel du diplôme.
 //
-// Niveaux : 1 = Découverte, 2 = Mise en œuvre accompagnée, 3 = Mise en œuvre autonome.
+// Niveaux : 0 = À développer, 1 = Découverte, 2 = Mise en œuvre, 3 = Autonome.
 // Ils sont à valider par Jake : ils ont été pré-remplis à partir du nombre de
 // réalisations qui prouvent chaque compétence.
 
 export const niveaux = {
+  0: { libelle: "À développer", description: "Compétence pas encore mise en œuvre dans une réalisation." },
   1: { libelle: "Découverte", description: "Compétence abordée une fois, avec accompagnement." },
   2: { libelle: "Mise en œuvre", description: "Compétence mobilisée dans plusieurs réalisations, avec un appui ponctuel." },
   3: { libelle: "Autonome", description: "Compétence mobilisée régulièrement, de façon autonome." },
@@ -142,7 +143,7 @@ export const referentiel = [
       {
         code: "B3.1",
         titre: "Protéger les données à caractère personnel",
-        niveau: 1,
+        niveau: 0,
         savoirs: [
           "Recenser les traitements sur les données à caractère personnel au sein de l'organisation",
           "Identifier les risques liés à la collecte, au traitement, au stockage et à la diffusion des données à caractère personnel",
@@ -153,7 +154,7 @@ export const referentiel = [
       {
         code: "B3.2",
         titre: "Préserver l'identité numérique de l'organisation",
-        niveau: 1,
+        niveau: 0,
         savoirs: [
           "Protéger l'identité numérique d'une organisation",
           "Déployer les moyens appropriés de preuve électronique",
@@ -173,7 +174,7 @@ export const referentiel = [
       {
         code: "B3.4",
         titre: "Garantir la disponibilité, l'intégrité et la confidentialité des services informatiques et des données de l'organisation face à des cyberattaques",
-        niveau: 1,
+        niveau: 0,
         savoirs: [
           "Caractériser les risques liés à l'utilisation malveillante d'un service informatique",
           "Recenser les conséquences d'une perte de disponibilité, d'intégrité ou de confidentialité",
