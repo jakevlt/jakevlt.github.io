@@ -7,49 +7,26 @@ description: "Jake Volante, étudiant en BTS SIO option SLAM au Campus Ermitage 
 {%- set aLaUne = collections.realisations | avecDonnee("une") | inverse -%}
 
 <section class="hero" aria-labelledby="titre-accueil">
-  <div class="container hero__grid">
-    <div>
-      <p class="status"><span class="status__dot" aria-hidden="true"></span>Disponible pour une alternance dans le {{ site.auteur.departement }}</p>
-      <p class="eyebrow">BTS SIO · option SLAM · {{ site.formation.ville }}</p>
-      <h1 id="titre-accueil">Jake Volante, <span class="accent">développeur d'applications</span> en formation.</h1>
-      <p class="lead">
-        Étudiant en 2<sup>e</sup> année de BTS SIO au {{ site.formation.etablissement }}, je recherche une alternance dans le {{ site.auteur.departement }}.
-        Passionné par le développement back-end et les bases de données, j'ai conçu en stage une application Django connectée à Microsoft 365.
-      </p>
-      <div class="btn-group">
-        <a class="btn btn--primary" href="/realisations/">Voir mes réalisations {{ icone("arrow-right") | safe }}</a>
-        {%- if site.cv %}
-        <a class="btn" href="{{ site.cv }}" type="application/pdf">{{ icone("download") | safe }} Télécharger mon CV</a>
-        {%- endif %}
-        <a class="btn" href="/contact/">{{ icone("mail") | safe }} Me contacter</a>
-      </div>
-      {%- if not site.cv %}<p class="hero__note">{% todo "CV mis à jour (PDF) à ajouter" %}</p>{% endif %}
-    </div>
-
-    <div class="code-card" role="img" aria-label="Résumé de mon profil : BTS SIO option SLAM à Agen, recherche d'une alternance, langages Python, Django, PHP et SQL.">
-      <div class="code-card__bar"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span><span class="file">profil.json</span></div>
-<pre aria-hidden="true"><span class="p">{</span>
-  <span class="k">"nom"</span><span class="p">:</span> <span class="s">"Jake Volante"</span><span class="p">,</span>
-  <span class="k">"formation"</span><span class="p">:</span> <span class="s">"BTS SIO, option SLAM"</span><span class="p">,</span>
-  <span class="k">"ville"</span><span class="p">:</span> <span class="s">"Agen (47)"</span><span class="p">,</span>
-  <span class="k">"recherche"</span><span class="p">:</span> <span class="s">"alternance"</span><span class="p">,</span>
-  <span class="k">"stack"</span><span class="p">: [</span>
-    <span class="s">"Python"</span><span class="p">,</span> <span class="s">"Django"</span><span class="p">,</span>
-    <span class="s">"PHP"</span><span class="p">,</span> <span class="s">"SQL"</span>
-  <span class="p">],</span>
-  <span class="k">"stages"</span><span class="p">:</span> <span class="s">2</span>
-<span class="p">}</span></pre>
-    </div>
-  </div>
-</section>
-
-<section class="section" aria-labelledby="titre-chiffres">
   <div class="container">
-    <h2 id="titre-chiffres" class="sr-only">En quelques chiffres</h2>
-    <ul class="stats">
-      <li class="stat" data-reveal><span class="stat__value">2 stages</span><span class="stat__label">14 semaines en entreprise, en équipe Scrum puis en autonomie</span></li>
-      <li class="stat" data-reveal><span class="stat__value">{{ collections.realisations.length }} réalisations</span><span class="stat__label">détaillées en fiches avec leurs preuves</span></li>
-      <li class="stat" data-reveal><span class="stat__value">3 blocs</span><span class="stat__label">de compétences du BTS SIO couverts</span></li>
+    <p class="eyebrow">BTS SIO · option SLAM · {{ site.formation.ville }}</p>
+    <h1 id="titre-accueil">Jake Volante, <span class="accent">développeur d'applications</span> en formation.</h1>
+    <p class="lead">
+      Étudiant en 2<sup>e</sup> année de BTS SIO au {{ site.formation.etablissement }}, je recherche une alternance dans le {{ site.auteur.departement }}.
+      Passionné par le développement back-end et les bases de données, j'ai conçu en stage une application Django connectée à Microsoft 365.
+    </p>
+    <div class="btn-group">
+      <a class="btn btn--primary" href="/realisations/">Voir mes réalisations {{ icone("arrow-right") | safe }}</a>
+      {%- if site.cv %}
+      <a class="btn" href="{{ site.cv }}" type="application/pdf">{{ icone("download") | safe }} Télécharger mon CV</a>
+      {%- endif %}
+      <a class="btn" href="/contact/">{{ icone("mail") | safe }} Me contacter</a>
+    </div>
+    {%- if not site.cv %}<p class="hero__note">{% todo "CV mis à jour (PDF) à ajouter" %}</p>{% endif %}
+
+    <ul class="stats" aria-label="En quelques chiffres">
+      <li class="stat"><span class="stat__value">2 stages</span><span class="stat__label">14 semaines en entreprise</span></li>
+      <li class="stat"><span class="stat__value">{{ collections.realisations.length }} réalisations</span><span class="stat__label">détaillées avec leurs preuves</span></li>
+      <li class="stat"><span class="stat__value">3 blocs</span><span class="stat__label">de compétences du BTS SIO</span></li>
     </ul>
   </div>
 </section>
@@ -72,7 +49,7 @@ description: "Jake Volante, étudiant en BTS SIO option SLAM au Campus Ermitage 
   </div>
 </section>
 
-<section class="section section--alt" aria-labelledby="titre-outils">
+<section class="section" aria-labelledby="titre-outils">
   <div class="container">
     <div class="section__header">
       <div>
