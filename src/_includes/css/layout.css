@@ -1,0 +1,384 @@
+/* ==========================================================================
+   Mise en page : conteneurs, en-tête, navigation, pied de page, sections
+   ========================================================================== */
+
+.container {
+  width: min(100% - 2 * var(--gutter), var(--container));
+  margin-inline: auto;
+}
+
+.container--narrow {
+  width: min(100% - 2 * var(--gutter), var(--container-narrow));
+}
+
+.section {
+  padding-block: var(--section-gap);
+}
+
+.section + .section {
+  padding-top: 0;
+}
+
+.section--alt {
+  background: var(--color-bg-elevated);
+  border-block: 1px solid var(--color-border);
+}
+
+.section--alt + .section {
+  padding-top: var(--section-gap);
+}
+
+.section__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+.section__header > div {
+  max-width: 42rem;
+}
+
+.section__header p {
+  color: var(--color-text-muted);
+  margin-top: var(--space-2);
+}
+
+.stack > * + * {
+  margin-top: var(--stack-space, var(--space-4));
+}
+
+.grid {
+  display: grid;
+  gap: var(--grid-gap, var(--space-5));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--grid-min, 20rem)), 1fr));
+}
+
+/* --- En-tête ------------------------------------------------------------- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--color-header-bg);
+  -webkit-backdrop-filter: saturate(160%) blur(12px);
+  backdrop-filter: saturate(160%) blur(12px);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  min-height: var(--header-height);
+}
+
+.brand {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  color: var(--color-text);
+  text-decoration: none;
+  white-space: nowrap;
+  padding-block: var(--space-2);
+}
+
+.brand:hover {
+  color: var(--color-text);
+}
+
+.brand__dot {
+  color: var(--color-accent);
+}
+
+.site-nav {
+  margin-left: auto;
+}
+
+.nav__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  list-style: none;
+  padding: 0;
+}
+
+.nav__link {
+  display: block;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color var(--duration-fast), background-color var(--duration-fast);
+}
+
+.nav__link:hover {
+  color: var(--color-text);
+  background: var(--color-surface-hover);
+}
+
+.nav__link[aria-current="page"] {
+  color: var(--color-text);
+  background: var(--color-accent-soft);
+  box-shadow: inset 0 -2px 0 var(--color-accent);
+}
+
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.icon-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  color: var(--color-text);
+  transition: background-color var(--duration-fast), border-color var(--duration-fast);
+}
+
+.icon-btn:hover {
+  background: var(--color-surface-hover);
+  border-color: var(--color-border-strong);
+}
+
+.icon-btn svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* Le bouton de thème n'a de sens qu'avec JavaScript. */
+.theme-toggle {
+  display: none;
+}
+
+.js .theme-toggle {
+  display: inline-grid;
+}
+
+/* Icône soleil en thème sombre, lune en thème clair. */
+.theme-toggle .icon-moon,
+:root[data-theme="light"] .theme-toggle .icon-sun {
+  display: none;
+}
+
+:root[data-theme="light"] .theme-toggle .icon-moon {
+  display: block;
+}
+
+.menu-toggle {
+  display: none;
+}
+
+/* Navigation mobile : panneau déroulant (uniquement avec JS ; sans JS la
+   liste reste affichée en dessous du logo). */
+@media (max-width: 63.99rem) {
+  .header__inner {
+    flex-wrap: wrap;
+  }
+
+  .site-nav {
+    order: 3;
+    width: 100%;
+    margin-left: 0;
+    padding-bottom: var(--space-3);
+  }
+
+  .header__actions {
+    margin-left: auto;
+  }
+
+  .js .menu-toggle {
+    display: inline-grid;
+  }
+
+  .js .site-nav {
+    display: none;
+  }
+
+  .js .site-nav.is-open {
+    display: block;
+    animation: menu-in var(--duration) var(--ease-out);
+  }
+
+  .js .nav__list {
+    flex-direction: column;
+    gap: var(--space-1);
+    padding-top: var(--space-2);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .js .nav__link {
+    padding: var(--space-3);
+    font-size: var(--text-base);
+  }
+
+  .js .nav__link[aria-current="page"] {
+    box-shadow: inset 3px 0 0 var(--color-accent);
+  }
+}
+
+@keyframes menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-0.5rem);
+  }
+}
+
+/* Icône du menu : trois traits qui deviennent une croix. */
+.menu-toggle .bar {
+  transition: transform var(--duration) var(--ease-out), opacity var(--duration-fast);
+  transform-origin: center;
+}
+
+.menu-toggle[aria-expanded="true"] .bar--top {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.menu-toggle[aria-expanded="true"] .bar--middle {
+  opacity: 0;
+}
+
+.menu-toggle[aria-expanded="true"] .bar--bottom {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+/* --- En-tête de page --------------------------------------------------- */
+
+.page-header {
+  padding-block: clamp(3rem, 2rem + 4vw, 5rem) var(--space-6);
+}
+
+.page-header h1 {
+  max-width: 20ch;
+}
+
+.page-header .lead {
+  margin-top: var(--space-4);
+  max-width: 44rem;
+}
+
+.lead {
+  font-size: var(--text-lg);
+  color: var(--color-text-muted);
+  line-height: var(--leading-normal);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--color-accent);
+  margin-bottom: var(--space-3);
+}
+
+.eyebrow::before {
+  content: "";
+  width: 1.25rem;
+  height: 1px;
+  background: currentColor;
+}
+
+/* Fil d'Ariane */
+.breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  list-style: none;
+  padding: 0;
+  font-size: var(--text-xs);
+  font-family: var(--font-mono);
+  color: var(--color-text-subtle);
+  margin-bottom: var(--space-5);
+}
+
+.breadcrumb li + li::before {
+  content: "/";
+  margin-right: var(--space-2);
+  color: var(--color-border-strong);
+}
+
+.breadcrumb a {
+  color: var(--color-text-muted);
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+/* --- Pied de page -------------------------------------------------------- */
+
+.site-footer {
+  margin-top: var(--section-gap);
+  border-top: 1px solid var(--color-border);
+  background: var(--color-bg-elevated);
+  padding-block: var(--space-7) var(--space-5);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.footer__grid {
+  display: grid;
+  gap: var(--space-6);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+}
+
+.footer__title {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--space-3);
+}
+
+.footer__list {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: var(--space-2);
+}
+
+.footer__list a {
+  color: var(--color-text-muted);
+  text-decoration: none;
+}
+
+.footer__list a:hover {
+  color: var(--color-accent);
+  text-decoration: underline;
+}
+
+.footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-top: var(--space-7);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--color-border);
+  font-size: var(--text-xs);
+  color: var(--color-text-subtle);
+}
+
+.footer__note {
+  margin-top: var(--space-3);
+}
+
+.footer__list--inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+}

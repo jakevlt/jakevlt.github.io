@@ -1,0 +1,70 @@
+/* ==========================================================================
+   Impression (et génération du PDF du tableau de synthèse)
+   ========================================================================== */
+
+@media print {
+  :root {
+    color-scheme: light;
+  }
+
+  body {
+    background: #fff;
+    color: #000;
+    font-size: 10pt;
+  }
+
+  .site-header,
+  .site-footer,
+  .skip-link,
+  .no-print,
+  .breadcrumb,
+  .filters {
+    display: none !important;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .page-header {
+    padding-block: 0 1rem;
+  }
+
+  .section {
+    padding-block: 0.5rem;
+  }
+
+  .table-wrap {
+    overflow: visible;
+    border: 0;
+  }
+
+  .data-table th,
+  .data-table td {
+    border: 1px solid #999;
+    padding: 4pt 5pt;
+  }
+
+  .synthese th[scope="row"] {
+    position: static;
+    box-shadow: none;
+  }
+
+  .check {
+    background: none;
+    width: auto;
+    height: auto;
+    color: #000;
+  }
+
+  tr,
+  .bloc-table {
+    break-inside: avoid;
+  }
+
+  .js [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

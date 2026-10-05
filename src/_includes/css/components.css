@@ -1,0 +1,630 @@
+/* ==========================================================================
+   Composants réutilisables
+   ========================================================================== */
+
+/* --- Boutons ------------------------------------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 2.75rem;
+  padding: var(--space-2) var(--space-5);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  text-decoration: none;
+  transition: background-color var(--duration-fast), border-color var(--duration-fast),
+    color var(--duration-fast), transform var(--duration-fast);
+}
+
+.btn:hover {
+  background: var(--color-surface-hover);
+  border-color: var(--color-text-subtle);
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn--primary {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-on-accent);
+}
+
+.btn--primary:hover {
+  background: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
+  color: var(--color-on-accent);
+}
+
+.btn svg {
+  width: 1.1em;
+  height: 1.1em;
+  flex-shrink: 0;
+}
+
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+/* Lien avec flèche animée */
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.link-arrow::after {
+  content: "→";
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.link-arrow:hover::after {
+  transform: translateX(3px);
+}
+
+/* --- Étiquettes ---------------------------------------------------------- */
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  list-style: none;
+  padding: 0;
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.15rem 0.6rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  background: var(--color-surface-hover);
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  line-height: 1.6;
+  white-space: nowrap;
+}
+
+.tag--accent {
+  border-color: transparent;
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+}
+
+/* Code de compétence (C1, B2.1…) */
+.comp-code {
+  display: inline-block;
+  min-width: 2.6em;
+  padding: 0.05rem 0.4rem;
+  border-radius: var(--radius-sm);
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+  font-family: var(--font-mono);
+  font-size: 0.8em;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+}
+
+a.comp-code:hover {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+}
+
+/* --- Cartes -------------------------------------------------------------- */
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-5);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  transition: border-color var(--duration) var(--ease-out), transform var(--duration) var(--ease-out),
+    box-shadow var(--duration) var(--ease-out);
+}
+
+.card:hover {
+  border-color: var(--color-border-strong);
+}
+
+/* Toute la carte est cliquable via le lien du titre (zone étendue). */
+.card--link:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+/* Anneau de focus sur toute la carte quand son lien reçoit le focus clavier. */
+.card--link:has(.card__link:focus-visible) {
+  border-color: var(--color-accent);
+  box-shadow: var(--focus-ring);
+}
+
+.card__link {
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.card__link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+.card__link:hover {
+  color: var(--color-text);
+}
+
+.card__link:focus-visible {
+  outline: none;
+}
+
+.card__meta {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-text-subtle);
+}
+
+.card__title {
+  font-size: var(--text-lg);
+}
+
+.card__text {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.card__footer {
+  margin-top: auto;
+  padding-top: var(--space-3);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.card__media {
+  margin: calc(-1 * var(--space-5)) calc(-1 * var(--space-5)) var(--space-2);
+  border-bottom: 1px solid var(--color-border);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  background: var(--color-surface-hover);
+}
+
+.card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform var(--duration-slow) var(--ease-out);
+}
+
+.card--link:hover .card__media img {
+  transform: scale(1.03);
+}
+
+/* --- Listes de définitions (fiche d'identité) ---------------------------- */
+
+.meta-list {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.meta-list dt {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-text-subtle);
+  margin-bottom: var(--space-1);
+}
+
+.meta-list dd {
+  margin: 0;
+  font-size: var(--text-sm);
+}
+
+/* --- Encadrés ------------------------------------------------------------ */
+
+.callout {
+  padding: var(--space-4) var(--space-5);
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-accent);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  background: var(--color-surface);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.callout strong {
+  color: var(--color-text);
+}
+
+.panel {
+  padding: var(--space-5);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+/* --- Niveau de compétence (3 segments) ----------------------------------- */
+
+.level {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-family: var(--font-mono);
+  color: var(--color-text-muted);
+  white-space: nowrap;
+}
+
+.level__bar {
+  display: inline-flex;
+  gap: 3px;
+}
+
+.level__bar span {
+  width: 1.1rem;
+  height: 0.4rem;
+  border-radius: 2px;
+  background: var(--color-border);
+}
+
+.level[data-niveau="1"] .level__bar span:nth-child(-n + 1),
+.level[data-niveau="2"] .level__bar span:nth-child(-n + 2),
+.level[data-niveau="3"] .level__bar span:nth-child(-n + 3) {
+  background: var(--color-accent);
+}
+
+/* --- Chronologie --------------------------------------------------------- */
+
+.timeline {
+  list-style: none;
+  padding: 0;
+  position: relative;
+  display: grid;
+  gap: var(--space-5);
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 0.4rem;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  width: 1px;
+  background: var(--color-border-strong);
+}
+
+.timeline__item {
+  position: relative;
+  padding-left: var(--space-6);
+}
+
+.timeline__item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.45rem;
+  width: 0.85rem;
+  height: 0.85rem;
+  border-radius: 50%;
+  background: var(--color-bg);
+  border: 2px solid var(--color-accent);
+}
+
+.timeline__item--current::before {
+  background: var(--color-accent);
+  box-shadow: 0 0 0 4px var(--color-accent-soft);
+}
+
+.timeline__date {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-accent);
+}
+
+.timeline__title {
+  font-size: var(--text-lg);
+  margin-block: var(--space-1);
+}
+
+.timeline__place {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+/* --- Contenu rédigé (Markdown) ------------------------------------------- */
+
+.prose {
+  max-width: 44rem;
+}
+
+.prose > * + * {
+  margin-top: var(--space-4);
+}
+
+.prose h2 {
+  font-size: var(--text-xl);
+  margin-top: var(--space-7);
+  padding-top: var(--space-2);
+}
+
+.prose h3 {
+  margin-top: var(--space-5);
+}
+
+.prose h2 + *,
+.prose h3 + * {
+  margin-top: var(--space-3);
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 1.25rem;
+}
+
+.prose li + li {
+  margin-top: var(--space-2);
+}
+
+.prose li::marker {
+  color: var(--color-accent);
+}
+
+.prose blockquote {
+  padding-left: var(--space-4);
+  border-left: 3px solid var(--color-border-strong);
+  color: var(--color-text-muted);
+}
+
+/* --- Galerie de preuves --------------------------------------------------- */
+
+.preuves {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
+}
+
+.preuve {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.preuve__lien {
+  display: block;
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: #fff;
+  cursor: zoom-in;
+}
+
+.preuve__lien img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform var(--duration-slow) var(--ease-out);
+}
+
+.preuve__lien:hover img {
+  transform: scale(1.04);
+}
+
+.preuve__lien:hover {
+  border-color: var(--color-accent);
+}
+
+.preuve figcaption {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  line-height: var(--leading-snug);
+}
+
+/* Visionneuse (élément <dialog> natif) */
+.lightbox {
+  width: min(100vw - 2rem, 80rem);
+  max-height: calc(100dvh - 2rem);
+  padding: 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-elevated);
+  color: var(--color-text);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+.lightbox[open] {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  animation: lightbox-in var(--duration) var(--ease-out);
+}
+
+.lightbox::backdrop {
+  background: rgb(8 10 14 / 0.8);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+@keyframes lightbox-in {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+}
+
+.lightbox__header,
+.lightbox__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+}
+
+.lightbox__header {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.lightbox__footer {
+  border-top: 1px solid var(--color-border);
+}
+
+.lightbox__counter {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}
+
+.lightbox__figure {
+  display: grid;
+  min-height: 0;
+  overflow: auto;
+  background: #fff;
+}
+
+.lightbox__figure img {
+  margin: auto;
+  max-height: calc(100dvh - 12rem);
+  width: auto;
+  object-fit: contain;
+}
+
+.lightbox__caption {
+  flex: 1;
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+/* --- Filtres --------------------------------------------------------------- */
+
+.filters {
+  display: none;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-5);
+}
+
+.js .filters {
+  display: flex;
+}
+
+.filter-btn {
+  padding: var(--space-2) var(--space-4);
+  min-height: 2.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  transition: all var(--duration-fast);
+}
+
+.filter-btn:hover {
+  border-color: var(--color-border-strong);
+  color: var(--color-text);
+}
+
+.filter-btn[aria-pressed="true"] {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-on-accent);
+}
+
+/* --- Tableau générique ---------------------------------------------------- */
+
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  -webkit-overflow-scrolling: touch;
+}
+
+.table-wrap:focus-visible {
+  outline-offset: 2px;
+}
+
+.data-table {
+  width: 100%;
+  font-size: var(--text-sm);
+}
+
+.data-table th,
+.data-table td {
+  padding: var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+  text-align: left;
+  vertical-align: top;
+}
+
+.data-table thead th {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  color: var(--color-text-muted);
+  background: var(--color-bg-elevated);
+  vertical-align: bottom;
+}
+
+.data-table tbody tr:last-child > * {
+  border-bottom: 0;
+}
+
+/* --- Animation d'apparition au défilement --------------------------------
+   Appliquée uniquement si JS est actif et si l'utilisateur accepte les
+   animations : sans JS, tout reste visible. */
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-reveal] {
+    opacity: 0;
+    transform: translateY(1rem);
+    transition: opacity var(--duration-slow) var(--ease-out), transform var(--duration-slow) var(--ease-out);
+  }
+
+  .js [data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* --- Utilitaires ----------------------------------------------------------- */
+
+.list-reset {
+  list-style: none;
+  padding: 0;
+}
+
+.page-header__actions {
+  margin-top: var(--space-5);
+}
