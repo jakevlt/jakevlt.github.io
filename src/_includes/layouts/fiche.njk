@@ -84,20 +84,20 @@ ogType: article
       <section class="fiche__preuves" aria-labelledby="titre-preuves">
         <h2 id="titre-preuves">Preuves par compétence</h2>
         <p class="fiche__aide">Sélectionnez une capture pour l'agrandir. Les flèches du clavier permettent de passer d'une image à l'autre.</p>
-        {%- for groupe in preuves %}
+        {%- asyncEach groupe in preuves %}
         {%- set comp = groupe.comp | competence %}
         <div class="preuves-groupe" id="{{ groupe.comp | ancre }}" data-galerie-groupe>
           <h3><span class="comp-code">{{ groupe.comp }}</span> {{ comp.titre }}</h3>
           {%- if groupe.texte %}<p class="preuves-groupe__texte">{{ groupe.texte | safe }}</p>{% endif %}
           {%- if groupe.images and groupe.images.length %}
           <div class="preuves">
-            {%- for img in groupe.images %}
+            {%- asyncEach img in groupe.images %}
             {% preuve img.src, img.alt, img.legende %}
-            {%- endfor %}
+            {%- endeach %}
           </div>
           {%- endif %}
         </div>
-        {%- endfor %}
+        {%- endeach %}
       </section>
       {%- endif %}
     </div>

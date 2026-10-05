@@ -10,7 +10,7 @@ equipe: "Équipe de 3 étudiants [À COMPLÉTER : à confirmer]"
 role: "[À COMPLÉTER : lots et pages que tu as réalisés toi-même]"
 technologies: [PHP, MySQL, SQL, HTML, CSS, Git/GitHub, Trello, Merise (MCD/MLD)]
 competences: [C3, C4, C5, B2.1, B2.3, B3.3]
-vignette: { src: "faq-c3-accueil-4.png", alt: "Interface super administrateur d'AppFAQ listant les questions de toutes les ligues" }
+vignette: { src: "faq-c3-accueil-4.png" }
 une: false
 liens: []
 preuves:

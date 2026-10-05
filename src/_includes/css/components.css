@@ -555,6 +555,7 @@ a.comp-code:hover {
 /* --- Tableau générique ---------------------------------------------------- */
 
 .table-wrap {
+  position: relative; /* contient les textes .sr-only des cellules */
   overflow-x: auto;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);

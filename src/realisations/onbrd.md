@@ -11,7 +11,7 @@ equipe: "Projet individuel, encadré par le DSI"
 role: "Analyse du besoin, conception, développement, tests et documentation"
 technologies: [Python, Django, PostgreSQL, Microsoft Graph API, OAuth 2.0, ReportLab, HTML/CSS, Git/GitLab, PyCharm]
 competences: [C1, C2, C3, C4, C5, C6, B2.1, B2.3, B3.3, B3.5]
-vignette: { src: "onbrd-c3-8.png", alt: "Interface d'ONBRD : planification automatique d'un parcours d'intégration" }
+vignette: { src: "onbrd-c3-8.png", recadrage: [0.01, 0.52, 0.98, 0.46] }
 une: true
 documents:
   - { titre: "Rapport de stage Fonroche Lighting", url: "/documents/rapport-stage-fonroche-lighting-2026.pdf", info: "PDF, 33 pages" }

@@ -24,10 +24,10 @@ permalink: /realisations/
   <p class="sr-only" aria-live="polite" data-filtres-statut></p>
 
   <ul class="grid list-reset" role="list">
-    {%- for r in collections.realisations | inverse %}
+    {%- asyncEach r in collections.realisations | inverse %}
     <li data-contexte="{{ r.data.contexte }}">
       {% include "partials/carte-realisation.njk" %}
     </li>
-    {%- endfor %}
+    {%- endeach %}
   </ul>
 </div>

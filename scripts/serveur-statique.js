@@ -24,7 +24,8 @@ const TYPES = {
 
 /** Démarre un serveur sur `racine` et renvoie { url, fermer }. */
 export function demarrerServeur(racine = "_site", port = 0) {
-  const base = path.resolve(racine);
+  // Chemin relatif à la racine du projet, quel que soit le dossier courant.
+  const base = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", racine);
   const serveur = http.createServer((req, res) => {
     const chemin = decodeURIComponent(new URL(req.url, "http://localhost").pathname);
     let fichier = path.join(base, chemin);

@@ -1,7 +1,9 @@
 // Configuration Eleventy du portfolio.
 // Le site généré (_site/) est 100 % statique : HTML, une feuille CSS, un petit script.
 import path from "node:path";
+import fs from "node:fs";
 import Image from "@11ty/eleventy-img";
+import sharp from "sharp";
 import { referentiel, competenceParCode, niveaux } from "./src/_lib/referentiel.js";
 
 const DOSSIER_IMAGES = "src/assets/img";
@@ -30,6 +32,29 @@ async function traiterImage(fichier, widths) {
   return Image(path.join(DOSSIER_IMAGES, fichier), { ...optionsImages, widths });
 }
 
+/**
+ * Recadre une image (fractions [gauche, haut, largeur, hauteur]) et renvoie le
+ * chemin du fichier recadré, mis en cache dans .cache/recadrages/.
+ * Utile pour les vignettes tirées de pages de rapport.
+ */
+async function recadrer(fichier, [gauche, haut, largeur, hauteur]) {
+  const sortie = path.join(".cache/recadrages", `${path.parse(fichier).name}-r${[gauche, haut, largeur, hauteur].join("-")}.png`);
+  if (!fs.existsSync(sortie)) {
+    fs.mkdirSync(path.dirname(sortie), { recursive: true });
+    const source = sharp(path.join(DOSSIER_IMAGES, fichier));
+    const { width, height } = await source.metadata();
+    await source
+      .extract({
+        left: Math.round(gauche * width),
+        top: Math.round(haut * height),
+        width: Math.round(largeur * width),
+        height: Math.round(hauteur * height),
+      })
+      .toFile(sortie);
+  }
+  return sortie;
+}
+
 export default function (eleventyConfig) {
   // --- Fichiers copiés tels quels -------------------------------------------
   eleventyConfig.addPassthroughCopy({
@@ -44,9 +69,11 @@ export default function (eleventyConfig) {
   // {% image "fichier.png", "texte alternatif", "sizes" %}
   eleventyConfig.addAsyncShortcode(
     "image",
-    async (fichier, alt, sizes = "100vw", { widths = [480, 960, 1600], loading = "lazy", classe = "" } = {}) => {
+    async (fichier, alt, sizes = "100vw", { widths = [480, 960, 1600], loading = "lazy", classe = "", recadrage = null } = {}) => {
       if (alt === undefined) throw new Error(`Texte alternatif manquant pour ${fichier}`);
-      const meta = await traiterImage(fichier, widths);
+      const meta = recadrage
+        ? await Image(await recadrer(fichier, recadrage), { ...optionsImages, widths })
+        : await traiterImage(fichier, widths);
       return Image.generateHTML(meta, {
         alt,
         sizes,

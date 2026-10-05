@@ -2,7 +2,7 @@
 <article class="card card--link" data-reveal>
   {%- if r.data.vignette %}
   <div class="card__media">
-    {% image r.data.vignette.src, "", "(min-width: 72rem) 22rem, (min-width: 40rem) 45vw, 100vw", { widths: [480, 960] } %}
+    {% image r.data.vignette.src, "", "(min-width: 72rem) 22rem, (min-width: 40rem) 45vw, 100vw", { widths: [480, 960], recadrage: r.data.vignette.recadrage } %}
   </div>
   {%- endif %}
   <p class="card__meta">

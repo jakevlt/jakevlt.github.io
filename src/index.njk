@@ -65,9 +65,9 @@ description: "Jake Volante, étudiant en BTS SIO option SLAM au Campus Ermitage 
       <a class="link-arrow" href="/realisations/">Toutes les réalisations</a>
     </div>
     <ul class="grid list-reset" role="list">
-      {%- for r in aLaUne %}
+      {%- asyncEach r in aLaUne %}
       <li>{% include "partials/carte-realisation.njk" %}</li>
-      {%- endfor %}
+      {%- endeach %}
     </ul>
   </div>
 </section>

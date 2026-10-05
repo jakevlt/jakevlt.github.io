@@ -10,7 +10,7 @@ equipe: "Équipe de 3 étudiants"
 role: "[À COMPLÉTER : fonctionnalités que tu as développées toi-même]"
 technologies: [PHP, MySQL, SQL, HTML, CSS, JSON, Git/GitHub, Trello]
 competences: [C2, C3, C4, C5, B2.1, B2.2, B2.3]
-vignette: { src: "resto-c3-1.png", alt: "Page d'accueil de RestoWeb avec un burger en arrière-plan" }
+vignette: { src: "resto-c3-1.png" }
 une: true
 liens:
   - { titre: "Dépôt GitHub du projet", url: "https://github.com/AntoineHro/appResto-restoWeb-", info: "github.com/AntoineHro" }

@@ -9,7 +9,7 @@ periode: { debut: "2024-11", fin: "2024-12" }
 equipe: "[À COMPLÉTER : individuel ou en équipe ?]"
 technologies: [HTML, CSS, VS Code]
 competences: [C3, C4]
-vignette: { src: "taekwondo-c3-1.png", alt: "Page d'accueil du site « Taekwondo Dojang du Tigre Blanc »" }
+vignette: { src: "taekwondo-c3-1.png" }
 une: false
 preuves:
   - comp: C3

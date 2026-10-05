@@ -12,7 +12,7 @@ equipe: "Au sein d'une équipe de développement Scrum"
 role: "Développeur de la user story, de l'analyse à la revue de code"
 technologies: [Angular, TypeScript, HTML, SCSS, Jira, Git/GitLab, Scrum]
 competences: [C2, C4, C5, B2.1, B2.2]
-vignette: { src: "jira-c5-deploy-2.png", alt: "Application de supervision avec l'aperçu d'une capture affiché au survol" }
+vignette: { src: "jira-c5-deploy-2.png", recadrage: [0.05, 0.15, 0.89, 0.315] }
 une: true
 documents:
   - { titre: "Rapport de stage La Banque Postale", url: "/documents/rapport-stage-la-banque-postale-2025.pdf", info: "PDF, 26 pages" }
