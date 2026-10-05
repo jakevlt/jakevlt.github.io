@@ -31,7 +31,7 @@ npm install          # une seule fois
 npm start            # serveur local avec rechargement : http://localhost:8080
 npm run build        # compile le site dans _site/
 npm run check        # vérifie liens, ancres, images, titres (après build)
-npm run pdf          # régénère le PDF du tableau de synthèse (après build)
+npm run pdf          # aperçu PDF du tableau en ligne dans .cache/ (après build)
 npm run icons        # régénère favicon et image Open Graph
 ```
 
@@ -41,7 +41,7 @@ npm run icons        # régénère favicon et image Open Graph
 2. Remplir le front matter : `titre`, `resume`, `contexte` (`formation` ou `stage`), `periode`, `competences` (codes `C1`…`C6`, `B2.1`…, `B3.1`…), `preuves`.
 3. Déposer les captures dans `src/assets/img/` et les référencer dans `preuves` avec un texte alternatif.
 4. Rédiger le contenu (contexte, besoin, solution, étapes, difficultés, résultat).
-5. `npm run build && npm run pdf` pour mettre à jour le PDF du tableau de synthèse.
+5. `npm run build` puis vérifier la fiche et le tableau en ligne. Le PDF publié (`src/documents/tableau-de-synthese-jake-volante.pdf`) est le tableau officiel : le remplacer quand une nouvelle version est prête.
 
 Les informations à fournir sont signalées dans le site par un marqueur visible `[À COMPLÉTER]` ; rechercher ce texte dans `src/` pour les retrouver.
 

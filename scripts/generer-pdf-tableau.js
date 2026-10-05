@@ -1,11 +1,13 @@
-// Génère src/documents/tableau-de-synthese-jake-volante.pdf à partir de la
-// page /tableau-de-synthese/ du site compilé (lancer `npm run build` avant).
+// Génère .cache/tableau-de-synthese-genere.pdf à partir de la page
+// /tableau-de-synthese/ du site compilé (lancer `npm run build` avant).
+// Pour l'instant, le site publie le tableau d'origine (src/documents/) ; ce
+// PDF généré sert d'aperçu et pourra le remplacer plus tard.
 import path from "node:path";
 import fs from "node:fs";
 import { demarrerServeur } from "./serveur-statique.js";
 import { lancerHeadless } from "./navigateur.js";
 
-const sortie = path.resolve("src/documents/tableau-de-synthese-jake-volante.pdf");
+const sortie = path.resolve(".cache/tableau-de-synthese-genere.pdf");
 
 if (!fs.existsSync("_site/tableau-de-synthese/index.html")) {
   console.error("Le site n'est pas compilé : lancez d'abord `npm run build`.");

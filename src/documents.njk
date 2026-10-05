@@ -28,7 +28,7 @@ permalink: /documents/
   <section aria-labelledby="titre-bts" class="bloc-docs">
     <h2 id="titre-bts">BTS SIO</h2>
     <ul class="docs-list">
-      <li><a class="doc-link" href="/documents/tableau-de-synthese-jake-volante.pdf" type="application/pdf">{{ icone("file") | safe }}<span>Tableau de synthèse des réalisations<small>PDF, version imprimable du tableau en ligne</small></span></a></li>
+      <li><a class="doc-link" href="/documents/tableau-de-synthese-jake-volante.pdf" type="application/pdf">{{ icone("file") | safe }}<span>Tableau de synthèse des réalisations<small>PDF, version officielle (session 2026, numéro de candidat masqué)</small></span></a></li>
       {%- for stage in stages %}
       <li><a class="doc-link" href="{{ stage.rapport.url }}" type="application/pdf">{{ icone("file") | safe }}<span>Rapport de stage, {{ stage.entreprise }} ({{ stage.periodeTexte | lower }})<small>{{ stage.rapport.info }}</small></span></a></li>
       {%- endfor %}
