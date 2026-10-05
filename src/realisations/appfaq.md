@@ -6,8 +6,7 @@ resume: "Pour la Maison des Ligues de Lorraine (cas d'étude), nous avons dével
 contexte: formation
 cadre: "BTS SIO, 1<sup>re</sup> année, Institut Limayrac (Toulouse)"
 periode: { debut: "2025-01", fin: "2025-04" }
-equipe: "Équipe de 3 étudiants [À COMPLÉTER : à confirmer]"
-role: "[À COMPLÉTER : lots et pages que tu as réalisés toi-même]"
+equipe: "Équipe de 3 étudiants"
 technologies: [PHP, MySQL, SQL, HTML, CSS, Git/GitHub, Trello, Merise (MCD/MLD)]
 competences: [C3, C4, C5, B2.1, B2.3, B3.3]
 vignette: { src: "faq-c3-accueil-4.png" }
@@ -75,10 +74,6 @@ Chaque page affiche uniquement ce que le rôle connecté a le droit de voir et d
 
 Le suivi s'est fait sur Trello et le code sur un dépôt GitHub commun, avec un dossier par lot.
 
-## Difficultés rencontrées
-
-{% todo "décrire une difficulté rencontrée (par exemple la gestion des droits par ligue) et la solution trouvée" %}
-
 ## Résultat
 
-Une application fonctionnelle, testée avec les trois rôles et les quatre ligues (football, basketball, handball, volley-ball). {% todo "ajouter le lien vers le dépôt GitHub public une fois créé" %}
+Une application fonctionnelle, testée avec les trois rôles et les quatre ligues (football, basketball, handball, volley-ball).

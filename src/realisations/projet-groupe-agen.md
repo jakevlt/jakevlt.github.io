@@ -12,6 +12,11 @@ technologies: []
 competences: []
 une: false
 enCours: true
+# Brouillon : non publié tant que la fiche n'est pas rédigée.
+permalink: false
+layout: false
+eleventyExcludeFromCollections: true
+brouillon: true
 preuves: []
 ---
 

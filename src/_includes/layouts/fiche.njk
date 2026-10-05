@@ -37,8 +37,8 @@ ogType: article
           <div><dt>Période</dt><dd>{% if periode.debut %}{{ periode.debut | moisLong }}{% if periode.fin and periode.fin != periode.debut %} → {{ periode.fin | moisLong }}{% endif %}{% else %}{% todo "dates du projet" %}{% endif %}</dd></div>
           <div><dt>Cadre</dt><dd>{{ cadre | safe }}</dd></div>
           {%- if organisation %}<div><dt>Organisation</dt><dd>{{ organisation | safe }}</dd></div>{% endif %}
-          <div><dt>Travail</dt><dd>{{ equipe | marquer | safe }}</dd></div>
-          {%- if role %}<div><dt>Mon rôle</dt><dd>{{ role | marquer | safe }}</dd></div>{% endif %}
+          {%- if equipe %}<div><dt>Travail</dt><dd>{{ equipe | safe }}</dd></div>{% endif %}
+          {%- if role %}<div><dt>Mon rôle</dt><dd>{{ role | safe }}</dd></div>{% endif %}
         </dl>
       </div>
 

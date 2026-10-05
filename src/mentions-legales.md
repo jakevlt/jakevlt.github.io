@@ -23,7 +23,7 @@ Le site est hébergé par **GitHub Pages**, service de GitHub, Inc., 88 Colin P.
 
 Les textes, le code et la mise en page de ce site sont la propriété de {{ site.auteur.nomComplet }}, sauf mention contraire. Toute reproduction sans autorisation est interdite.
 
-Les captures d'écran et les rapports issus des stages sont publiés avec l'accord des entreprises d'accueil {% todo "confirmer l'accord de Fonroche Lighting" %}. Les éléments confidentiels (code source, architecture, identifiants) ont été masqués ou retirés. Les marques citées (La Banque Postale, Fonroche Lighting, Microsoft, etc.) appartiennent à leurs propriétaires respectifs.
+Dans les captures d'écran et les rapports issus des stages, les éléments confidentiels (code source, architecture, identifiants) ont été masqués ou retirés. Les marques citées (La Banque Postale, Fonroche Lighting, Microsoft, etc.) appartiennent à leurs propriétaires respectifs.
 
 ## Crédits
 

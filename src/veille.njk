@@ -42,7 +42,7 @@ permalink: /veille/
         <thead><tr><th scope="col">Outil</th><th scope="col">Utilisation</th></tr></thead>
         <tbody>
           {%- for outil in veille.outils %}
-          <tr><th scope="row">{{ outil.nom }}</th><td>{{ outil.usage }}{% if outil.aConfirmer %} {% todo "outil proposé : à mettre en place et à confirmer" %}{% endif %}</td></tr>
+          <tr><th scope="row">{{ outil.nom }}</th><td>{{ outil.usage }}</td></tr>
           {%- endfor %}
         </tbody>
       </table>

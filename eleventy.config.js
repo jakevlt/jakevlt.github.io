@@ -116,10 +116,11 @@ export default function (eleventyConfig) {
   );
 
   // --- Collections ----------------------------------------------------------
-  // Réalisations triées par date de début (puis par ordre manuel).
+  // Réalisations publiées (hors brouillons), triées par date de début puis par ordre manuel.
   eleventyConfig.addCollection("realisations", (api) =>
     api
       .getFilteredByGlob("src/realisations/*.md")
+      .filter((r) => !r.data.brouillon)
       .sort((a, b) =>
         (a.data.periode?.debut || "9999").localeCompare(b.data.periode?.debut || "9999") ||
         (a.data.ordre || 0) - (b.data.ordre || 0)

@@ -12,18 +12,16 @@ permalink: /documents/
     <p class="lead">Les documents qui accompagnent mon portfolio, au format PDF.</p>
   </header>
 
+  {%- if site.cv %}
   <section aria-labelledby="titre-candidature" class="bloc-docs">
     <h2 id="titre-candidature">Candidature</h2>
     <ul class="docs-list">
-      <li>
-        {%- if site.cv %}
-        <a class="doc-link" href="{{ site.cv }}" type="application/pdf">{{ icone("file") | safe }}<span>Curriculum vitae<small>PDF</small></span></a>
-        {%- else %}
-        <p class="doc-link">{{ icone("file") | safe }}<span>Curriculum vitae <small>{% todo "CV mis à jour, sans adresse ni téléphone" %}</small></span></p>
-        {%- endif %}
-      </li>
+      {%- if site.cv %}
+      <li><a class="doc-link" href="{{ site.cv }}" type="application/pdf">{{ icone("file") | safe }}<span>Curriculum vitae<small>PDF</small></span></a></li>
+      {%- endif %}
     </ul>
   </section>
+  {%- endif %}
 
   <section aria-labelledby="titre-bts" class="bloc-docs">
     <h2 id="titre-bts">BTS SIO</h2>
@@ -35,12 +33,4 @@ permalink: /documents/
     </ul>
   </section>
 
-  <section aria-labelledby="titre-attestations" class="bloc-docs">
-    <h2 id="titre-attestations">Attestations et certifications</h2>
-    <ul class="docs-list">
-      <li><p class="doc-link">{{ icone("file") | safe }}<span>Certification PIX (2024)<small>{% todo "attestation PIX en PDF" %}</small></span></p></li>
-      <li><p class="doc-link">{{ icone("file") | safe }}<span>PSE 1, premiers secours en équipe (2024)<small>{% todo "attestation PSE 1 en PDF (facultatif)" %}</small></span></p></li>
-      <li><p class="doc-link">{{ icone("file") | safe }}<span>Attestations de stage<small>{% todo "attestations de fin de stage (facultatif)" %}</small></span></p></li>
-    </ul>
-  </section>
 </div>

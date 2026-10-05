@@ -14,7 +14,6 @@ permalink: /competences/
   <div class="callout">
     <p><strong>Échelle de niveau :</strong>
       {%- for cle, n in niveaux %} {{ cle }}. {{ n.libelle }} ({{ n.description | lower | replace(".", "") }}){% if not loop.last %} ;{% else %}.{% endif %}{% endfor %}
-      {% todo "niveaux à valider avec ton enseignant" %}
     </p>
   </div>
 </div>

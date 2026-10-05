@@ -6,7 +6,6 @@ resume: "Mon premier projet web : un site HTML/CSS de huit pages qui présente l
 contexte: formation
 cadre: "BTS SIO, 1<sup>re</sup> année, Institut Limayrac (Toulouse)"
 periode: { debut: "2024-11", fin: "2024-12" }
-equipe: "[À COMPLÉTER : individuel ou en équipe ?]"
 technologies: [HTML, CSS, VS Code]
 competences: [C3, C4]
 vignette: { src: "taekwondo-c3-1.png" }
@@ -47,10 +46,6 @@ Un site statique de huit pages (accueil, histoire, entraînements, matchs, entra
 2. Choix des rubriques et de l'arborescence des pages.
 3. Intégration HTML de chaque page, avec des tableaux pour le planning, les matchs et les catégories.
 4. Mise en forme commune en CSS et optimisation de certaines images au format WebP.
-
-## Difficultés rencontrées
-
-{% todo "décrire une difficulté rencontrée sur ce premier projet et comment tu l'as surmontée" %}
 
 ## Résultat
 

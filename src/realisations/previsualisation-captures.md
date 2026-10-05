@@ -67,8 +67,6 @@ Mon rapport de stage identifie trois axes de progrès liés à cette mission :
 - **Mieux gérer mon temps** : planifier mes tâches et estimer leur durée ;
 - **Communiquer plus clairement** une difficulté ou une solution technique à l'équipe.
 
-{% todo "décrire une difficulté technique précise rencontrée sur cette user story et comment tu l'as résolue" %}
-
 ## Résultat
 
 La fonctionnalité a été validée par l'équipe et le Product Owner, intégrée au projet et présentée en sprint review. C'est la première user story que j'ai menée de bout en bout dans une équipe professionnelle.

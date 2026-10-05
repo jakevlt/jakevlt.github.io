@@ -59,7 +59,7 @@ permalink: /tableau-de-synthese/
           <tr>
             <th scope="row"><a href="{{ r.url }}">{{ r.data.titre }}</a></th>
             <td class="periode">
-              {%- if r.data.periode.debut %}{{ r.data.periode.debut | moisCourt }} au {{ r.data.periode.fin | moisCourt }}{% else %}<mark class="todo">[À COMPLÉTER]</mark>{% endif -%}
+              {%- if r.data.periode.debut %}{{ r.data.periode.debut | moisCourt }} au {{ r.data.periode.fin | moisCourt }}{% endif -%}
             </td>
             {%- for comp in competences %}
             <td class="col-comp">
@@ -106,7 +106,7 @@ permalink: /tableau-de-synthese/
           <tr>
             <th scope="row"><a href="{{ r.url }}">{{ r.data.titre }}</a></th>
             <td class="periode">
-              {%- if r.data.periode.debut %}{{ r.data.periode.debut | moisCourt }} au {{ r.data.periode.fin | moisCourt }}{% else %}<mark class="todo">[À COMPLÉTER]</mark>{% endif -%}
+              {%- if r.data.periode.debut %}{{ r.data.periode.debut | moisCourt }} au {{ r.data.periode.fin | moisCourt }}{% endif -%}
             </td>
             {%- for comp in competences %}
             <td class="col-comp">

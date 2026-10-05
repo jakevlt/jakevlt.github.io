@@ -22,14 +22,9 @@ export default {
       nom: "YouTube",
       usage: "Chaînes de vulgarisation et de développement : Underscore_, Micode, Grafikart, Computerphile.",
     },
-    {
-      nom: "Agrégateur RSS (Feedly)",
-      usage: "Flux du CERT-FR (alertes et avis), de l'ANSSI, de l'OWASP et de sites spécialisés, regroupés au même endroit.",
-      aConfirmer: true,
-    },
   ],
   methode: [
-    { frequence: "Chaque jour", action: "Lecture rapide du fil LinkedIn et des titres de l'agrégateur (10 à 15 minutes)." },
+    { frequence: "Chaque jour", action: "Lecture rapide du fil LinkedIn (10 à 15 minutes)." },
     { frequence: "Chaque semaine", action: "Lecture des alertes Google, tri des articles pertinents et classement dans un dossier dédié." },
     { frequence: "Chaque mois", action: "Rédaction d'une synthèse courte : les faits, les sources et ce que j'en retiens pour mon métier." },
   ],

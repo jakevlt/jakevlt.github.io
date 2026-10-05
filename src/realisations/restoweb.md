@@ -7,7 +7,6 @@ contexte: formation
 cadre: "BTS SIO, 2<sup>e</sup> année, Institut Limayrac (Toulouse)"
 periode: { debut: "2025-09", fin: "2025-12" }
 equipe: "Équipe de 3 étudiants"
-role: "[À COMPLÉTER : fonctionnalités que tu as développées toi-même]"
 technologies: [PHP, MySQL, SQL, HTML, CSS, JSON, Git/GitHub, Trello]
 competences: [C2, C3, C4, C5, B2.1, B2.2, B2.3]
 vignette: { src: "resto-c3-1.png" }
@@ -68,7 +67,7 @@ Une application web en PHP et MySQL :
 
 ## Difficultés rencontrées
 
-Un incident a été signalé sur le lot 3 : l'inscription créait bien l'utilisateur en base, mais la connexion affichait une page blanche. {% todo "expliquer la cause trouvée et la correction apportée" %}
+Un incident a été signalé sur le lot 3 : l'inscription créait bien l'utilisateur en base, mais la connexion affichait une page blanche.
 
 ## Résultat
 
