@@ -30,6 +30,31 @@ export default {
   ],
   syntheses: [
     {
+      date: "2026-11-18",
+      titre: "Java4Shell : une faille critique dans le décodeur Base64 d'OpenJDK",
+      theme: "Cybersécurité",
+      resume:
+        "Une écriture hors limites dans le décodeur Base64 optimisé d'OpenJDK (processeurs x86-64 avec AVX-512) permet un déni de service et, avec une charge utile adaptée, l'exécution de code à distance (CVE-2026-114938, score CVSS 4.0 de 9,2). Java 17, 21, 25 et 27 sont concernés ; des versions corrigées sont sorties le 17 novembre et le CERT-FR a publié une alerte le lendemain.",
+      retenir:
+        "Le runtime fait partie des dépendances : une application peut être vulnérable sans qu'une ligne de son code change. Il faut suivre les alertes du CERT-FR et savoir mettre à jour rapidement le JDK de ses serveurs et de ses images Docker.",
+      sources: [
+        { titre: "CERT-FR, alerte CERTFR-2026-ALE-016", url: "https://cert.cyber.gouv.fr/alerte/CERTFR-2026-ALE-016/" },
+        { titre: "Datadog Security Labs", url: "https://securitylabs.datadoghq.com/articles/java4shell-remote-code-execution-in-openjdk-cve-2026-114938/" },
+      ],
+    },
+    {
+      date: "2026-11-16",
+      titre: "Des pirates détournent la configuration d'un agent d'IA de code",
+      theme: "IA et sécurité",
+      resume:
+        "Selon Google Threat Intelligence, un groupe soupçonné d'être lié à la Corée du Nord a modifié les fichiers de configuration de Claude Code (.claude/settings.json) dans les dépôts internes d'entreprises de cryptomonnaie. À chaque lancement de l'agent par un développeur, une porte dérobée était téléchargée. L'accès initial passait par de faux recruteurs.",
+      retenir:
+        "Les fichiers de configuration des outils d'IA versionnés dans un dépôt peuvent exécuter des commandes sur le poste du développeur. Ils doivent passer en revue de code comme le reste du code, et les jetons d'accès doivent être limités et surveillés.",
+      sources: [
+        { titre: "Google Threat Intelligence Group", url: "https://cloud.google.com/blog/topics/threat-intelligence/agentic-threat-activity-crosses-a-significant-threshold" },
+      ],
+    },
+    {
       date: "2026-09-11",
       titre: "Cyber Resilience Act : 24 heures pour signaler une faille exploitée",
       theme: "Cybersécurité",
@@ -98,7 +123,7 @@ export default {
       titre: "OWASP Top 10 2025 : la chaîne d'approvisionnement entre dans le classement",
       theme: "Cybersécurité",
       resume:
-        "La nouvelle édition du Top 10 de l'OWASP, référence des risques des applications web, crée la catégorie « Software Supply Chain Failures » (A03) : dépendances, outils de build et de distribution. Le contrôle d'accès défaillant reste en tête (A01) et une catégorie sur la mauvaise gestion des cas exceptionnels apparaît (A10).",
+        "L'édition 2025 du Top 10 de l'OWASP, référence des risques des applications web, crée la catégorie « Software Supply Chain Failures » (A03) : dépendances, outils de build et de distribution. Le contrôle d'accès défaillant reste en tête (A01) et une catégorie sur la mauvaise gestion des cas exceptionnels apparaît (A10).",
       retenir:
         "Le contrôle d'accès, que j'ai mis en œuvre avec les rôles d'AppFAQ, reste le premier risque : chaque page doit vérifier côté serveur les droits de l'utilisateur, pas seulement masquer les boutons.",
       sources: [

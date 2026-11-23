@@ -21,8 +21,8 @@
   "homepage": "https://github.com/jakevlt/jakevlt.github.io#readme",
   "description": "Portfolio BTS SIO SLAM de Jake Volante",
   "devDependencies": {
-    "@11ty/eleventy": "^3.1.6",
-    "@11ty/eleventy-img": "^7.0.0"
+    "@11ty/eleventy": "^3.1.8",
+    "@11ty/eleventy-img": "^7.1.1"
   },
   "private": true,
   "type": "module",
