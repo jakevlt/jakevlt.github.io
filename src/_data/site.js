@@ -32,12 +32,12 @@ export default {
   // Le fichier sera ajouté quand le CV mis à jour sera prêt.
   cv: null, // ex. "/documents/cv-jake-volante.pdf"
   navigation: [
-    { titre: "Parcours", url: "/parcours/" },
-    { titre: "Mon école", url: "/ecole/" },
-    { titre: "Compétences", url: "/competences/" },
-    { titre: "Réalisations", url: "/realisations/" },
-    { titre: "Stages", url: "/stages/" },
-    { titre: "Veille", url: "/veille/" },
-    { titre: "Contact", url: "/contact/" },
+    { titre: "Parcours", url: "/#parcours" },
+    { titre: "Mon école", url: "/#ecole" },
+    { titre: "Compétences", url: "/#competences" },
+    { titre: "Réalisations", url: "/#realisations" },
+    { titre: "Stages", url: "/#stages" },
+    { titre: "Veille", url: "/#veille" },
+    { titre: "Contact", url: "/#contact" },
   ],
 };

@@ -593,3 +593,157 @@ a.contact-item:hover {
   font-size: var(--text-xl);
   margin-bottom: var(--space-4);
 }
+
+/* --- Page unique : mises en page des sections ---------------------------- */
+
+/* Deux colonnes (contenu principal + colonne d'encadrés) */
+.split {
+  display: grid;
+  gap: var(--space-6);
+}
+
+@media (min-width: 56rem) {
+  .split {
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+    gap: var(--space-8);
+    align-items: start;
+  }
+}
+
+.sous-titre--first {
+  margin-top: 0;
+}
+
+.sous-titre__note {
+  margin-left: var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--color-text-subtle);
+}
+
+.grid--wide {
+  --grid-min: 26rem;
+}
+
+/* Compétences du référentiel */
+.comp-grid {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+}
+
+.comp-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.comp-item .competence__head {
+  justify-content: space-between;
+  margin-bottom: 0;
+}
+
+.comp-item__title {
+  font-size: var(--text-base);
+  line-height: var(--leading-snug);
+}
+
+.comp-item__proofs {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.comp-item details {
+  margin-top: auto;
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.comp-item summary {
+  cursor: pointer;
+  width: fit-content;
+  font-weight: 500;
+  color: var(--color-text);
+  border-radius: var(--radius-sm);
+}
+
+.comp-item details ul {
+  margin-top: var(--space-2);
+  padding-left: 1.25rem;
+}
+
+.section .skills-groups {
+  margin-bottom: var(--space-2);
+}
+
+/* Stages */
+.stage {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  scroll-margin-top: calc(var(--header-height) + var(--space-4));
+}
+
+.stage__title {
+  font-size: var(--text-xl);
+}
+
+.stage__resume {
+  margin-top: var(--space-2);
+}
+
+.stage__sub {
+  margin-top: var(--space-4);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.stage__list {
+  padding-left: 1.25rem;
+  font-size: var(--text-sm);
+}
+
+.stage__list li + li {
+  margin-top: var(--space-1);
+}
+
+.stage__footer {
+  display: grid;
+  gap: var(--space-4);
+  margin-top: auto;
+  padding-top: var(--space-5);
+}
+
+/* Veille */
+.veille-item__title {
+  font-size: var(--text-lg);
+  margin-bottom: var(--space-2);
+}
+
+/* Contact : coordonnées à gauche, formulaire à droite, même alignement
+   que le reste de la page */
+.contact-layout {
+  display: grid;
+  gap: var(--space-5);
+  align-items: start;
+}
+
+@media (min-width: 60rem) {
+  .contact-layout {
+    grid-template-columns: minmax(0, 23rem) minmax(0, 1fr);
+    gap: var(--space-6);
+  }
+}
+
+.contact-layout .contact-list {
+  grid-template-columns: 1fr;
+}
+
+.contact-item {
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.contact-layout .contact-item {
+  padding: var(--space-4);
+}

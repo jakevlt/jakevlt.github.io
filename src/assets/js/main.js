@@ -49,6 +49,11 @@
       basculer(bouton.getAttribute("aria-expanded") !== "true");
     });
 
+    // Choisir une section referme le menu.
+    nav.addEventListener("click", function (e) {
+      if (e.target.closest("a")) basculer(false);
+    });
+
     // Échap ferme le menu et rend le focus au bouton.
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape" && nav.classList.contains("is-open")) {
@@ -276,11 +281,39 @@
     });
   }
 
+  /* --- Page unique : section active dans le menu ------------------------- */
+  function initSectionActive() {
+    var liens = Array.prototype.slice.call(document.querySelectorAll('.nav__link[href^="/#"]'));
+    var sections = liens
+      .map(function (lien) { return document.getElementById(lien.getAttribute("href").slice(2)); })
+      .filter(Boolean);
+    if (!sections.length || !("IntersectionObserver" in window)) return;
+
+    function activer(id) {
+      liens.forEach(function (lien) {
+        if (lien.getAttribute("href") === "/#" + id) lien.setAttribute("aria-current", "true");
+        else lien.removeAttribute("aria-current");
+      });
+    }
+
+    // Une section est « active » quand elle traverse le tiers haut de l'écran.
+    var observateur = new IntersectionObserver(
+      function (entrees) {
+        entrees.forEach(function (entree) {
+          if (entree.isIntersecting) activer(entree.target.id);
+        });
+      },
+      { rootMargin: "-30% 0px -65% 0px" }
+    );
+    sections.forEach(function (section) { observateur.observe(section); });
+  }
+
   initTheme();
   initMenu();
   initGalerie();
   initFiltres();
   initReveal();
   initChrono();
+  initSectionActive();
   initFormulaire();
 })();

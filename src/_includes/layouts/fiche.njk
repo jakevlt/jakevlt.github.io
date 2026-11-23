@@ -15,7 +15,7 @@ ogType: article
     <nav class="breadcrumb" aria-label="Fil d'Ariane">
       <ol>
         <li><a href="/">Accueil</a></li>
-        <li><a href="/realisations/">Réalisations</a></li>
+        <li><a href="/#realisations">Réalisations</a></li>
         <li><span aria-current="page">{{ titreCourt or titre }}</span></li>
       </ol>
     </nav>
@@ -119,7 +119,7 @@ ogType: article
   "@type": "BreadcrumbList",
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "Accueil", "item": "{{ site.url }}/" },
-    { "@type": "ListItem", "position": 2, "name": "Réalisations", "item": "{{ site.url }}/realisations/" },
+    { "@type": "ListItem", "position": 2, "name": "Réalisations", "item": "{{ site.url }}/#realisations" },
     { "@type": "ListItem", "position": 3, "name": {{ (titreCourt or titre) | json | safe }}, "item": "{{ page.url | absolue(site.url) }}" }
   ]
 }

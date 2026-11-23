@@ -1,36 +1,8 @@
 ---
-layout: layouts/base.njk
-titre: Documents
-description: "Documents de Jake Volante à télécharger : CV, rapports de stage (La Banque Postale, Fonroche Lighting), tableau de synthèse et attestations."
+layout: layouts/redirection.njk
+titre: "Documents"
 permalink: /documents/
+redirection: "/#documents"
+robots: noindex
+eleventyExcludeFromCollections: true
 ---
-{%- from "partials/icones.njk" import icone -%}
-<div class="container container--narrow">
-  <header class="page-header">
-    <p class="eyebrow">Téléchargements</p>
-    <h1>Documents</h1>
-    <p class="lead">Les documents qui accompagnent mon portfolio, au format PDF.</p>
-  </header>
-
-  {%- if site.cv %}
-  <section aria-labelledby="titre-candidature" class="bloc-docs">
-    <h2 id="titre-candidature">Candidature</h2>
-    <ul class="docs-list">
-      {%- if site.cv %}
-      <li><a class="doc-link" href="{{ site.cv }}" type="application/pdf">{{ icone("file") | safe }}<span>Curriculum vitae<small>PDF</small></span></a></li>
-      {%- endif %}
-    </ul>
-  </section>
-  {%- endif %}
-
-  <section aria-labelledby="titre-bts" class="bloc-docs">
-    <h2 id="titre-bts">BTS SIO</h2>
-    <ul class="docs-list">
-      <li><a class="doc-link" href="/documents/tableau-de-synthese-jake-volante.pdf" type="application/pdf">{{ icone("file") | safe }}<span>Tableau de synthèse des réalisations<small>PDF, version officielle (session 2026, numéro de candidat masqué)</small></span></a></li>
-      {%- for stage in stages %}
-      <li><a class="doc-link" href="{{ stage.rapport.url }}" type="application/pdf">{{ icone("file") | safe }}<span>Rapport de stage, {{ stage.entreprise }} ({{ stage.periodeTexte | lower }})<small>{{ stage.rapport.info }}</small></span></a></li>
-      {%- endfor %}
-    </ul>
-  </section>
-
-</div>

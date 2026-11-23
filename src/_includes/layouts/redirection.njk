@@ -1,0 +1,19 @@
+{#- Ancienne page devenue une section de la page d'accueil : redirection
+    immédiate vers l'ancre correspondante (les anciens liens restent valides). -#}
+<!doctype html>
+<html lang="{{ site.langue }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ titre }} · {{ site.auteur.nomComplet }}</title>
+  <meta name="description" content="Cette page fait désormais partie de la page d'accueil du portfolio de {{ site.auteur.nomComplet }}.">
+  <meta name="robots" content="noindex">
+  <link rel="canonical" href="{{ redirection | absolue(site.url) }}">
+  <meta http-equiv="refresh" content="0; url={{ redirection }}">
+  <script>location.replace({{ redirection | json | safe }});</script>
+</head>
+<body>
+  <h1>{{ titre }}</h1>
+  <p>Cette page a été déplacée : <a href="{{ redirection }}">{{ titre }}</a>.</p>
+</body>
+</html>

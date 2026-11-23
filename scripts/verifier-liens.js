@@ -82,6 +82,8 @@ for (const page of pages) {
 const vus = { title: new Map(), description: new Map() };
 for (const page of pages) {
   const html = fs.readFileSync(page, "utf8");
+  // Les pages non indexées (redirections, confirmation) ne comptent pas.
+  if (html.includes('<meta name="robots" content="noindex">')) continue;
   const relatif = "/" + path.relative(RACINE, page).replace(/\\/g, "/");
   const titre = html.match(/<title>([^<]+)<\/title>/)?.[1];
   const description = html.match(/<meta name="description" content="([^"]+)"/)?.[1];
@@ -95,7 +97,7 @@ for (const page of pages) {
 if (verifierExternes) {
   for (const [url, page] of externes) {
     try {
-      const reponse = await fetch(url, { method: "GET", redirect: "follow", headers: { "User-Agent": "Mozilla/5.0 (verification de liens)" } });
+      const reponse = await fetch(url, { method: "GET", redirect: "follow", signal: AbortSignal.timeout(15_000), headers: { "User-Agent": "Mozilla/5.0 (verification de liens)" } });
       // LinkedIn répond 999 aux robots : ce n'est pas un lien mort.
       if (!reponse.ok && reponse.status !== 999) erreurs.push(`${page} → ${url} : HTTP ${reponse.status}`);
     } catch (e) {

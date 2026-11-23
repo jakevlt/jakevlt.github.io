@@ -1,22 +1,26 @@
 ---
 layout: layouts/base.njk
 permalink: /
-description: "Jake Volante, étudiant en BTS SIO option SLAM au Campus Ermitage 47 à Agen. Développement d'applications web (Python/Django, PHP, SQL). Recherche d'une alternance dans le Lot-et-Garonne."
+description: "Portfolio de Jake Volante, étudiant en BTS SIO option SLAM au Campus Ermitage à Agen : parcours, compétences, réalisations, stages, veille technologique et contact. Recherche d'une alternance dans le Lot-et-Garonne."
 ---
+{#- Portfolio en une seule page : chaque section correspond à une entrée du menu.
+    Les fiches détaillées des réalisations restent sur des pages à part. -#}
 {%- from "partials/icones.njk" import icone -%}
-{%- set aLaUne = collections.realisations | avecDonnee("une") | inverse -%}
+{%- set formation = collections.realisations | duContexte("formation") -%}
+{%- set enStage = collections.realisations | duContexte("stage") -%}
 
-<section class="hero" aria-labelledby="titre-accueil">
+{# ---------------------------------------------------------------- Accueil #}
+<section class="hero" id="accueil" aria-labelledby="titre-accueil">
   <div class="container">
     <p class="eyebrow">BTS SIO · option SLAM · {{ site.formation.ville }}</p>
     <h1 id="titre-accueil">Jake Volante</h1>
     <p class="lead">Étudiant en 2<sup>e</sup> année de BTS SIO au {{ site.formation.etablissement }}, en recherche d'alternance.</p>
     <div class="btn-group">
-      <a class="btn btn--primary" href="/realisations/">Voir mes réalisations {{ icone("arrow-right") | safe }}</a>
+      <a class="btn btn--primary" href="#realisations">Voir mes réalisations {{ icone("arrow-right") | safe }}</a>
       {%- if site.cv %}
       <a class="btn" href="{{ site.cv }}" type="application/pdf">{{ icone("download") | safe }} Télécharger mon CV</a>
       {%- endif %}
-      <a class="btn" href="/contact/">{{ icone("mail") | safe }} Me contacter</a>
+      <a class="btn" href="#contact">{{ icone("mail") | safe }} Me contacter</a>
     </div>
 
     <ul class="stats" aria-label="En quelques chiffres">
@@ -27,48 +31,293 @@ description: "Jake Volante, étudiant en BTS SIO option SLAM au Campus Ermitage 
   </div>
 </section>
 
-<section class="section" aria-labelledby="titre-une">
+{# --------------------------------------------------------------- Parcours #}
+<section class="section section--alt" id="parcours" aria-labelledby="titre-parcours">
   <div class="container">
-    <div class="section__header">
+    <header class="section__header">
+      <div>
+        <p class="eyebrow">Parcours</p>
+        <h2 id="titre-parcours">Mon parcours</h2>
+        <p>Après un Bac STI2D, je me suis orienté vers le développement informatique. Je prépare aujourd'hui le BTS SIO, option SLAM, à Agen.</p>
+      </div>
+    </header>
+
+    <div class="split">
+      <div>
+        <h3 class="sous-titre sous-titre--first">Formation</h3>
+        <ol class="timeline" reversed>
+          <li class="timeline__item timeline__item--current">
+            <p class="timeline__date">2026 – 2027</p>
+            <h4 class="timeline__title">BTS SIO, option SLAM · 2<sup>e</sup> année</h4>
+            <p class="timeline__place"><a href="#ecole">Campus Ermitage 47</a>, Agen</p>
+          </li>
+          <li class="timeline__item">
+            <p class="timeline__date">2024 – 2026</p>
+            <h4 class="timeline__title">BTS SIO, option SLAM · 1<sup>re</sup> et 2<sup>e</sup> années</h4>
+            <p class="timeline__place">Institut Limayrac, Toulouse</p>
+          </li>
+          <li class="timeline__item">
+            <p class="timeline__date">2023</p>
+            <h4 class="timeline__title">Baccalauréat STI2D, option ITEC</h4>
+            <p class="timeline__place">Lycée Val de Garonne, Marmande</p>
+          </li>
+        </ol>
+      </div>
+
+      <div class="stack">
+        <div class="panel">
+          <h3 class="titre-panel">Projet professionnel</h3>
+          <p>Devenir développeur d'applications. Mes deux stages m'ont conforté dans ce choix, en particulier pour le développement back-end et les bases de données. À court terme, je recherche une <strong>alternance dans le Lot-et-Garonne</strong>.</p>
+        </div>
+        <div class="panel">
+          <h3 class="titre-panel">Certifications et langues</h3>
+          <ul class="stack stack--sm list-reset">
+            <li><strong>PIX</strong>, compétences numériques (2024)</li>
+            <li><strong>PSE 1</strong>, premiers secours en équipe, Action Secours 47 (2024)</li>
+            <li><strong>Français</strong> langue maternelle, <strong>anglais</strong> courant</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h3 class="titre-panel">Centres d'intérêt</h3>
+          <ul class="tags"><li class="tag">Nouvelles technologies</li><li class="tag">Sport</li><li class="tag">Voyages</li><li class="tag">Cuisine</li></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{# ------------------------------------------------------------------ École #}
+<section class="section" id="ecole" aria-labelledby="titre-ecole">
+  <div class="container">
+    <header class="section__header">
+      <div>
+        <p class="eyebrow">Mon école</p>
+        <h2 id="titre-ecole">{{ ecole.nom }}, Agen</h2>
+        {%- for paragraphe in ecole.presentation %}
+        <p>{{ paragraphe }}</p>
+        {%- endfor %}
+      </div>
+      <a class="link-arrow" href="{{ ecole.site }}" rel="noopener">Site de l'école</a>
+    </header>
+
+    {%- for groupe in ecole.formations %}
+    <h3 class="sous-titre{% if loop.first %} sous-titre--first{% endif %}">{{ groupe.groupe }}</h3>
+    <ul class="grid grid--sm list-reset" role="list">
+      {%- for f in groupe.liste %}
+      <li>
+        <article class="card card--link{% if f.actuelle %} card--actuelle{% endif %}">
+          {%- if f.actuelle %}<p class="card__badge">Ma formation</p>{% endif %}
+          <h4 class="card__title"><a class="card__link" href="{{ f.url }}" rel="noopener">{{ f.titre }}</a></h4>
+          <p class="card__text">{{ f.detail }}</p>
+        </article>
+      </li>
+      {%- endfor %}
+    </ul>
+    {%- endfor %}
+    <p class="form-note">{{ ecole.adresse }}. Informations issues du site officiel de l'école (novembre 2026).</p>
+  </div>
+</section>
+
+{# ------------------------------------------------------------ Compétences #}
+<section class="section section--alt" id="competences" aria-labelledby="titre-competences">
+  <div class="container">
+    <header class="section__header">
+      <div>
+        <p class="eyebrow">Compétences</p>
+        <h2 id="titre-competences">Mes compétences</h2>
+        <p>Les langages et outils que j'utilise, puis les compétences du référentiel du BTS SIO (option SLAM) avec mon niveau et les réalisations qui les prouvent.</p>
+      </div>
+    </header>
+
+    {% include "partials/outils.njk" %}
+
+    {%- for bloc in referentiel %}
+    <h3 class="sous-titre">Bloc {{ bloc.numero }} · {{ bloc.titre }} <span class="sous-titre__note">{{ bloc.epreuve }}</span></h3>
+    <ul class="comp-grid list-reset" role="list">
+      {%- for comp in bloc.competences %}
+      {%- set preuves = collections.realisations | avecCompetence(comp.code) %}
+      <li class="panel comp-item" id="{{ comp.code | lower | replace('.', '-') }}">
+        <div class="competence__head">
+          <span class="comp-code">{{ comp.code }}</span>
+          <span class="level" data-niveau="{{ comp.niveau }}">
+            <span class="level__bar" aria-hidden="true"><span></span><span></span><span></span></span>
+            <span><span class="sr-only">Niveau {{ comp.niveau }} sur 3 : </span>{{ niveaux[comp.niveau].libelle }}</span>
+          </span>
+        </div>
+        <h4 class="comp-item__title">{{ comp.titre }}</h4>
+        {%- if preuves.length %}
+        <p class="comp-item__proofs"><span class="sr-only">Prouvée par : </span>
+          {%- for r in preuves %}<a href="{{ r.url }}{% if r.data.preuves | aDesPreuves(comp.code) %}#{{ comp.code | ancre }}{% endif %}">{{ r.data.titreCourt or r.data.titre }}</a>{% if not loop.last %}, {% endif %}{% endfor %}
+        </p>
+        {%- else %}
+        <p class="empty">À développer pendant ma 2<sup>e</sup> année.</p>
+        {%- endif %}
+        <details>
+          <summary>Savoir-faire du référentiel</summary>
+          <ul>{% for s in comp.savoirs %}<li>{{ s }}</li>{% endfor %}</ul>
+        </details>
+      </li>
+      {%- endfor %}
+    </ul>
+    {%- endfor %}
+  </div>
+</section>
+
+{# ----------------------------------------------------------- Réalisations #}
+<section class="section" id="realisations" aria-labelledby="titre-realisations">
+  <div class="container">
+    <header class="section__header">
       <div>
         <p class="eyebrow">Réalisations</p>
-        <h2 id="titre-une">Projets à la une</h2>
-        <p>Une application métier en stage, une évolution dans une grande équipe, un projet web en équipe.</p>
+        <h2 id="titre-realisations">Mes réalisations professionnelles</h2>
+        <p>Chaque carte ouvre une fiche détaillée : contexte, besoin, solution, étapes, résultat, compétences et preuves.</p>
       </div>
-      <a class="link-arrow" href="/realisations/">Toutes les réalisations</a>
+      <a class="btn" href="/tableau-de-synthese/">Tableau de synthèse</a>
+    </header>
+
+    <div class="filters" data-filtres role="group" aria-label="Filtrer les réalisations">
+      <button class="filter-btn" type="button" data-filtre="tous" aria-pressed="true">Toutes ({{ collections.realisations.length }})</button>
+      <button class="filter-btn" type="button" data-filtre="stage" aria-pressed="false">En stage ({{ enStage.length }})</button>
+      <button class="filter-btn" type="button" data-filtre="formation" aria-pressed="false">En formation ({{ formation.length }})</button>
     </div>
+    <p class="sr-only" aria-live="polite" data-filtres-statut></p>
+
     <ul class="grid list-reset" role="list">
-      {%- asyncEach r in aLaUne %}
-      <li>{% include "partials/carte-realisation.njk" %}</li>
+      {%- asyncEach r in collections.realisations | inverse %}
+      <li data-contexte="{{ r.data.contexte }}">{% include "partials/carte-realisation.njk" %}</li>
       {%- endeach %}
     </ul>
   </div>
 </section>
 
-<section class="section" aria-labelledby="titre-outils">
+{# ----------------------------------------------------------------- Stages #}
+<section class="section section--alt" id="stages" aria-labelledby="titre-stages">
   <div class="container">
-    <div class="section__header">
+    <header class="section__header">
       <div>
-        <p class="eyebrow">Compétences</p>
-        <h2 id="titre-outils">Ce avec quoi je travaille</h2>
-        <p>Les langages et outils que j'ai utilisés dans mes réalisations. Le détail par bloc du référentiel est sur la page compétences.</p>
+        <p class="eyebrow">Stages</p>
+        <h2 id="titre-stages">Mes stages</h2>
+        <p>Deux stages de développement : une grande équipe Scrum dans le secteur bancaire, puis un projet mené en autonomie dans une entreprise du Lot-et-Garonne.</p>
       </div>
-      <a class="link-arrow" href="/competences/">Mes compétences</a>
+    </header>
+
+    <div class="grid grid--wide">
+      {%- for stage in stages %}
+      <article class="panel stage" id="{{ stage.id }}">
+        <p class="card__meta">{{ stage.periodeTexte }} · {{ stage.duree }} · BTS SIO {{ stage.annee }}</p>
+        <h3 class="stage__title">{{ stage.entreprise }}</h3>
+        <p class="card__meta">{{ stage.lieu }}</p>
+        <p class="stage__resume">{{ stage.resume }}</p>
+        <h4 class="stage__sub">Missions</h4>
+        <ul class="stage__list">{% for m in stage.missions %}<li>{{ m }}</li>{% endfor %}</ul>
+        <h4 class="stage__sub">Ce que j'en retiens</h4>
+        <ul class="stage__list">{% for a in stage.apports %}<li>{{ a }}</li>{% endfor %}</ul>
+        <div class="stage__footer">
+          <ul class="tags">{% for t in stage.technologies %}<li class="tag">{{ t }}</li>{% endfor %}</ul>
+          <div class="btn-group">
+            <a class="btn" href="{{ stage.rapport.url }}" type="application/pdf">{{ icone("file") | safe }} Rapport de stage</a>
+            {%- set principale = collections.realisations | trouverParSlug(stage.realisations[0]) %}
+            <a class="btn" href="{{ principale.url }}">Fiche de réalisation</a>
+          </div>
+        </div>
+      </article>
+      {%- endfor %}
     </div>
-    {% include "partials/outils.njk" %}
   </div>
 </section>
 
-<section class="section" id="contact" aria-labelledby="titre-cta">
-  <div class="container container--narrow">
-    <div class="section__header">
+{# ----------------------------------------------------------------- Veille #}
+<section class="section" id="veille" aria-labelledby="titre-veille">
+  <div class="container">
+    <header class="section__header">
       <div>
-        <p class="eyebrow">Contact</p>
-        <h2 id="titre-cta">Vous recrutez un alternant développeur ?</h2>
-        <p>Je suis disponible pour une alternance dans le {{ site.auteur.departement }}. Laissez-moi un message, je vous réponds par e-mail.</p>
+        <p class="eyebrow">Veille technologique</p>
+        <h2 id="titre-veille">{{ veille.sujet }}</h2>
+        <p>{{ veille.problematique }}</p>
+      </div>
+    </header>
+
+    <div class="grid grid--sm">
+      <div class="panel">
+        <h3 class="titre-panel">Pourquoi ce sujet</h3>
+        <ul class="stack stack--sm">{% for raison in veille.pourquoi %}<li>{{ raison }}</li>{% endfor %}</ul>
+      </div>
+      <div class="panel">
+        <h3 class="titre-panel">Ma méthode</h3>
+        <dl class="meta-list">
+          {%- for etape in veille.methode %}<div><dt>{{ etape.frequence }}</dt><dd>{{ etape.action }}</dd></div>{% endfor %}
+        </dl>
+      </div>
+      <div class="panel">
+        <h3 class="titre-panel">Mes outils</h3>
+        <dl class="meta-list">
+          {%- for outil in veille.outils %}<div><dt>{{ outil.nom }}</dt><dd>{{ outil.usage }}</dd></div>{% endfor %}
+        </dl>
       </div>
     </div>
-    {% include "partials/formulaire-contact.njk" %}
+
+    <h3 class="sous-titre">Synthèses</h3>
+    <ol class="veille-list" reversed>
+      {%- for s in veille.syntheses %}
+      <li class="panel veille-item">
+        <time datetime="{{ s.date }}">{% if s.mois %}{{ s.date | moisLong }}{% else %}{{ s.date | dateLongue }}{% endif %}</time>
+        <article>
+          <p class="card__meta">{{ s.theme }}</p>
+          <h4 class="veille-item__title">{{ s.titre }}</h4>
+          <p>{{ s.resume }}</p>
+          <p class="retenir"><strong>Ce que j'en retiens :</strong> {{ s.retenir }}</p>
+          <div class="sources">
+            <span class="card__meta">Sources :</span>
+            <ul>{% for src in s.sources %}<li><a href="{{ src.url }}" rel="noopener">{{ src.titre }}</a></li>{% endfor %}</ul>
+          </div>
+        </article>
+      </li>
+      {%- endfor %}
+    </ol>
+  </div>
+</section>
+
+{# -------------------------------------------------------------- Documents #}
+<section class="section section--alt" id="documents" aria-labelledby="titre-documents">
+  <div class="container">
+    <header class="section__header">
+      <div>
+        <p class="eyebrow">Documents</p>
+        <h2 id="titre-documents">Documents à télécharger</h2>
+      </div>
+    </header>
+    <ul class="grid grid--sm list-reset" role="list">
+      {%- if site.cv %}
+      <li><a class="doc-link" href="{{ site.cv }}" type="application/pdf">{{ icone("file") | safe }}<span>Curriculum vitae<small>PDF</small></span></a></li>
+      {%- endif %}
+      <li><a class="doc-link" href="/documents/tableau-de-synthese-jake-volante.pdf" type="application/pdf">{{ icone("file") | safe }}<span>Tableau de synthèse des réalisations<small>PDF, version officielle (session 2026)</small></span></a></li>
+      {%- for stage in stages %}
+      <li><a class="doc-link" href="{{ stage.rapport.url }}" type="application/pdf">{{ icone("file") | safe }}<span>Rapport de stage, {{ stage.entreprise }}<small>{{ stage.rapport.info }}</small></span></a></li>
+      {%- endfor %}
+    </ul>
+  </div>
+</section>
+
+{# ---------------------------------------------------------------- Contact #}
+<section class="section" id="contact" aria-labelledby="titre-contact">
+  <div class="container">
+    <header class="section__header">
+      <div>
+        <p class="eyebrow">Contact</p>
+        <h2 id="titre-contact">Vous recrutez un alternant développeur ?</h2>
+        <p>Je recherche une alternance en développement d'applications dans le {{ site.auteur.departement }}. Laissez-moi un message ou écrivez-moi directement.</p>
+      </div>
+    </header>
+
+    <div class="contact-layout">
+      <ul class="contact-list list-reset">
+        <li><a class="contact-item" href="mailto:{{ site.auteur.email }}">{{ icone("mail") | safe }}<span><small>E-mail</small>{{ site.auteur.email }}</span></a></li>
+        <li><a class="contact-item" href="{{ site.auteur.linkedin }}" rel="me noopener">{{ icone("linkedin") | safe }}<span><small>LinkedIn</small>{{ site.auteur.linkedinPseudo }}</span></a></li>
+        <li><a class="contact-item" href="{{ site.auteur.github }}" rel="me noopener">{{ icone("github") | safe }}<span><small>GitHub</small>@{{ site.auteur.githubPseudo }}</span></a></li>
+        <li><div class="contact-item">{{ icone("map") | safe }}<span><small>Localisation</small>{{ site.auteur.ville }}, {{ site.auteur.departement }}</span></div></li>
+      </ul>
+      {% include "partials/formulaire-contact.njk" %}
+    </div>
   </div>
 </section>
 
@@ -84,7 +333,7 @@ description: "Jake Volante, étudiant en BTS SIO option SLAM au Campus Ermitage 
   "jobTitle": "{{ site.auteur.titre }}",
   "email": "mailto:{{ site.auteur.email }}",
   "address": { "@type": "PostalAddress", "addressLocality": "{{ site.auteur.ville }}", "addressRegion": "Nouvelle-Aquitaine", "addressCountry": "FR" },
-  "affiliation": { "@type": "EducationalOrganization", "name": "{{ site.formation.etablissement }}", "address": { "@type": "PostalAddress", "addressLocality": "{{ site.formation.ville }}", "addressCountry": "FR" } },
+  "affiliation": { "@type": "EducationalOrganization", "name": "{{ ecole.nom }}", "url": "{{ ecole.site }}", "address": { "@type": "PostalAddress", "addressLocality": "Agen", "addressCountry": "FR" } },
   "knowsAbout": ["Python", "Django", "PHP", "SQL", "PostgreSQL", "MySQL", "HTML", "CSS", "Développement web"],
   "knowsLanguage": ["fr", "en"],
   "sameAs": ["{{ site.auteur.linkedin }}", "{{ site.auteur.github }}"]
