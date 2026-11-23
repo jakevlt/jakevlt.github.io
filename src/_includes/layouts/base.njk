@@ -21,18 +21,14 @@
     (function () {
       var t = null;
       try { t = localStorage.getItem("theme"); } catch (e) {}
-      if (t !== "light" && t !== "dark") {
-        t = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
-      }
+      if (t !== "light" && t !== "dark") t = "light"; // thème clair par défaut
       document.documentElement.dataset.theme = t;
       document.documentElement.classList.add("js");
     })();
   </script>
-  <meta name="theme-color" content="#f5f6f8" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#171b22" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#ffffff">
 
-  <link rel="preload" href="/assets/fonts/space-grotesk-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/assets/fonts/jetbrains-mono-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/plus-jakarta-sans-latin-wght.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/assets/css/main.css">
 
   <link rel="icon" href="/favicon.ico" sizes="32x32">
@@ -52,7 +48,6 @@
   <meta property="og:image:alt" content="Jake Volante, portfolio BTS SIO option SLAM">
   <meta name="twitter:card" content="summary_large_image">
 
-  {%- block donneesStructurees %}{% endblock %}
   <script src="/assets/js/main.js" defer></script>
 </head>
 <body>
@@ -61,7 +56,7 @@
   <header class="site-header">
     <div class="container header__inner">
       <a class="brand" href="/" {% if page.url == "/" %}aria-current="page"{% endif %}>
-        <span class="sr-only">Accueil, </span>jake<span class="brand__dot">.</span>volante
+        <span class="brand__mark" aria-hidden="true">JV</span><span class="sr-only">Accueil, </span>Jake Volante
       </a>
 
       <div class="header__actions">
@@ -118,7 +113,7 @@
         </div>
       </div>
       <div class="footer__bottom">
-        <p>© {{ anneeCourante }} {{ site.auteur.nomComplet }}. Site statique, sans cookie ni traceur.</p>
+        <p>© {{ anneeCourante }} {{ site.auteur.nomComplet }}. Site sans cookie ni traceur.</p>
         <ul class="footer__list footer__list--inline">
           <li><a href="/mentions-legales/">Mentions légales</a></li>
           <li><a href="/confidentialite/">Confidentialité</a></li>
@@ -126,5 +121,8 @@
       </div>
     </div>
   </footer>
+
+  {#- Chronomètre d'aide à l'oral : affiché et lancé par main.js. #}
+  <p class="chrono" data-chrono hidden><span class="sr-only">Temps écoulé : </span><span data-chrono-valeur>00:00</span></p>
 </body>
 </html>

@@ -194,9 +194,93 @@
     elements.forEach(function (el) { observateur.observe(el); });
   }
 
+  /* --- Chronomètre d'aide à l'oral ----------------------------------------
+     Démarre à l'affichage, continue d'une page à l'autre pendant la visite
+     et repart de zéro quand la page est rechargée (F5). */
+  function initChrono() {
+    var bloc = document.querySelector("[data-chrono]");
+    if (!bloc) return;
+    var valeur = bloc.querySelector("[data-chrono-valeur]");
+    var cle = "chrono-debut";
+    var debut = 0;
+    var rechargement = false;
+    try {
+      var nav = performance.getEntriesByType("navigation")[0];
+      rechargement = Boolean(nav && nav.type === "reload");
+    } catch (e) {}
+    try {
+      if (!rechargement) debut = Number(sessionStorage.getItem(cle)) || 0;
+    } catch (e) {}
+    if (!debut) {
+      debut = Date.now();
+      try { sessionStorage.setItem(cle, String(debut)); } catch (e) {}
+    }
+
+    function deuxChiffres(n) { return (n < 10 ? "0" : "") + n; }
+    function actualiser() {
+      var total = Math.max(0, Math.floor((Date.now() - debut) / 1000));
+      var heures = Math.floor(total / 3600);
+      var minutes = Math.floor((total % 3600) / 60);
+      var secondes = total % 60;
+      valeur.textContent = (heures ? heures + ":" + deuxChiffres(minutes) : deuxChiffres(minutes)) + ":" + deuxChiffres(secondes);
+    }
+
+    bloc.hidden = false;
+    actualiser();
+    setInterval(actualiser, 1000);
+  }
+
+  /* --- Formulaire de contact ---------------------------------------------- */
+  function initFormulaire() {
+    var form = document.querySelector("[data-contact-form]");
+    if (!form) return;
+    var statut = form.querySelector("[data-form-status]");
+    var bouton = form.querySelector('button[type="submit"]');
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (!form.reportValidity()) return;
+      var donnees = new FormData(form);
+
+      // Sans service d'envoi : ouverture de la messagerie du visiteur.
+      if (form.dataset.mode === "mailto") {
+        var corps = donnees.get("message") + "\n\n— " + donnees.get("name") +
+          (donnees.get("entreprise") ? " (" + donnees.get("entreprise") + ")" : "") + "\n" + donnees.get("email");
+        window.location.href = "mailto:" + form.dataset.destinataire +
+          "?subject=" + encodeURIComponent("Message depuis le portfolio") + "&body=" + encodeURIComponent(corps);
+        statut.textContent = "Votre messagerie s'ouvre avec le message prérempli.";
+        return;
+      }
+
+      // Envoi par le service Web3Forms.
+      bouton.disabled = true;
+      statut.textContent = "Envoi en cours…";
+      donnees.delete("redirect");
+      fetch(form.action, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(Object.fromEntries(donnees)),
+      })
+        .then(function (r) { return r.json().then(function (json) { return { ok: r.ok && json.success, json: json }; }); })
+        .then(function (resultat) {
+          if (!resultat.ok) throw new Error("envoi");
+          form.reset();
+          statut.textContent = "Merci, votre message a bien été envoyé. Je vous réponds dès que possible.";
+          statut.dataset.etat = "succes";
+        })
+        .catch(function () {
+          statut.textContent = "L'envoi a échoué. Vous pouvez m'écrire directement à " + form.dataset.destinataire + ".";
+          statut.dataset.etat = "erreur";
+        })
+        .finally(function () { bouton.disabled = false; });
+    });
+  }
+
   initTheme();
   initMenu();
   initGalerie();
   initFiltres();
   initReveal();
+  initChrono();
+  initFormulaire();
 })();

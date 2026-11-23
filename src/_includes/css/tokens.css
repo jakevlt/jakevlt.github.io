@@ -1,29 +1,22 @@
 /* ==========================================================================
-   Design tokens — direction « Ardoise »
+   Design tokens — thème clair par défaut, sombre en option
    Les couleurs sont définies une fois par thème ; tout le reste du CSS
    n'utilise que ces variables.
    ========================================================================== */
 
 @font-face {
-  font-family: "Space Grotesk";
-  src: url("/assets/fonts/space-grotesk-latin-wght.woff2") format("woff2");
-  font-weight: 300 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "JetBrains Mono";
-  src: url("/assets/fonts/jetbrains-mono-latin-wght.woff2") format("woff2");
-  font-weight: 100 800;
+  font-family: "Plus Jakarta Sans";
+  src: url("/assets/fonts/plus-jakarta-sans-latin-wght.woff2") format("woff2");
+  font-weight: 200 800;
   font-style: normal;
   font-display: swap;
 }
 
 :root {
   /* Typographie */
-  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  /* Réservée aux extraits de code */
+  --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
 
   --text-xs: 0.8125rem;   /* 13px */
   --text-sm: 0.9375rem;   /* 15px */
@@ -56,9 +49,9 @@
   --header-height: 4rem;
 
   /* Formes */
-  --radius-sm: 0.375rem;
-  --radius: 0.625rem;
-  --radius-lg: 1rem;
+  --radius-sm: 0.5rem;
+  --radius: 0.75rem;
+  --radius-lg: 1.25rem;
   --radius-full: 999px;
 
   /* Mouvement */
@@ -68,28 +61,31 @@
   --duration-slow: 600ms;
 
   /* --- Couleurs : light-dark(clair, sombre) ---
-     Le thème suit le système (color-scheme: light dark) ; la bascule
-     manuelle force data-theme="light" ou "dark" sur <html>. */
-  color-scheme: light dark;
-  --color-bg: light-dark(#f5f6f8, #171b22);
-  --color-bg-elevated: light-dark(#ffffff, #1d222b);
-  --color-surface: light-dark(#ffffff, #21262f);
-  --color-surface-hover: light-dark(#f0f2f5, #272d38);
-  --color-border: light-dark(#dce1e7, #313845);
-  --color-border-strong: light-dark(#b7c0cc, #475063);
-  --color-text: light-dark(#151a21, #e8ebf0);
-  --color-text-muted: light-dark(#4b5563, #a6afbd);
-  --color-text-subtle: light-dark(#5f6a79, #8a94a4);
-  --color-accent: light-dark(#0d7560, #5fd4b8);
-  --color-accent-hover: light-dark(#0a5e4d, #86e2cc);
-  --color-accent-soft: light-dark(rgb(13 117 96 / 0.09), rgb(95 212 184 / 0.12));
-  --color-on-accent: light-dark(#ffffff, #0a2a22);
+     Thème clair par défaut ; la bascule force data-theme="dark". */
+  color-scheme: light;
+  --color-bg: light-dark(#f6f7fb, #161922);
+  --color-bg-elevated: light-dark(#ffffff, #1c2029);
+  --color-surface: light-dark(#ffffff, #20242e);
+  --color-surface-hover: light-dark(#f1f3f9, #272c38);
+  --color-border: light-dark(#e3e6ef, #313746);
+  --color-border-strong: light-dark(#c5cbd8, #4a5163);
+  --color-text: light-dark(#111827, #eceef3);
+  --color-text-muted: light-dark(#4b5565, #a9b1c0);
+  --color-text-subtle: light-dark(#5b6678, #8d97a8);
+  --color-accent: light-dark(#4f46e5, #a5b4fc);
+  --color-accent-hover: light-dark(#4338ca, #c7d2fe);
+  --color-accent-soft: light-dark(rgb(79 70 229 / 0.08), rgb(165 180 252 / 0.12));
+  --color-on-accent: light-dark(#ffffff, #1e1b4b);
   --color-todo-bg: light-dark(#fff1c2, #4a3a12);
   --color-todo-text: light-dark(#6b4a00, #ffd97a);
-  --color-header-bg: light-dark(rgb(245 246 248 / 0.85), rgb(23 27 34 / 0.82));
-  --shadow: 0 1px 2px light-dark(rgb(16 24 40 / 0.06), rgb(0 0 0 / 0.3)),
-    0 8px 24px light-dark(rgb(16 24 40 / 0.06), rgb(0 0 0 / 0.25));
-  --shadow-lg: 0 24px 64px light-dark(rgb(16 24 40 / 0.18), rgb(0 0 0 / 0.5));
+  --color-success: light-dark(#067647, #75e0a7);
+  --color-danger: light-dark(#b42318, #fda29b);
+  --color-header-bg: light-dark(rgb(255 255 255 / 0.82), rgb(22 25 34 / 0.82));
+  --shadow-sm: 0 1px 2px light-dark(rgb(16 24 40 / 0.05), rgb(0 0 0 / 0.3)),
+    0 1px 3px light-dark(rgb(16 24 40 / 0.06), rgb(0 0 0 / 0.2));
+  --shadow: 0 4px 8px -2px light-dark(rgb(16 24 40 / 0.08), rgb(0 0 0 / 0.3)),
+    0 2px 4px -2px light-dark(rgb(16 24 40 / 0.04), rgb(0 0 0 / 0.2));
+  --shadow-lg: 0 24px 48px -12px light-dark(rgb(16 24 40 / 0.18), rgb(0 0 0 / 0.5));
   --focus-ring: 0 0 0 3px var(--color-bg), 0 0 0 5px var(--color-accent);
 }
 

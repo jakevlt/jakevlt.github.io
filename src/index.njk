@@ -59,18 +59,16 @@ description: "Jake Volante, étudiant en BTS SIO option SLAM au Campus Ermitage 
   </div>
 </section>
 
-<section class="section" aria-labelledby="titre-cta">
-  <div class="container">
-    <div class="cta" data-reveal>
+<section class="section" id="contact" aria-labelledby="titre-cta">
+  <div class="container container--narrow">
+    <div class="section__header">
       <div>
+        <p class="eyebrow">Contact</p>
         <h2 id="titre-cta">Vous recrutez un alternant développeur ?</h2>
-        <p>Je suis disponible pour une alternance dans le {{ site.auteur.departement }}.</p>
-      </div>
-      <div class="btn-group">
-        <a class="btn btn--primary" href="mailto:{{ site.auteur.email }}">{{ icone("mail") | safe }} M'écrire</a>
-        <a class="btn" href="{{ site.auteur.linkedin }}" rel="noopener">{{ icone("linkedin") | safe }} LinkedIn</a>
+        <p>Je suis disponible pour une alternance dans le {{ site.auteur.departement }}. Laissez-moi un message, je vous réponds par e-mail.</p>
       </div>
     </div>
+    {% include "partials/formulaire-contact.njk" %}
   </div>
 </section>
 

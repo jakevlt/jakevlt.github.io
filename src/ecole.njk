@@ -1,0 +1,59 @@
+---
+layout: layouts/base.njk
+titre: Mon école
+description: "Présentation du Campus Ermitage à Agen, où Jake Volante prépare le BTS SIO option SLAM en 2026-2027 : l'établissement et ses formations post-bac en alternance (BTS et Bachelors)."
+permalink: /ecole/
+---
+{%- from "partials/icones.njk" import icone -%}
+<div class="container">
+  <header class="page-header">
+    <p class="eyebrow">Mon école</p>
+    <h1>{{ ecole.nom }}, Agen</h1>
+    <p class="lead">Je prépare ma 2<sup>e</sup> année de BTS SIO, option SLAM, au {{ ecole.nom }}, un centre de formation en alternance au cœur du Lot-et-Garonne.</p>
+  </header>
+</div>
+
+<section class="section" aria-labelledby="titre-presentation">
+  <div class="container">
+    <div class="fiche">
+      <aside class="fiche__aside" aria-label="Informations pratiques">
+        <div class="panel">
+          <dl class="meta-list">
+            <div><dt>Adresse</dt><dd>{{ ecole.adresse }}</dd></div>
+            <div><dt>Formations</dt><dd>5 BTS et 3 Bachelors, en alternance ou en formation continue</dd></div>
+            <div><dt>Site officiel</dt><dd><a href="{{ ecole.site }}" rel="noopener">postbac-campusermitage.com</a></dd></div>
+          </dl>
+        </div>
+      </aside>
+      <div class="prose">
+        <h2 id="titre-presentation">Présentation</h2>
+        {%- for paragraphe in ecole.presentation %}
+        <p>{{ paragraphe }}</p>
+        {%- endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="titre-formations">
+  <div class="container">
+    <h2 id="titre-formations">Les formations proposées</h2>
+    <div class="section-body">
+      {%- for groupe in ecole.formations %}
+      <h3 class="sous-titre">{{ groupe.groupe }}</h3>
+      <ul class="grid grid--sm list-reset" role="list">
+        {%- for f in groupe.liste %}
+        <li>
+          <article class="card card--link{% if f.actuelle %} card--actuelle{% endif %}">
+            {%- if f.actuelle %}<p class="card__badge">Ma formation</p>{% endif %}
+            <h4 class="card__title"><a class="card__link" href="{{ f.url }}" rel="noopener">{{ f.titre }}</a></h4>
+            <p class="card__text">{{ f.detail }}</p>
+          </article>
+        </li>
+        {%- endfor %}
+      </ul>
+      {%- endfor %}
+      <p class="form-note">Informations issues du site officiel de l'école, consulté en novembre 2026. Les liens mènent vers la fiche de chaque formation.</p>
+    </div>
+  </div>
+</section>

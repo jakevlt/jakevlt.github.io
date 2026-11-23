@@ -12,8 +12,8 @@
   min-height: 2.75rem;
   padding: var(--space-2) var(--space-5);
   border: 1px solid var(--color-border-strong);
-  border-radius: var(--radius);
-  background: transparent;
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
   color: var(--color-text);
   font-weight: 600;
   font-size: var(--text-sm);
@@ -93,7 +93,6 @@
   border-radius: var(--radius-full);
   background: transparent;
   color: var(--color-text-muted);
-  font-family: var(--font-mono);
   font-size: var(--text-xs);
   line-height: 1.6;
   white-space: nowrap;
@@ -113,7 +112,6 @@
   border-radius: var(--radius-sm);
   background: var(--color-accent-soft);
   color: var(--color-accent);
-  font-family: var(--font-mono);
   font-size: 0.8em;
   font-weight: 600;
   text-align: center;
@@ -133,9 +131,11 @@ a.comp-code:hover {
   flex-direction: column;
   gap: var(--space-3);
   padding: var(--space-5);
+  background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
-  transition: border-color var(--duration) var(--ease-out);
+  box-shadow: var(--shadow-sm);
+  transition: border-color var(--duration) var(--ease-out), box-shadow var(--duration) var(--ease-out);
 }
 
 .card:hover {
@@ -144,7 +144,8 @@ a.comp-code:hover {
 
 /* Toute la carte est cliquable via le lien du titre (zone étendue). */
 .card--link:hover {
-  border-color: var(--color-accent);
+  border-color: var(--color-border-strong);
+  box-shadow: var(--shadow);
 }
 
 /* Anneau de focus sur toute la carte quand son lien reçoit le focus clavier. */
@@ -174,7 +175,6 @@ a.comp-code:hover {
 }
 
 .card__meta {
-  font-family: var(--font-mono);
   font-size: var(--text-xs);
   color: var(--color-text-subtle);
 }
@@ -221,7 +221,6 @@ a.comp-code:hover {
 }
 
 .meta-list dt {
-  font-family: var(--font-mono);
   font-size: var(--text-xs);
   color: var(--color-text-subtle);
   margin-bottom: var(--space-1);
@@ -250,6 +249,8 @@ a.comp-code:hover {
 
 .panel {
   padding: var(--space-5);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
 }
@@ -261,7 +262,6 @@ a.comp-code:hover {
   align-items: center;
   gap: var(--space-2);
   font-size: var(--text-xs);
-  font-family: var(--font-mono);
   color: var(--color-text-muted);
   white-space: nowrap;
 }
@@ -327,7 +327,6 @@ a.comp-code:hover {
 }
 
 .timeline__date {
-  font-family: var(--font-mono);
   font-size: var(--text-xs);
   color: var(--color-accent);
 }
@@ -478,7 +477,6 @@ a.comp-code:hover {
 }
 
 .lightbox__counter {
-  font-family: var(--font-mono);
   font-size: var(--text-xs);
   color: var(--color-text-muted);
 }
@@ -568,7 +566,6 @@ a.comp-code:hover {
 }
 
 .data-table thead th {
-  font-family: var(--font-mono);
   font-size: var(--text-xs);
   font-weight: 500;
   color: var(--color-text-muted);
@@ -615,4 +612,146 @@ a.comp-code:hover {
 
 .page-header__actions {
   margin-top: var(--space-5);
+}
+
+/* --- Chronomètre d'aide à l'oral (coin inférieur droit) ------------------ */
+
+.chrono {
+  position: fixed;
+  right: var(--space-4);
+  bottom: var(--space-4);
+  z-index: 90;
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
+  box-shadow: var(--shadow);
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  pointer-events: none;
+}
+
+@media print {
+  .chrono {
+    display: none !important;
+  }
+}
+
+/* --- Formulaire de contact ------------------------------------------------ */
+
+.contact-form {
+  padding: clamp(1.25rem, 1rem + 2vw, 2rem);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.form-grid {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+}
+
+.field {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.field--full {
+  grid-column: 1 / -1;
+}
+
+.field label {
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.field__optional {
+  font-weight: 400;
+  color: var(--color-text-subtle);
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius);
+  background: var(--color-bg-elevated);
+  color: var(--color-text);
+  font-size: var(--text-base);
+  transition: border-color var(--duration-fast), box-shadow var(--duration-fast);
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 9rem;
+}
+
+.field input:focus-visible,
+.field textarea:focus-visible {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px var(--color-accent-soft);
+}
+
+.consent {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-3);
+  align-items: start;
+  margin-top: var(--space-5);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.consent input {
+  width: 1.15rem;
+  height: 1.15rem;
+  margin-top: 0.2rem;
+  accent-color: var(--color-accent);
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4);
+  margin-top: var(--space-5);
+}
+
+.form-status {
+  font-size: var(--text-sm);
+  font-weight: 500;
+}
+
+.form-status[data-etat="succes"] {
+  color: var(--color-success);
+}
+
+.form-status[data-etat="erreur"] {
+  color: var(--color-danger);
+}
+
+.form-note {
+  margin-top: var(--space-4);
+  font-size: var(--text-xs);
+  color: var(--color-text-subtle);
+}
+
+.card__badge {
+  align-self: flex-start;
+  padding: 0.15rem 0.6rem;
+  border-radius: var(--radius-full);
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+  font-size: var(--text-xs);
+  font-weight: 700;
+}
+
+.card--actuelle {
+  border-color: var(--color-accent);
 }

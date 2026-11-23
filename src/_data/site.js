@@ -26,10 +26,14 @@ export default {
     annee: "2026-2027",
     session: "2027",
   },
+  // Formulaire de contact : clé publique Web3Forms (https://web3forms.com).
+  // Tant qu'elle est vide, le formulaire ouvre la messagerie du visiteur.
+  formulaire: { cle: "" },
   // Le fichier sera ajouté quand le CV mis à jour sera prêt.
   cv: null, // ex. "/documents/cv-jake-volante.pdf"
   navigation: [
     { titre: "Parcours", url: "/parcours/" },
+    { titre: "Mon école", url: "/ecole/" },
     { titre: "Compétences", url: "/competences/" },
     { titre: "Réalisations", url: "/realisations/" },
     { titre: "Stages", url: "/stages/" },

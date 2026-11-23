@@ -1,0 +1,52 @@
+{#- Formulaire de contact.
+    - Si site.formulaire.cle (clé Web3Forms) est renseignée : le message est envoyé
+      par e-mail via Web3Forms (le site restant statique).
+    - Sinon : le message s'ouvre dans la messagerie du visiteur (mailto). -#}
+{%- set viaService = site.formulaire and site.formulaire.cle -%}
+<form class="contact-form" data-contact-form data-mode="{{ 'service' if viaService else 'mailto' }}" data-destinataire="{{ site.auteur.email }}"
+  {%- if viaService %} action="https://api.web3forms.com/submit" method="post"{% else %} action="mailto:{{ site.auteur.email }}" method="post" enctype="text/plain"{% endif %}>
+  {%- if viaService %}
+  <input type="hidden" name="access_key" value="{{ site.formulaire.cle }}">
+  <input type="hidden" name="subject" value="Nouveau message depuis le portfolio">
+  <input type="hidden" name="from_name" value="Portfolio de {{ site.auteur.nomComplet }}">
+  <input type="hidden" name="redirect" value="{{ site.url }}/contact/merci/">
+  {#- Champ piège anti-spam : invisible pour les humains. #}
+  <input type="checkbox" name="botcheck" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true">
+  {%- endif %}
+
+  <div class="form-grid">
+    <div class="field">
+      <label for="contact-nom">Nom et prénom</label>
+      <input id="contact-nom" name="name" type="text" autocomplete="name" required maxlength="100">
+    </div>
+    <div class="field">
+      <label for="contact-email">Adresse e-mail</label>
+      <input id="contact-email" name="email" type="email" autocomplete="email" required maxlength="150">
+    </div>
+    <div class="field field--full">
+      <label for="contact-entreprise">Entreprise <span class="field__optional">(facultatif)</span></label>
+      <input id="contact-entreprise" name="entreprise" type="text" autocomplete="organization" maxlength="150">
+    </div>
+    <div class="field field--full">
+      <label for="contact-message">Message</label>
+      <textarea id="contact-message" name="message" rows="6" required maxlength="3000"></textarea>
+    </div>
+  </div>
+
+  <div class="consent">
+    <input id="contact-rgpd" name="consentement" type="checkbox" value="oui" required>
+    <label for="contact-rgpd">
+      J'accepte que les informations saisies soient utilisées uniquement pour répondre à mon message.
+      Elles ne sont ni conservées sur ce site, ni transmises à des tiers à des fins commerciales.
+      En savoir plus : <a href="/confidentialite/#formulaire">politique de confidentialité</a>.
+    </label>
+  </div>
+
+  <div class="form-actions">
+    <button class="btn btn--primary" type="submit">Envoyer le message</button>
+    <p class="form-status" role="status" aria-live="polite" data-form-status></p>
+  </div>
+  {%- if not viaService %}
+  <p class="form-note">L'envoi ouvre votre messagerie avec le message prérempli. Vous pouvez aussi m'écrire directement à <a href="mailto:{{ site.auteur.email }}">{{ site.auteur.email }}</a>.</p>
+  {%- endif %}
+</form>

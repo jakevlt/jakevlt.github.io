@@ -19,5 +19,8 @@ permalink: /contact/
     <li><div class="contact-item">{{ icone("map") | safe }}<span><small>Localisation</small>{{ site.auteur.ville }}, {{ site.auteur.departement }}</span></div></li>
   </ul>
 
-  <p class="callout contact-note">Ce site n'utilise pas de formulaire : aucune donnée n'est collectée ici. Votre message arrive directement dans ma messagerie.</p>
+  <section class="contact-section" aria-labelledby="titre-formulaire">
+    <h2 id="titre-formulaire">M'envoyer un message</h2>
+    {% include "partials/formulaire-contact.njk" %}
+  </section>
 </div>

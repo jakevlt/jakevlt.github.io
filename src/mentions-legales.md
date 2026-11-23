@@ -27,7 +27,7 @@ Dans les captures d'écran et les rapports issus des stages, les éléments conf
 
 ## Crédits
 
-- Polices : [Space Grotesk](https://github.com/floriankarsten/space-grotesk) et [JetBrains Mono](https://github.com/JetBrains/JetBrainsMono), sous licence SIL Open Font License 1.1, hébergées sur ce site.
+- Police : [Plus Jakarta Sans](https://github.com/tokotype/PlusJakartaSans), sous licence SIL Open Font License 1.1, hébergée sur ce site.
 - Icônes : inspirées de [Lucide](https://lucide.dev), sous licence ISC.
 - Site généré avec [Eleventy](https://www.11ty.dev).
 
